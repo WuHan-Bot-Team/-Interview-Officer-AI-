@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI面试助手 - 首页</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #FAFAFA 0%, #F0F8FF 100%);
+        }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            border: 1px solid rgba(0, 0, 0, 0.05);
+        }
+        .soft-btn {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+            border: 1px solid rgba(99, 102, 241, 0.2);
+        }
+        .main-btn {
+            background: linear-gradient(135deg, rgba(99, 102, 241, 0.8) 0%, rgba(139, 92, 246, 0.8) 100%);
+            box-shadow: 0 4px 12px rgba(99, 102, 241, 0.15);
+        }
+        .progress-ring__circle {
+            transition: stroke-dashoffset 0.5s;
+            transform: rotate(-90deg);
+            transform-origin: 50% 50%;
+        }
+    </style>
+</head>
+<body class="text-gray-800">
+    <!-- iPhone 15 Pro Max 模拟器容器 -->
+    <div class="mx-auto my-8 relative" style="width: 393px; height: 852px; background: #FFF; border-radius: 40px; overflow: hidden; box-shadow: 0 0 0 12px #F5F5F5, 0 15px 30px rgba(0, 0, 0, 0.08);">
+        <!-- iOS 状态栏 -->
+        <div class="flex justify-between items-center px-6 pt-2 pb-1 text-gray-600">
+            <div class="text-sm font-medium">9:41</div>
+            <div class="flex space-x-2">
+                <i class="fas fa-signal text-xs"></i>
+                <i class="fas fa-wifi text-xs"></i>
+                <i class="fas fa-battery-three-quarters text-xs"></i>
+            </div>
+        </div>
+
+        <!-- 页面内容 -->
+        <div class="px-5 py-3 h-full overflow-y-auto" style="padding-bottom: 80px;">
+            <!-- 用户信息栏 -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-xl font-bold text-gray-800">下午好, <span class="text-blue-500">张同学</span></h1>
+                    <p class="text-gray-500 text-sm">今日推荐5个训练</p>
+                </div>
+                <div class="w-10 h-10 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center border border-gray-200">
+                    <i class="fas fa-user text-blue-500"></i>
+                </div>
+            </div>
+
+            <!-- 搜索框 -->
+            <div class="glass-card rounded-lg px-4 py-3 mb-6 flex items-center shadow-sm">
+                <i class="fas fa-search text-gray-400 mr-3"></i>
+                <input type="text" placeholder="搜索岗位类型..." class="bg-transparent w-full focus:outline-none placeholder-gray-400">
+            </div>
+
+            <!-- 核心功能导航 - 新版布局 -->
+            <div class="space-y-4 mb-8">
+                <!-- AI面试主按钮 -->
+                <button class="main-btn rounded-lg p-5 w-full flex items-center justify-between transition-transform hover:scale-[0.98] text-white">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-white bg-opacity-30 rounded-full flex items-center justify-center mr-3">
+                            <i class="fas fa-comments text-lg"></i>
+                        </div>
+                        <div class="text-left">
+                            <h3 class="font-bold">AI模拟面试</h3>
+                            <p class="text-xs opacity-80">智能对话 · 实时反馈</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right opacity-70"></i>
+                </button>
+
+                <!-- 第二行双按钮 -->
+                <div class="grid grid-cols-2 gap-4">
+                    <button class="soft-btn rounded-lg p-4 flex flex-col items-center transition-transform hover:scale-[0.98]">
+                        <div class="w-12 h-12 bg-blue-50 rounded-full flex items-center justify-center mb-2 text-blue-500">
+                            <i class="fas fa-brain text-xl"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">刷题训练</span>
+                        <span class="text-xs text-gray-500 mt-1">500+题库</span>
+                    </button>
+                    <button class="soft-btn rounded-lg p-4 flex flex-col items-center transition-transform hover:scale-[0.98]">
+                        <div class="w-12 h-12 bg-purple-50 rounded-full flex items-center justify-center mb-2 text-purple-500">
+                            <i class="fas fa-file-alt text-xl"></i>
+                        </div>
+                        <span class="font-medium text-gray-700">简历优化</span>
+                        <span class="text-xs text-gray-500 mt-1">AI分析</span>
+                    </button>
+                </div>
+
+                <!-- 面试报告按钮 -->
+                <button class="soft-btn rounded-lg p-4 w-full flex items-center justify-between transition-transform hover:scale-[0.98]">
+                    <div class="flex items-center">
+                        <div class="w-10 h-10 bg-green-50 rounded-full flex items-center justify-center mr-3 text-green-500">
+                            <i class="fas fa-chart-line text-lg"></i>
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-700">面试报告</h3>
+                            <p class="text-xs text-gray-500">历史记录分析</p>
+                        </div>
+                    </div>
+                    <i class="fas fa-chevron-right text-gray-400"></i>
+                </button>
+            </div>
+
+            <!-- 进度概览 -->
+            <!-- <div class="glass-card rounded-lg p-4 mb-6 shadow-sm">
+                <div class="flex justify-between items-center mb-3">
+                    <h2 class="font-bold text-gray-700">本周训练进度</h2>
+                    <span class="text-sm text-blue-500">查看详情 <i class="fas fa-chevron-right ml-1"></i></span>
+                </div>
+                <div class="flex items-center">
+                    <div class="relative w-16 h-16 mr-4">
+                        <svg class="w-full h-full" viewBox="0 0 36 36">
+                            <circle cx="18" cy="18" r="16" fill="none" stroke="#E5E7EB" stroke-width="3"></circle>
+                            <circle class="progress-ring__circle" cx="18" cy="18" r="16" fill="none" stroke="#10B981" stroke-width="3" stroke-dasharray="100 100" stroke-dashoffset="25"></circle>
+                        </svg>
+                        <div class="absolute inset-0 flex items-center justify-center text-sm font-bold text-gray-700">75%</div>
+                    </div>
+                    <div class="flex-1">
+                        <div class="flex justify-between text-sm mb-1 text-gray-600">
+                            <span>已完成: 3次</span>
+                            <span class="text-green-500">+1次</span>
+                        </div>
+                        <div class="h-2 bg-gray-100 rounded-full overflow-hidden">
+                            <div class="h-full bg-gradient-to-r from-blue-400 to-green-400 rounded-full" style="width: 75%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div> -->
+
+            <!-- 热门岗位推荐 -->
+            <h2 class="font-bold mb-3 text-gray-700">热门面试推荐</h2>
+            <div class="space-y-3">
+                <!-- 推荐卡片1 -->
+                <div class="glass-card rounded-lg p-4 transition-all hover:shadow-md cursor-pointer border border-gray-100">
+                    <div class="flex">
+                        <div class="w-12 h-12 rounded-lg bg-blue-50 flex items-center justify-center mr-3 text-blue-500">
+                            <i class="fas fa-laptop-code text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold">前端工程师</h3>
+                                <span class="text-xs px-2 py-1 bg-blue-50 text-blue-500 rounded-full">热度 92%</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">15个常见问题 · 平均难度3.8</p>
+                            <div class="flex mt-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1 mr-2">技术面</span>
+                                <span class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1">项目复盘</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 推荐卡片2 -->
+                <div class="glass-card rounded-lg p-4 transition-all hover:shadow-md cursor-pointer border border-gray-100">
+                    <div class="flex">
+                        <div class="w-12 h-12 rounded-lg bg-purple-50 flex items-center justify-center mr-3 text-purple-500">
+                            <i class="fas fa-project-diagram text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold">产品经理</h3>
+                                <span class="text-xs px-2 py-1 bg-purple-50 text-purple-500 rounded-full">热度 88%</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">12个案例分析 · 平均难度4.2</p>
+                            <div class="flex mt-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1 mr-2">需求分析</span>
+                                <span class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1">原型设计</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 推荐卡片3 -->
+                <div class="glass-card rounded-lg p-4 transition-all hover:shadow-md cursor-pointer border border-gray-100">
+                    <div class="flex">
+                        <div class="w-12 h-12 rounded-lg bg-green-50 flex items-center justify-center mr-3 text-green-500">
+                            <i class="fas fa-robot text-xl"></i>
+                        </div>
+                        <div class="flex-1">
+                            <div class="flex justify-between items-start">
+                                <h3 class="font-bold">算法工程师</h3>
+                                <span class="text-xs px-2 py-1 bg-green-50 text-green-500 rounded-full">热度 85%</span>
+                            </div>
+                            <p class="text-sm text-gray-500 mt-1">10个代码题 · 平均难度4.5</p>
+                            <div class="flex mt-2">
+                                <span class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1 mr-2">机器学习</span>
+                                <span class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1">数学推导</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- iOS 底部导航栏 -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 backdrop-filter backdrop-blur-sm border-t border-gray-200 flex justify-around py-3">
+            <button class="text-blue-500 flex flex-col items-center">
+                <i class="fas fa-home"></i>
+                <span class="text-xs mt-1">首页</span>
+            </button>
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-graduation-cap"></i>
+                <span class="text-xs mt-1">训练</span>
+            </button>
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-file-alt"></i>
+                <span class="text-xs mt-1">简历</span>
+            </button>
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-user"></i>
+                <span class="text-xs mt-1">我的</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 交互效果
+        document.querySelectorAll('button').forEach(btn => {
+            btn.addEventListener('mousedown', () => {
+                btn.style.transform = 'scale(0.98)';
+            });
+            btn.addEventListener('mouseup', () => {
+                btn.style.transform = 'scale(1)';
+            });
+            btn.addEventListener('mouseleave', () => {
+                btn.style.transform = 'scale(1)';
+            });
+        });
+
+        // 模拟进度环动画
+        const circle = document.querySelector('.progress-ring__circle');
+        const radius = circle.r.baseVal.value;
+        const circumference = 2 * Math.PI * radius;
+        circle.style.strokeDasharray = `${circumference} ${circumference}`;
+        circle.style.strokeDashoffset = circumference * 0.25;
+    </script>
+</body>
+</html>

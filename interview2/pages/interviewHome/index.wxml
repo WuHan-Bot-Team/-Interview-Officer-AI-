@@ -1,0 +1,107 @@
+<!--pages/interviewHome/index.wxml-->
+<view class="interview-home-container">
+  <!-- 顶部自定义导航栏 -->
+  <t-navbar
+    t-class-placeholder="t-navbar-placeholder"
+    t-class-content="t-navbar-content"
+    class="block"
+    title="{{jobIntention}}面试室">
+    <view slot="left" bindtap="handleBack">
+      <t-icon name="arrow-left" size="26"/>
+    </view>
+  </t-navbar>
+
+  <!-- 控制栏（时长、麦克风按钮） -->
+  <!-- 可扩展：返回按钮/面试官头像等 -->
+  <view class="control-bar">
+    <view class="system-msg">
+      <t-icon name="info-circle" size="16" color="#9ca3af" /> 实时转录已开启
+    </view>
+    <view class="right">
+      <button class="mic-btn" bindtap="toggleMic">
+        <t-icon name="microphone" size="20" color="{{micOn ? '#6366f1' : '#ef4444'}}" />
+      </button>
+      <view class="duration">{{durationStr}}</view>
+    </view>
+  </view>
+
+  <!-- 视频区域 -->
+  <view class="video-area">
+    <video 
+        wx:if="{{avatarStreamUrl}}"
+        class="avatar-player" 
+        src="{{avatarStreamUrl}}" 
+        binderror="videoErrorCallback" 
+        show-center-play-btn='{{false}}'
+        enable-play-gesture="{{false}}"
+        show-play-btn="{{false}}"
+        auto-pause-if-navigate="{{false}}"
+        show-fullscreen-btn="{{false}}"
+        autoplay="{{true}}"
+        enable-progress-gesture="{{false}}"
+        controls="{{false}}"
+        bindtap="onVideoTap"
+    ></video>
+    <!-- AI数字人形象（RTMP流播放） -->
+    <view wx:else class="ai-camera">
+      <view class="avatar-placeholder">
+        <t-icon name="camera-off" size="48" color="#6366f1" />
+        <text class="placeholder-text">数字人加载中...</text>
+      </view>
+    </view>
+    <!-- 用户摄像头小窗 -->
+    <view class="user-camera-pip">
+      <camera device-position="front" flash="off" class="camera-pip" mode="normal" binderror="onCameraError"></camera>
+    </view>
+  </view>
+
+  <!-- 主内容区（对话/转录/反馈等，预留）
+  <scroll-view scroll-y class="main-content">
+    
+    
+  </scroll-view> -->
+
+  <scroll-view 
+    class="chat-container" 
+    scroll-y="true" 
+    scroll-into-view="{{scrollToView}}"
+    scroll-with-animation="true"
+  >
+    <view class="chat-messages">
+      <block wx:for="{{messages}}" wx:key="id">
+        <!-- AI消息 -->
+        <view wx:if="{{item.type === 'ai'}}" class="message-item ai-message" id="msg-{{item.id}}">
+          <view class="avatar ai-avatar">
+            <t-icon name="desktop" size="16" color="#6366f1" />
+          </view>
+          <view class="message-content ai-content">
+            <view class="message-text">{{item.content}}</view>
+            <view wx:if="{{item.showHint}}" class="hint-button" bindtap="showHint" data-id="{{item.id}}">
+              <t-icon name="lightbulb" size="12" color="#f59e0b" />
+              <text class="hint-text">显示提示</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 用户消息 -->
+        <view wx:if="{{item.type === 'user'}}" class="message-item user-message" id="msg-{{item.id}}">
+          <view class="message-content user-content">
+            <view class="message-text">{{item.content}}</view>
+          </view>
+          <view class="avatar-2 ai-avatar-2">
+            <t-icon name="user-1" size="16" color="#10b981" />
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+
+  <!-- 底部控制栏 -->
+  <view class="bottom-bar">
+    <button class="hold-to-speak" bindtouchstart="startRecord" bindtouchend="stopRecord" bindtouchcancel="stopRecord">
+      <t-icon name="microphone" size="20" color="#6366f1" />
+      <text class="speak-text">按住说话</text>
+    </button>
+  </view>
+</view>

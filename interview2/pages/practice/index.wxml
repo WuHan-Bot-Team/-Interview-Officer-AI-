@@ -1,0 +1,117 @@
+<!--pages/practice/index.wxml-->
+
+<view class="practice-container">
+
+  <!-- 模式切换标签 -->
+  <view class="tab-header">
+    <view 
+      class="tab-item {{activeTab === 'practice' ? 'tab-active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="practice"
+    >
+      <t-icon name="lightbulb" size="16" color="{{activeTab === 'practice' ? '#6366f1' : '#6b7280'}}" />
+      <text class="tab-text">刷题训练</text>
+    </view>
+    <view 
+      class="tab-item {{activeTab === 'resume' ? 'tab-active' : ''}}" 
+      bindtap="switchTab" 
+      data-tab="resume"
+    >
+      <t-icon name="file" size="16" color="{{activeTab === 'resume' ? '#6366f1' : '#6b7280'}}" />
+      <text class="tab-text">简历优化</text>
+    </view>
+  </view>
+
+  <!-- 对话容器 -->
+  <scroll-view 
+    class="chat-container" 
+    scroll-y="true" 
+    scroll-into-view="{{scrollToView}}"
+    scroll-with-animation="true"
+  >
+    <view class="chat-messages">
+      <block wx:for="{{messages}}" wx:key="id">
+        <!-- AI消息 -->
+        <view wx:if="{{item.type === 'ai'}}" class="message-item ai-message" id="msg-{{item.id}}">
+          <view class="avatar ai-avatar">
+            <t-icon name="desktop" size="16" color="#6366f1" />
+          </view>
+          <view class="message-content ai-content">
+            <view class="message-text">{{item.content}}</view>
+            <view wx:if="{{item.showHint}}" class="hint-button" bindtap="showHint" data-id="{{item.id}}">
+              <t-icon name="lightbulb" size="12" color="#f59e0b" />
+              <text class="hint-text">显示提示</text>
+            </view>
+          </view>
+        </view>
+        
+        <!-- 用户消息 -->
+        <view wx:if="{{item.type === 'user'}}" class="message-item user-message" id="msg-{{item.id}}">
+          <view class="message-content user-content">
+            <view class="message-text">{{item.content}}</view>
+          </view>
+          <view class="avatar-2 ai-avatar-2">
+            <t-icon name="user-1" size="16" color="#10b981" />
+          </view>
+        </view>
+      </block>
+    </view>
+  </scroll-view>
+
+  <!-- 快捷指令栏 -->
+  <view class="quick-actions">
+    <scroll-view scroll-x="true" class="actions-scroll">
+      <view class="actions-container">
+        <view class="action-btn" bindtap="uploadResume">
+          <t-icon name="upload" size="14" color="#8b5cf6" />
+          <text class="action-text">上传简历</text>
+        </view>
+        <view 
+          wx:if="{{activeTab === 'practice'}}"
+          class="action-btn" 
+          bindtap="commonQuestions"
+        >
+          <t-icon name="help-circle" size="14" color="#6366f1" />
+          <text class="action-text">常见面试题</text>
+        </view>
+        <view 
+          wx:if="{{activeTab === 'practice'}}"
+          class="action-btn" 
+          bindtap="historyEvaluate"
+        >
+          <t-icon name="code" size="14" color="#f59e0b" />
+          <text class="action-text">总结评估</text>
+        </view>
+        <!-- <view 
+          wx:if="{{activeTab === 'practice'}}"
+          class="action-btn" 
+          bindtap="algorithmPractice"
+        >
+          <t-icon name="code" size="14" color="#10b981" />
+          <text class="action-text">算法题练习</text>
+        </view> -->
+      </view>
+    </scroll-view>
+  </view>
+
+  <!-- 输入区域 -->
+  <view class="input-area">
+    <view class="input-container">
+      <view class="add-btn" bindtap="addAttachment">
+        <t-icon name="add" size="16" color="#6b7280" />
+      </view>
+      <textarea
+        class="message-input" 
+        placeholder="输入问题或指令..." 
+        value="{{inputMessage}}"
+        bindinput="onInputChange"
+        bindconfirm="sendMessage"
+        auto-height
+        maxlength="500"
+      />
+      <view class="send-btn" bindtap="sendMessage">
+        <t-icon name="send" size="16" color="#ffffff" />
+      </view>
+    </view>
+  </view>
+</view>

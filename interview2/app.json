@@ -1,0 +1,115 @@
+{
+  "pages": [
+    "pages/home2/index",
+    "pages/message/index",
+    "pages/my/index",
+    "pages/practice/index"
+  ],
+  "usingComponents": {
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  },
+  "subpackages": [
+    {
+      "root": "pages/interviewHome","name": "interviewHome","pages": ["index"]
+    },
+    {
+      "root": "pages/interviewSetting","name": "interviewSetting","pages": ["index"]
+    },
+    {
+      "root": "pages/feedback", "name": "feedback","pages": ["index"]
+    },
+    {
+      "root": "pages/search",
+      "name": "search",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "pages/my/info-edit",
+      "name": "edit",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "pages/chat",
+      "name": "chat",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "pages/login",
+      "name": "login",
+      "pages": [
+        "login"
+      ]
+    },
+    {
+      "root": "pages/loginCode",
+      "name": "loginCode",
+      "pages": [
+        "loginCode"
+      ]
+    },
+    {
+      "root": "pages/dataCenter",
+      "name": "dataCenter",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "pages/setting",
+      "name": "setting",
+      "pages": [
+        "index"
+      ]
+    },
+    {
+      "root": "pages/release",
+      "name": "release",
+      "pages": [
+        "index"
+      ]
+    }
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "Weixin",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "custom": true,
+    "list": [
+      {
+        "pagePath": "pages/home2/index",
+        "text": "首页"
+      },
+      {
+        "pagePath": "pages/practice/index",
+        "text": "训练"
+      },
+      {
+        "pagePath": "pages/message/index",
+        "text": "消息"
+      },
+      {
+        "pagePath": "pages/my/index",
+        "text": "我的"
+      }
+    ]
+  },
+  "resolveAlias": {
+    "~/*": "/*"
+  },
+  "sitemapLocation": "sitemap.json",
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.6",
+      "provider": "wx069ba97219f66d99"
+    }
+  }
+}

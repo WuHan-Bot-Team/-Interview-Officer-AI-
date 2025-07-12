@@ -1,0 +1,8 @@
+{
+  "usingComponents": {
+    "ec-canvas": "../../miniprogram_npm/ec-canvas/ec-canvas",
+    "t-navbar": "tdesign-miniprogram/navbar/navbar",
+    "t-icon": "tdesign-miniprogram/icon/icon"
+  },
+  "navigationStyle": "custom"
+}

@@ -1,0 +1,95 @@
+<view class="feedback-container">
+  <t-navbar
+    t-class-placeholder="t-navbar-placeholder"
+    t-class-content="t-navbar-content"
+    class="block"
+    title="面试反馈报告">
+    <view slot="left" bindtap="handleBack">
+      <t-icon name="arrow-left" size="26"/>
+    </view>
+  </t-navbar>
+  <!-- 报告标题 -->
+  <!-- <view class="header">
+    <view>
+      <text class="title">面试反馈报告</text>
+      <text class="subtitle">{{jobTitle}} · {{date}}</text>
+    </view>
+    <button class="share-btn" open-type="share">
+      <text class="iconfont icon-share"></text>
+    </button>
+  </view> -->
+
+  <!-- 综合评分 -->
+  <view class="score-card">
+    <view class="score-row">
+      <text class="score">{{score}}</text>
+      <text class="score-total">/100</text>
+    </view>
+    <text class="score-desc">超过{{scorePercent}}%的同岗位候选人</text>
+    <view class="score-bar-bg">
+      <view class="score-bar" style="width:{{score}}%"></view>
+    </view>
+  </view>
+
+  <!-- 能力雷达图 -->
+  <view class="report-card">
+    <view class="section-title">
+      <text class="iconfont icon-radar"></text>
+      核心能力评估
+    </view>
+    <view style="height: 540rpx;"> 
+    <ec-canvas id="radar" canvas-id="radarChart" ec="{{ec}}"></ec-canvas>
+    </view>
+    <view class="radar-labels">
+      <block wx:for="{{radarData}}" wx:key="label">
+        <view class="radar-label" style="color:{{item.color}}">{{item.label}} {{item.chartValue}}</view>
+      </block>
+    </view>
+  </view>
+
+  <!-- 优缺点分析 -->
+  <view class="report-card">
+    <view class="section-title">
+      <text class="iconfont icon-star"></text>
+      亮点与不足
+    </view>
+    <block wx:for="{{advantages}}" wx:key="title">
+      <view class="improvement-card" style="border-left-color:#00b26a">
+        <text class="iconfont icon-check" style="color:#00b26a"></text>
+        <view>
+          <text class="improvement-title">{{item.title}}</text>
+          <view></view>
+          <text class="improvement-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </block>
+    <block wx:for="{{disadvantages}}" wx:key="title">
+      <view class="improvement-card" style="border-left-color:#ef4444">
+        <text class="iconfont icon-warning" style="color:#ef4444"></text>
+        <view>
+          <text class="improvement-title">{{item.title}}</text>
+          <view></view>
+          <text class="improvement-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+
+  <!-- 改进建议 -->
+  <view class="report-card">
+    <view class="section-title">
+      <text class="iconfont icon-light"></text>
+      专项提升建议
+    </view>
+    <block wx:for="{{suggestions}}" wx:key="title">
+      <view class="suggestion-item">
+        <view class="suggestion-index" style="background:{{item.bgColor}};color:{{item.color}}">{{index+1}}</view>
+        <view>
+          <text class="suggestion-title">{{item.title}}</text>
+          <view></view>
+          <text class="suggestion-desc">{{item.desc}}</text>
+        </view>
+      </view>
+    </block>
+  </view>
+</view>

@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>面试反馈报告</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: #FAFAFA;
+        }
+        .report-card {
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+        }
+        .radar-area {
+            background: linear-gradient(to right, rgba(99,102,241,0.1), rgba(139,92,246,0.1));
+        }
+        .improvement-card {
+            border-left: 3px solid;
+        }
+    </style>
+</head>
+<body>
+    <!-- iPhone 15 Pro Max 模拟器 -->
+    <div class="mx-auto my-8 relative" style="width: 393px; height: 852px; background: #FFF; border-radius: 40px; overflow: hidden; box-shadow: 0 0 0 12px #F5F5F5, 0 15px 30px rgba(0,0,0,0.08);">
+        <!-- iOS状态栏 -->
+        <div class="flex justify-between items-center px-6 pt-2 pb-1 text-gray-600">
+            <div class="text-sm font-medium">9:41</div>
+            <div class="flex space-x-2">
+                <i class="fas fa-signal text-xs"></i>
+                <i class="fas fa-wifi text-xs"></i>
+                <i class="fas fa-battery-three-quarters text-xs"></i>
+            </div>
+        </div>
+
+        <!-- 报告主内容 -->
+        <div class="h-full overflow-y-auto px-4 py-6" style="padding-bottom: 80px;">
+            <!-- 报告标题 -->
+            <div class="flex justify-between items-center mb-6">
+                <div>
+                    <h1 class="text-2xl font-bold text-gray-800">面试反馈报告</h1>
+                    <p class="text-gray-500">产品经理模拟面试 · 2023/11/15</p>
+                </div>
+                <button class="text-blue-500">
+                    <i class="fas fa-share-alt"></i>
+                </button>
+            </div>
+
+            <!-- 综合评分 -->
+            <div class="report-card rounded-xl p-5 mb-6 text-center">
+                <div class="flex justify-center items-end mb-2">
+                    <span class="text-4xl font-bold text-gray-800 mr-1">86</span>
+                    <span class="text-lg text-gray-500">/100</span>
+                </div>
+                <div class="text-sm text-gray-500 mb-4">超过82%的同岗位候选人</div>
+                <div class="h-2 bg-gray-200 rounded-full overflow-hidden">
+                    <div class="h-full bg-gradient-to-r from-blue-500 to-purple-500" style="width: 86%"></div>
+                </div>
+            </div>
+
+            <!-- 能力雷达图 -->
+            <div class="report-card rounded-xl p-4 mb-6">
+                <h2 class="font-bold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-chart-radar text-blue-500 mr-2"></i>
+                    核心能力评估
+                </h2>
+                <div class="relative h-64">
+                    <canvas id="radarChart"></canvas>
+                </div>
+                <div class="grid grid-cols-3 gap-2 mt-3 text-xs text-center">
+                    <div class="bg-blue-50 text-blue-600 py-1 rounded">专知 8.2</div>
+                    <div class="bg-purple-50 text-purple-600 py-1 rounded">匹配 8.6</div>
+                    <div class="bg-green-50 text-green-600 py-1 rounded">表达 7.9</div>
+                    <div class="bg-yellow-50 text-yellow-600 py-1 rounded">逻辑 8.4</div>
+                    <div class="bg-red-50 text-red-600 py-1 rounded">创新 7.5</div>
+                    <div class="bg-indigo-50 text-indigo-600 py-1 rounded">抗压 8.1</div>
+                </div>
+            </div>
+
+            <!-- 优缺点分析 -->
+            <div class="report-card rounded-xl p-4 mb-6">
+                <h2 class="font-bold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-star-half-alt text-yellow-500 mr-2"></i>
+                    亮点与不足
+                </h2>
+                <div class="space-y-3">
+                    <div class="improvement-card pl-3 border-blue-500">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <div>
+                                <h3 class="font-medium text-gray-800">需求分析能力</h3>
+                                <p class="text-sm text-gray-600">能系统性地使用RICE模型进行优先级评估，展示了专业方法论</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="improvement-card pl-3 border-purple-500">
+                        <div class="flex items-start">
+                            <i class="fas fa-check-circle text-green-500 mt-1 mr-2"></i>
+                            <div>
+                                <h3 class="font-medium text-gray-800">数据思维</h3>
+                                <p class="text-sm text-gray-600">在案例描述中准确引用转化率、留存率等关键指标</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="improvement-card pl-3 border-red-500">
+                        <div class="flex items-start">
+                            <i class="fas fa-exclamation-circle text-red-500 mt-1 mr-2"></i>
+                            <div>
+                                <h3 class="font-medium text-gray-800">创新提案</h3>
+                                <p class="text-sm text-gray-600">解决方案偏常规，缺乏突破性创新点</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 改进建议 -->
+            <div class="report-card rounded-xl p-4">
+                <h2 class="font-bold text-gray-800 mb-3 flex items-center">
+                    <i class="fas fa-lightbulb text-purple-500 mr-2"></i>
+                    专项提升建议
+                </h2>
+                <div class="space-y-4">
+                    <div class="flex">
+                        <div class="w-8 h-8 rounded-full bg-blue-100 flex-shrink-0 flex items-center justify-center mr-3 text-blue-500">
+                            1
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">创新思维训练</h3>
+                            <p class="text-sm text-gray-600">推荐阅读《创新者的窘境》，每周完成1个创新案例拆解</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-8 h-8 rounded-full bg-purple-100 flex-shrink-0 flex items-center justify-center mr-3 text-purple-500">
+                            2
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">表达精炼度</h3>
+                            <p class="text-sm text-gray-600">使用PREP结构(观点-原因-案例-重申)组织回答，控制单次发言在2分钟内</p>
+                        </div>
+                    </div>
+                    <div class="flex">
+                        <div class="w-8 h-8 rounded-full bg-green-100 flex-shrink-0 flex items-center justify-center mr-3 text-green-500">
+                            3
+                        </div>
+                        <div>
+                            <h3 class="font-medium text-gray-800">行业洞察</h3>
+                            <p class="text-sm text-gray-600">关注AI产品趋势，建议订阅《人人都是产品经理》行业报告</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航栏 -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 backdrop-filter backdrop-blur-sm border-t border-gray-200 flex justify-around py-3">
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-home"></i>
+                <span class="text-xs mt-1">首页</span>
+            </button>
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-comments"></i>
+                <span class="text-xs mt-1">AI助手</span>
+            </button>
+            <button class="text-blue-500 flex flex-col items-center">
+                <i class="fas fa-file-alt"></i>
+                <span class="text-xs mt-1">报告</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 雷达图配置
+        const ctx = document.getElementById('radarChart').getContext('2d');
+        const radarChart = new Chart(ctx, {
+            type: 'radar',
+            data: {
+                labels: ['专业知识', '岗位匹配', '语言表达', '逻辑思维', '创新能力', '抗压能力'],
+                datasets: [{
+                    label: '您的表现',
+                    data: [82, 86, 79, 84, 75, 81],
+                    backgroundColor: 'rgba(99, 102, 241, 0.2)',
+                    borderColor: 'rgba(99, 102, 241, 0.8)',
+                    borderWidth: 2,
+                    pointBackgroundColor: 'rgba(99, 102, 241, 1)',
+                    pointRadius: 4
+                }, {
+                    label: '岗位要求',
+                    data: [80, 85, 85, 80, 80, 80],
+                    backgroundColor: 'rgba(203, 213, 225, 0.2)',
+                    borderColor: 'rgba(156, 163, 175, 0.5)',
+                    borderWidth: 1,
+                    borderDash: [5, 5],
+                    pointRadius: 0
+                }]
+            },
+            options: {
+                scales: {
+                    r: {
+                        angleLines: {
+                            display: true,
+                            color: 'rgba(0,0,0,0.05)'
+                        },
+                        suggestedMin: 50,
+                        suggestedMax: 100,
+                        ticks: {
+                            display: false,
+                            stepSize: 20
+                        },
+                        pointLabels: {
+                            font: {
+                                size: 11
+                            },
+                            color: '#6B7280'
+                        },
+                        grid: {
+                            color: 'rgba(0,0,0,0.03)'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    }
+                },
+                elements: {
+                    line: {
+                        tension: 0.1
+                    }
+                }
+            }
+        });
+
+        // 模拟加载动画
+        setTimeout(() => {
+            document.querySelectorAll('.improvement-card').forEach((card, index) => {
+                setTimeout(() => {
+                    card.classList.add('animate-fade-in');
+                }, index * 200);
+            });
+        }, 500);
+    </script>
+</body>
+</html>

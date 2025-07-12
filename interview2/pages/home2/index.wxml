@@ -1,0 +1,162 @@
+
+
+<scroll-view
+  scroll-y
+  class="out-container"
+>
+<view class="home-container">
+  <!-- 用户信息栏 -->
+  <view class="user-info-section">
+    <view class="user-info-left">
+      <view class="greeting">下午好, <text class="user-name">张同学</text></view>
+      <view class="recommend-text">今日推荐5个训练</view>
+    </view>
+    <!-- <view class="user-avatar">
+      <t-icon name="user" size="20" color="#6366f1" />
+    </view> -->
+  </view>
+
+  <!-- 搜索框 -->
+  <view class="search-section">
+    <view class="search-box">
+      <t-icon name="search" size="16" color="#9ca3af" />
+      <input 
+        type="text" 
+        placeholder="搜索岗位类型..." 
+        class="search-input"
+        bindinput="onSearchInput"
+        bindconfirm="onSearchConfirm"
+      />
+    </view>
+  </view>
+
+  <!-- 核心功能导航 -->
+  <view class="feature-section">
+    <!-- AI面试主按钮 -->
+    <view class="main-feature-btn" bindtap="onFeatureClick" data-name="AI模拟面试">
+      <view class="feature-left">
+        <view class="feature-icon main-icon">
+          <t-icon name="chat" size="20" color="#ffffff" />
+        </view>
+        <view class="feature-text">
+          <view class="feature-title">AI模拟面试</view>
+          <view class="feature-desc">智能对话 · 实时反馈</view>
+        </view>
+      </view>
+      <t-icon name="chevron-right" size="16" color="rgba(255,255,255,0.7)" />
+    </view>
+
+    <!-- 第二行双按钮 -->
+    <view class="feature-grid">
+      <view class="feature-card" bindtap="onFeatureClick" data-name="刷题训练">
+        <view class="feature-icon-card blue-icon">
+          <t-icon name="lightbulb" size="24" color="#6366f1" />
+        </view>
+        <view class="feature-card-title">刷题训练</view>
+        <view class="feature-card-desc">500+题库</view>
+      </view>
+      <view class="feature-card" bindtap="onFeatureClick" data-name="简历优化">
+        <view class="feature-icon-card purple-icon">
+          <t-icon name="file" size="24" color="#8b5cf6" />
+        </view>
+        <view class="feature-card-title">简历优化</view>
+        <view class="feature-card-desc">AI分析</view>
+      </view>
+    </view>
+
+    <!-- 面试报告按钮 -->
+    <view class="report-btn" bindtap="onFeatureClick" data-name="面试报告">
+      <view class="feature-left">
+        <view class="feature-icon green-icon">
+          <t-icon name="chart" size="20" color="#10b981" />
+        </view>
+        <view class="feature-text">
+          <view class="feature-title">面试报告</view>
+          <view class="feature-desc">历史记录分析</view>
+        </view>
+      </view>
+      <t-icon name="chevron-right" size="16" color="#9ca3af" />
+    </view>
+  </view>
+
+  <!-- 热门岗位推荐 -->
+  <view class="recommend-section">
+    <view class="section-title">热门面试推荐</view>
+    <view class="recommend-list">
+      <!-- 推荐卡片1 -->
+      <view class="recommend-card" bindtap="onFeatureClick" data-name="前端工程师">
+        <view class="card-icon blue-bg">
+          <t-icon name="code" size="24" color="#6366f1" />
+        </view>
+        <view class="card-content">
+          <view class="card-header">
+            <view class="card-title">前端工程师</view>
+            <view class="hot-tag blue-tag">热度 92%</view>
+          </view>
+          <view class="card-desc">15个常见问题 · 平均难度3.8</view>
+          <view class="card-tags">
+            <view class="tag">技术面</view>
+            <view class="tag">项目复盘</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 推荐卡片2 -->
+      <view class="recommend-card" bindtap="onFeatureClick" data-name="产品经理">
+        <view class="card-icon purple-bg">
+          <t-icon name="layers" size="24" color="#8b5cf6" />
+        </view>
+        <view class="card-content">
+          <view class="card-header">
+            <view class="card-title">产品经理</view>
+            <view class="hot-tag purple-tag">热度 88%</view>
+          </view>
+          <view class="card-desc">12个案例分析 · 平均难度4.2</view>
+          <view class="card-tags">
+            <view class="tag">需求分析</view>
+            <view class="tag">原型设计</view>
+          </view>
+        </view>
+      </view>
+
+      <!-- 推荐卡片3 -->
+      <view class="recommend-card" bindtap="onFeatureClick" data-name="算法工程师">
+        <view class="card-icon green-bg">
+          <t-icon name="calculation-1" size="24" color="#10b981" />
+        </view>
+        <view class="card-content">
+          <view class="card-header">
+            <view class="card-title">算法工程师</view>
+            <view class="hot-tag green-tag">热度 85%</view>
+          </view>
+          <view class="card-desc">10个代码题 · 平均难度4.5</view>
+          <view class="card-tags">
+            <view class="tag">机器学习</view>
+            <view class="tag">数学推导</view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
+</scroll-view>
+
+<!-- 底部导航栏
+<view class="bottom-nav">
+  <view class="nav-item active">
+    <t-icon name="home" size="20" color="#6366f1" />
+    <view class="nav-text">首页</view>
+  </view>
+  <view class="nav-item" bindtap="onFeatureClick" data-name="训练">
+    <t-icon name="education" size="20" color="#9ca3af" />
+    <view class="nav-text">训练</view>
+  </view>
+  <view class="nav-item" bindtap="onFeatureClick" data-name="简历">
+    <t-icon name="file" size="20" color="#9ca3af" />
+    <view class="nav-text">简历</view>
+  </view>
+  <view class="nav-item" bindtap="onFeatureClick" data-name="我的">
+    <t-icon name="user" size="20" color="#9ca3af" />
+    <view class="nav-text">我的</view>
+  </view>
+</view> -->

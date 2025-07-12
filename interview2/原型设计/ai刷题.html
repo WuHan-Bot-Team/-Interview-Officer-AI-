@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI助手 - 刷题&简历</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&display=swap');
+        body {
+            font-family: 'Noto+Sans+SC', sans-serif;
+            background: #FAFAFA;
+        }
+        .chat-container {
+            scrollbar-width: none;
+            -ms-overflow-style: none;
+        }
+        .chat-container::-webkit-scrollbar {
+            display: none;
+        }
+        .prompt-btn {
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+        }
+        .tab-active {
+            position: relative;
+        }
+        .tab-active::after {
+            content: '';
+            position: absolute;
+            bottom: -8px;
+            left: 25%;
+            width: 50%;
+            height: 3px;
+            background: linear-gradient(90deg, #6366F1, #8B5CF6);
+            border-radius: 3px;
+        }
+    </style>
+</head>
+<body>
+    <!-- iPhone 15 Pro Max 模拟器 -->
+    <div class="mx-auto my-8 relative" style="width: 393px; height: 852px; background: #FFF; border-radius: 40px; overflow: hidden; box-shadow: 0 0 0 12px #F5F5F5, 0 15px 30px rgba(0,0,0,0.08);">
+        <!-- iOS状态栏 -->
+        <div class="flex justify-between items-center px-6 pt-2 pb-1 text-gray-600">
+            <div class="text-sm font-medium">9:41</div>
+            <div class="flex space-x-2">
+                <i class="fas fa-signal text-xs"></i>
+                <i class="fas fa-wifi text-xs"></i>
+                <i class="fas fa-battery-three-quarters text-xs"></i>
+            </div>
+        </div>
+
+        <!-- 主内容区 -->
+        <div class="flex flex-col h-full" style="padding-bottom: 80px;">
+            <!-- 模式切换标签 -->
+            <div class="flex border-b border-gray-200 px-4 bg-white">
+                <button class="flex-1 py-4 font-medium text-gray-800 tab-active">
+                    <i class="fas fa-brain mr-2 text-blue-500"></i>刷题训练
+                </button>
+                <button class="flex-1 py-4 font-medium text-gray-500">
+                    <i class="fas fa-file-alt mr-2 text-purple-500"></i>简历优化
+                </button>
+            </div>
+
+            <!-- 对话容器 -->
+            <div class="flex-1 overflow-y-auto chat-container p-4 space-y-4 bg-gray-50">
+                <!-- AI欢迎消息 -->
+                <div class="flex justify-start">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center mr-2">
+                        <i class="fas fa-robot text-blue-500"></i>
+                    </div>
+                    <div class="max-w-[80%] bg-white rounded-xl p-3 shadow-sm">
+                        <p class="text-sm text-gray-800">我是你的面试训练AI助手，你可以：</p>
+                        <ul class="list-disc list-inside text-sm text-gray-600 mt-1 pl-2">
+                            <li>选择下方预设问题开始刷题</li>
+                            <li>上传简历获取分析建议</li>
+                            <li>直接输入你的问题</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- 用户消息示例 -->
+                <div class="flex justify-end">
+                    <div class="max-w-[80%] bg-gradient-to-r from-blue-500 to-purple-500 rounded-xl p-3 text-white">
+                        <p class="text-sm">请模拟前端工程师的技术面试</p>
+                    </div>
+                </div>
+
+                <!-- AI回复示例 -->
+                <div class="flex justify-start">
+                    <div class="w-8 h-8 rounded-full bg-gradient-to-br from-blue-100 to-purple-100 flex items-center justify-center mr-2">
+                        <i class="fas fa-robot text-blue-500"></i>
+                    </div>
+                    <div class="max-w-[80%] bg-white rounded-xl p-3 shadow-sm">
+                        <p class="text-sm font-medium text-gray-800 mb-1">【技术面试模拟】</p>
+                        <p class="text-sm text-gray-600">"请解释React的虚拟DOM工作原理，以及它为什么能提高性能？"</p>
+                        <div class="mt-2 flex justify-end">
+                            <button class="text-xs bg-gray-100 text-gray-600 rounded-full px-2 py-1 flex items-center">
+                                <i class="fas fa-lightbulb mr-1 text-yellow-500"></i>显示提示
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- 快捷指令栏 -->
+            <div class="p-3 bg-white border-t border-gray-200 overflow-x-auto">
+                <div class="flex space-x-2 w-max">
+                    <button class="prompt-btn whitespace-nowrap rounded-full px-4 py-2 text-sm border border-gray-200 flex items-center">
+                        <i class="fas fa-bolt mr-2 text-yellow-500"></i>常见面试题
+                    </button>
+                    <button class="prompt-btn whitespace-nowrap rounded-full px-4 py-2 text-sm border border-gray-200 flex items-center">
+                        <i class="fas fa-code mr-2 text-blue-500"></i>算法题练习
+                    </button>
+                    <button class="prompt-btn whitespace-nowrap rounded-full px-4 py-2 text-sm border border-gray-200 flex items-center">
+                        <i class="fas fa-cloud-upload-alt mr-2 text-purple-500"></i>上传简历
+                    </button>
+                    <button class="prompt-btn whitespace-nowrap rounded-full px-4 py-2 text-sm border border-gray-200 flex items-center">
+                        <i class="fas fa-project-diagram mr-2 text-green-500"></i>案例分析
+                    </button>
+                </div>
+            </div>
+
+            <!-- 输入区域 -->
+            <div class="p-3 bg-white border-t border-gray-200">
+                <div class="flex items-center">
+                    <button class="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mr-2">
+                        <i class="fas fa-plus text-gray-500"></i>
+                    </button>
+                    <input type="text" placeholder="输入问题或指令..." class="flex-1 bg-gray-100 rounded-full px-4 py-2 focus:outline-none">
+                    <button class="ml-2 w-10 h-10 rounded-full bg-gradient-to-r from-blue-500 to-purple-500 flex items-center justify-center text-white">
+                        <i class="fas fa-paper-plane"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- 底部导航栏 -->
+        <div class="absolute bottom-0 left-0 right-0 bg-white bg-opacity-90 backdrop-filter backdrop-blur-sm border-t border-gray-200 flex justify-around py-3">
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-home"></i>
+                <span class="text-xs mt-1">首页</span>
+            </button>
+            <button class="text-blue-500 flex flex-col items-center">
+                <i class="fas fa-comments"></i>
+                <span class="text-xs mt-1">AI助手</span>
+            </button>
+            <button class="text-gray-400 flex flex-col items-center">
+                <i class="fas fa-user"></i>
+                <span class="text-xs mt-1">我的</span>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // 标签切换功能
+        const tabs = document.querySelectorAll('[class*="tab-"]');
+        tabs.forEach(tab => {
+            tab.addEventListener('click', () => {
+                tabs.forEach(t => {
+                    t.classList.remove('tab-active', 'text-gray-800');
+                    t.classList.add('text-gray-500');
+                });
+                tab.classList.add('tab-active', 'text-gray-800');
+                tab.classList.remove('text-gray-500');
+                
+                // 这里可以添加实际的内容切换逻辑
+                console.log('切换到：', tab.textContent.trim());
+            });
+        });
+
+        // 快捷指令按钮点击效果
+        const promptBtns = document.querySelectorAll('.prompt-btn');
+        promptBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                btn.classList.add('bg-blue-50', 'border-blue-200');
+                setTimeout(() => {
+                    btn.classList.remove('bg-blue-50', 'border-blue-200');
+                }, 300);
+                
+                // 这里可以添加指令处理逻辑
+                console.log('触发指令：', btn.textContent.trim());
+            });
+        });
+    </script>
+</body>
+</html>

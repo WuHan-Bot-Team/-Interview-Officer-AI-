@@ -1,0 +1,140 @@
+<!--pages/interviewSetting/index.wxml-->
+<view class="setting-container">
+  <!-- left-arrow
+    bind:go-back="handleBack" -->
+  <view class="block">
+  <t-navbar
+    t-class-placeholder="t-navbar-placeholder"
+    t-class-content="t-navbar-content"
+    class="block"
+    title="面试设置">
+    <view slot="left" bindtap="handleBack">
+      <t-icon name="arrow-left" size="26"/>
+    </view>
+  </t-navbar>
+  </view> 
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="header-subtitle">请完善信息并检测设备</view>
+  </view>
+
+  <!-- 用户信息表单 -->
+  <view class="form-section">
+    <!-- 专业信息 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">专业</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入您的专业" 
+        value="{{major}}"
+        bindinput="onMajorInput"
+      />
+    </view>
+
+    <!-- 求职意向 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">求职意向</text>
+        <text class="required">*</text>
+      </view>
+      <input 
+        class="form-input" 
+        placeholder="请输入您的求职意向岗位" 
+        value="{{jobIntention}}"
+        bindinput="onJobIntentionInput"
+      />
+    </view>
+
+    <!-- 岗位职责 -->
+    <view class="form-item">
+      <view class="form-label">
+        <text class="label-text">岗位职责</text>
+        <text class="required">*</text>
+      </view>
+      <textarea 
+        class="form-textarea" 
+        placeholder="请描述您期望的岗位职责和工作内容" 
+        value="{{jobDescription}}"
+        bindinput="onJobDescriptionInput"
+        maxlength="500"
+        auto-height
+      ></textarea>
+      <view class="textarea-counter">{{jobDescription.length}}/500</view>
+    </view>
+  </view>
+
+  <!-- 设备检测区域 -->
+  <view class="device-section">
+    <view class="section-title">设备检测</view>
+    
+    <!-- 麦克风检测 -->
+    <view class="device-item">
+      <view class="device-info">
+        <view class="device-icon {{microphoneStatus === 'granted' ? 'success' : microphoneStatus === 'denied' ? 'error' : 'default'}}">
+          <t-icon name="microphone" size="20" color="{{microphoneStatus === 'granted' ? '#10b981' : microphoneStatus === 'denied' ? '#ef4444' : '#9ca3af'}}" />
+        </view>
+        <view class="device-text">
+          <view class="device-name">麦克风</view>
+          <view class="device-status {{microphoneStatus === 'granted' ? 'success' : microphoneStatus === 'denied' ? 'error' : 'default'}}">
+            {{microphoneStatusText}}
+          </view>
+        </view>
+      </view>
+      <button 
+        class="device-btn {{microphoneStatus === 'granted' ? 'success' : ''}}" 
+        bindtap="onMicrophoneTest"
+        disabled="{{microphoneStatus === 'testing'}}"
+      >
+        {{microphoneStatus === 'granted' ? '重新检测' : '检测麦克风'}}
+      </button>
+    </view>
+
+    <!-- 摄像头检测 -->
+    <view class="device-item">
+      <view class="device-info">
+        <view class="device-icon {{cameraStatus === 'granted' ? 'success' : cameraStatus === 'denied' ? 'error' : 'default'}}">
+          <t-icon name="camera" size="20" color="{{cameraStatus === 'granted' ? '#10b981' : cameraStatus === 'denied' ? '#ef4444' : '#9ca3af'}}" />
+        </view>
+        <view class="device-text">
+          <view class="device-name">摄像头</view>
+          <view class="device-status {{cameraStatus === 'granted' ? 'success' : cameraStatus === 'denied' ? 'error' : 'default'}}">
+            {{cameraStatusText}}
+          </view>
+        </view>
+      </view>
+      <button 
+        class="device-btn {{cameraStatus === 'granted' ? 'success' : ''}}" 
+        bindtap="onCameraTest"
+        disabled="{{cameraStatus === 'testing'}}"
+      >
+        {{cameraStatus === 'granted' ? '重新检测' : '检测摄像头'}}
+      </button>
+    </view>
+  </view>
+
+  <!-- 确认按钮 -->
+  <view class="confirm-section">
+    <button 
+      class="confirm-btn {{canEnter ? 'active' : 'disabled'}}" 
+      bindtap="onConfirmEnter"
+      disabled="{{!canEnter}}"
+    >
+      确认进入面试室
+    </button>
+  </view>
+
+  <!-- 提示信息 -->
+  <view class="tips-section" wx:if="{{!canEnter}}">
+    <view class="tips-title">请完成以下设置：</view>
+    <view class="tips-list">
+      <view class="tip-item" wx:if="{{!major}}">• 填写专业信息</view>
+      <view class="tip-item" wx:if="{{!jobIntention}}">• 填写求职意向</view>
+      <view class="tip-item" wx:if="{{!jobDescription}}">• 填写岗位职责</view>
+      <view class="tip-item" wx:if="{{microphoneStatus !== 'granted'}}">• 授权并检测麦克风</view>
+      <view class="tip-item" wx:if="{{cameraStatus !== 'granted'}}">• 授权并检测摄像头</view>
+    </view>
+  </view>
+</view>

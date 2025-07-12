@@ -1,0 +1,287 @@
+/* pages/interviewHome/index.wxss */
+
+.interview-home-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  display: flex;
+  flex-direction: column;
+}
+
+// 顶栏
+// .t-navbar-placeholder {
+//   height: 88rpx;
+// }
+
+// .t-navbar-content {
+//   background: #fff;
+//   box-shadow: 0 2rpx 8rpx rgba(0,0,0,0.04);
+// }
+
+// 控制栏
+.control-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 32rpx;
+  height: 80rpx;
+  background: #fff;
+  border-bottom: 1rpx solid #f3f4f6;
+}
+
+.control-bar .left{
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+.control-bar .right {
+  display: flex;
+  align-items: center;
+  gap: 24rpx;
+}
+.mic-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  margin-right: 8rpx;
+}
+.duration {
+  font-size: 28rpx;
+  color: #6366f1;
+  font-weight: 600;
+  min-width: 80rpx;
+  text-align: right;
+}
+
+.system-msg {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24rpx;
+  color: #9ca3af;
+  background: #f3f4f6;
+  border-radius: 32rpx;
+  padding: 12rpx 24rpx;
+}
+
+// 视频栏
+.video-area {
+  width: 100%;
+  position: relative;
+  height: 360rpx;
+  background: linear-gradient(135deg, #f5f7fa 0%, #e4e7eb 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rpx;
+}
+.ai-camera {
+  width: 180rpx;
+  height: 180rpx;
+  border-radius: 50%;
+  background: #fff;
+  box-shadow: 0 4rpx 20rpx rgba(99,102,241,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+.user-camera-pip {
+  position: absolute;
+  top: 24rpx;
+  right: 24rpx;
+  width: 116rpx;
+  height: 188rpx;
+  border-radius: 16rpx;
+  overflow: hidden;
+  box-shadow: 0 4rpx 16rpx rgba(0,0,0,0.10);
+  background: #e5e7eb;
+  border: 2rpx solid #fff;
+  z-index: 2;
+}
+.camera-pip {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background: #e5e7eb;
+}
+
+.avatar-player {
+  width: 100%;
+  height: 100%;
+  // border-radius: 50%;
+}
+
+.avatar-placeholder {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: #f3f4f6;
+  border-radius: 50%;
+}
+
+.placeholder-text {
+  font-size: 20rpx;
+  color: #9ca3af;
+  margin-top: 8rpx;
+}
+
+// .main-content {
+//   flex: 1;
+//   background: #fff;
+//   border-radius: 24rpx 24rpx 0 0;
+//   margin-top: -24rpx;
+//   padding: 32rpx 24rpx 24rpx 24rpx;
+//   box-shadow: 0 -2rpx 12rpx rgba(0,0,0,0.03);
+//   min-height: 320rpx;
+// }
+
+
+/* 对话容器 */
+.chat-container {
+  flex: 1;
+  background: #eef0f3;
+  padding: 32rpx;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+.chat-messages {
+  display: flex;
+  flex-direction: column;
+  gap: 32rpx;
+  min-height: 100%;
+  width: 100%;
+}
+
+.message-item {
+  display: flex;
+  align-items: flex-start;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.ai-message {
+  justify-content: flex-start;
+}
+
+.user-message {
+  justify-content: flex-end;
+}
+
+.avatar {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-right: 16rpx;
+  flex-shrink: 0;
+}
+
+.ai-avatar {
+  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+}
+
+.avatar-2 {
+  width: 64rpx;
+  height: 64rpx;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 16rpx;
+  flex-shrink: 0;
+}
+
+.ai-avatar-2 {
+  background: rgba(16, 185, 129, 0.1);
+}
+
+.message-content {
+  max-width: calc(100vw - 200rpx);
+  border-radius: 24rpx;
+  padding: 24rpx;
+  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  box-sizing: border-box;
+}
+
+.ai-content {
+  background: #ffffff;
+  margin-right: 80rpx;
+}
+
+.user-content {
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  margin-left: 80rpx;
+}
+
+.message-text {
+  font-size: 28rpx;
+  line-height: 1.5;
+  color: #1f2937;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+}
+
+.user-content .message-text {
+  color: #ffffff;
+}
+
+.hint-button {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  margin-top: 16rpx;
+  padding: 8rpx 16rpx;
+  background: #f3f4f6;
+  border-radius: 20rpx;
+  width: fit-content;
+  margin-left: auto;
+}
+
+.hint-text {
+  font-size: 24rpx;
+  color: #4b5563;
+  margin-left: 8rpx;
+}
+
+
+
+// 底栏
+.bottom-bar {
+  background: #fff;
+  border-top: 2rpx solid #e3e5eb;
+  padding: 24rpx 0 24rpx 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.hold-to-speak {
+  display: flex;
+  align-items: center;
+  gap: 16rpx;
+  background: #f1f5ff;
+  color: #6366f1;
+  border: 2rpx solid #c7d2fe;
+  border-radius: 999rpx;
+  font-size: 36rpx;
+  font-weight: 500;
+  padding: 10rpx 86rpx;
+  box-shadow: 0 2rpx 8rpx rgba(99,102,241,0.08);
+  transition: all 0.1s;
+  text-align: center;
+}
+
+.hold-to-speak:active {
+  background: #e0e7ff;
+  color: #4f46e5;
+}
+.speak-text {
+  margin-bottom: 1rpx;
+}

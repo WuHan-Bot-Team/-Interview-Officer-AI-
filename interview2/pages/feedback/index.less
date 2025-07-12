@@ -1,0 +1,79 @@
+/* pages/feedback/index.wxss */
+.feedback-container {
+  padding: 24rpx;
+  background: #fafafa;
+  min-height: 100vh;
+}
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 32rpx;
+  .title { font-size: 40rpx; font-weight: bold; color: #222; }
+  .subtitle { font-size: 24rpx; color: #888; }
+  .share-btn { color: #3b82f6; background: none; border: none; }
+}
+.score-card {
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  padding: 32rpx 0;
+  margin-bottom: 32rpx;
+  text-align: center;
+  .score-row { display: flex; justify-content: center; align-items: flex-end; }
+  .score { font-size: 64rpx; font-weight: bold; color: #222; }
+  .score-total { font-size: 32rpx; color: #888; }
+  .score-desc { color: #888; margin: 32rpx 0; font-size: 28rpx;}
+  .score-bar-bg { background: #eee; border-radius: 8rpx; height: 16rpx; margin: 24rpx 32rpx; }
+  .score-bar { background: linear-gradient(90deg, #3b82f6, #8b5cf6); height: 16rpx; border-radius: 8rpx; }
+}
+.report-card {
+  background: #fff;
+  border-radius: 24rpx;
+  box-shadow: 0 4rpx 20rpx rgba(0,0,0,0.05);
+  padding: 32rpx;
+  margin-bottom: 32rpx;
+}
+.section-title {
+  font-weight: bold;
+  color: #222;
+  margin-bottom: 24rpx;
+  display: flex;
+  align-items: center;
+  .iconfont { margin-right: 12rpx; }
+}
+.radar-labels {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12rpx;
+  margin-top: 16rpx;
+  .radar-label { flex: 1 1 30%; text-align: center; background: #f3f4f6; border-radius: 8rpx; padding: 8rpx 0; font-size: 32rpx;}
+}
+
+ec-canvas {
+  width: 100%;
+  height: 100%;
+}
+
+.improvement-card {
+  display: flex;
+  align-items: flex-start;
+  border-left: 8rpx solid #3b82f6;
+  padding-left: 16rpx;
+  margin-bottom: 16rpx;
+  .iconfont { margin-right: 12rpx; font-size: 32rpx; }
+  .improvement-title { font-weight: 500; color: #222; }
+  .improvement-desc { color: #666; font-size: 28rpx; }
+}
+.suggestion-item {
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 16rpx;
+  .suggestion-index {
+    width: 48rpx; height: 48rpx; border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-weight: bold; font-size: 32rpx; margin-right: 16rpx;
+  }
+  .suggestion-title { font-weight: 500; color: #222; }
+  .suggestion-desc { color: #666; font-size: 28rpx; }
+}
