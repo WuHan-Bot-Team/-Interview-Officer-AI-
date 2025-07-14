@@ -27,7 +27,7 @@
     </view>
     <text class="score-desc">超过{{scorePercent}}%的同岗位候选人</text>
     <view class="score-bar-bg">
-      <view class="score-bar" style="width:{{score}}%"></view>
+      <view class="score-bar" style="width:{{score}}"></view>
     </view>
   </view>
 
@@ -91,5 +91,16 @@
         </view>
       </view>
     </block>
+  </view>
+  <!-- 历史成绩趋势 -->
+  <view class="report-card">
+    <view class="section-title">
+      <text class="iconfont icon-linechart"></text> 
+        历史成绩趋势
+    </view>
+      <!-- 设置一个固定的高度来容纳图表 -->
+    <view style="height: 500rpx;">
+      <ec-canvas id="line-chart" canvas-id="line-chart-canvas" ec="{{ ecLine }}"></ec-canvas>
+    </view>
   </view>
 </view>

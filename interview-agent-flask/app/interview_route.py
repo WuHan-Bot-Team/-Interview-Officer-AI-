@@ -250,6 +250,29 @@ def feedback():
         return jsonify({'error': f'Failed to call DeepseekAPI: {str(e)}'}), 500
     return jsonify({'content': response.content})
 
+@interview_bp.route('/recent_feedbacks',methods=['GET'])
+def get_recent_feedbacks():
+    """获取最近的反馈记录"""
+    try:
+        feedback_files = glob.glob(os.path.join(FEEDBACK_FOLDER_ROUTE, "*.txt"))
+        if not feedback_files:
+            return jsonify({'error': 'no feedback record'}), 500
+        # 按修改时间降序排序
+        sorted_files = sorted(feedback_files, key=os.path.getmtime, reverse=True)
+        recent_files = sorted_files[:5]  # 获取最近的5个文件
+        feedbacks = []
+        for file in recent_files:       
+            try:
+                with open(file, 'r', encoding='utf-8') as f:
+                    content = f.read()
+                    feedbacks.append({'filename': os.path.basename(file), 'content': content})
+            except Exception as e:
+                return jsonify({'error': f'Failed to read {file}: {str(e)}'}), 500
+        return jsonify(feedbacks)
+    except Exception as e:
+        return jsonify({'error': f'Failed to retrieve feedbacks: {str(e)}'}), 500
+
+
 @interview_bp.route('/feedback2', methods=['GET'])
 def feedback2():
     global user_info

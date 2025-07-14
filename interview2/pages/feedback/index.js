@@ -50,13 +50,19 @@ Page({
         color: '#10b981'
       }
     ],
-    ec:{
+    // --- 修改点 1：为两个图表分别定义 ec 对象 ---
+    ec: {
+      lazyLoad: true
+    },
+    ecLine: { // 为折线图新增的 ec 对象
       lazyLoad: true
     }
   },
-  initChart(){
+
+  // 雷达图初始化函数 (你的原函数，保持不变)
+  initChart() {
     this.chart = this.selectComponent("#radar");
-    this.chart.init((canvas, width, height, dpr)=> {
+    this.chart.init((canvas, width, height, dpr) => {
       const chart = echarts.init(canvas, null, {
         width: width,
         height: height,
@@ -69,100 +75,174 @@ Page({
         },
         series: [{
           type: 'radar',
-          data: [
-            {
-              value: this.data.radarData.map(item => item.chartValue),
-              name: '您的表现',
-              areaStyle: { color: 'rgba(99,102,241,0.2)' }
-            },
-          ]
+          data: [{
+            value: this.data.radarData.map(item => item.chartValue),
+            name: '您的表现',
+            areaStyle: { color: 'rgba(99,102,241,0.2)' }
+          }]
         }]
       };
       chart.setOption(option);
       return chart;
     })
   },
-  onLoad(options) {
-    // 检查设备权限状态
-    let id = options.id
-    console.log(id);
-    // this.initChart();
 
-    if(id==0){  //从面试室返回，总结这次面试反馈
-      console.log("0");
+  // --- 修改点 2：新增折线图的初始化函数 ---
+  initLineChart(chartData) {
+    this.lineChart = this.selectComponent("#line-chart");
+    this.lineChart.init((canvas, width, height, dpr) => {
+      const chart = echarts.init(canvas, null, {
+        width: width,
+        height: height,
+        devicePixelRatio: dpr
+      });
+      canvas.setChart(chart);
+
+      // 计算所有分数，用于确定Y轴范围
+      const allScores = chartData.flatMap(item => item.scores);
+      const yMin = Math.min(...allScores) - 5;
+      const yMax = 100; // Y轴最高固定为100分
+
+      const option = {
+        tooltip: {
+          trigger: 'axis'
+        },
+        grid: { // 调整图表边距
+          left: '12%',
+          right: '8%',
+          bottom: '15%',
+          containLabel: false
+        },
+        xAxis: {
+          type: 'category',
+          boundaryGap: false,
+          data: chartData.map(item => item.date) // X轴：日期
+        },
+        yAxis: {
+          type: 'value',
+          min: yMin < 0 ? 0 : yMin, // Y轴最小值
+          max: yMax,
+          axisLabel: {
+            formatter: '{value}分'
+          }
+        },
+        series: [{
+          name: '综合得分',
+          type: 'line',
+          smooth: true,
+          // 计算每次面试的平均分作为折线图的数据点
+          data: chartData.map(item => (item.scores.reduce((a, b) => a + b, 0) / item.scores.length).toFixed(2)),
+          areaStyle: { // 添加渐变色区域
+            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
+              offset: 0,
+              color: 'rgba(59, 130, 246, 0.5)'
+            }, {
+              offset: 1,
+              color: 'rgba(59, 130, 246, 0)'
+            }])
+          }
+        }]
+      };
+      chart.setOption(option);
+      return chart;
+    });
+  },
+
+  onLoad(options) {
+    let id = options.id;
+
+    // --- 修改点 3：确保所有回调都使用箭头函数，避免 this 指向问题 ---
+    // 请求雷达图数据
+    if (id == 0) {
       wx.request({
         url: 'http://127.0.0.1:5000/interview/feedback',
         method: 'GET',
-        success: (res) => {
-            console.log(res)
-            if(res.statusCode == 200){
-              const data = JSON.parse(res.data.content);
-              console.log(data)
-              let scores =  data.scores;
-              const newRadarData = [...this.data.radarData];
-              scores.forEach((item, index) => {
-                newRadarData[index].chartValue=item;
-              });
-              let avgscore = scores.reduce((sum, num) => sum + num, 0) / scores.length
-              this.setData({
-                radarData: newRadarData,
-                advantages : data.advantages,
-                disadvantages: data.disadvantages,
-                score: avgscore
-              });
-            }
-            this.initChart()
+        success: (res) => { // 使用箭头函数
+          if (res.statusCode == 200) {
+            const data = JSON.parse(res.data.content);
+            let scores = data.scores;
+            const newRadarData = [...this.data.radarData];
+            scores.forEach((item, index) => {
+              newRadarData[index].chartValue = item;
+            });
+            let avgscore = scores.reduce((sum, num) => sum + num, 0) / scores.length;
+            this.setData({
+              radarData: newRadarData,
+              advantages: data.advantages,
+              disadvantages: data.disadvantages,
+              score: avgscore
+            });
+          }
+          this.initChart(); // 初始化雷达图
         },
-        fail:(err)=>{
+        fail: (err) => { // 使用箭头函数
           console.log(err);
-          this.initChart()
+          this.initChart();
         }
-      })
-    }else{
-      wx.request({  // //从首页进入，返回最近一次的面试记录
+      });
+    } else {
+      wx.request({
         url: 'http://127.0.0.1:5000/interview/feedback2',
         method: 'GET',
-        success: (res) => {
-            console.log(res)
-            if(res.statusCode == 200){
-              const data = JSON.parse(res.data.content);
-              console.log(data)
-              let scores =  data.scores;
-              const newRadarData = [...this.data.radarData];
-              scores.forEach((item, index) => {
-                newRadarData[index].chartValue=item;
-              });
-              let avgscore = scores.reduce((sum, num) => sum + num, 0) / scores.length
-              this.setData({
-                radarData: newRadarData,
-                advantages : data.advantages,
-                disadvantages: data.disadvantages,
-                score: avgscore
-              });
-            }
-            this.initChart()
+        success: (res) => { // 使用箭头函数
+          if (res.statusCode == 200) {
+            const data = JSON.parse(res.data.content);
+            let scores = data.scores;
+            const newRadarData = [...this.data.radarData];
+            scores.forEach((item, index) => {
+              newRadarData[index].chartValue = item;
+            });
+            let avgscore = scores.reduce((sum, num) => sum + num, 0) / scores.length;
+            this.setData({
+              radarData: newRadarData,
+              advantages: data.advantages,
+              disadvantages: data.disadvantages,
+              score: avgscore
+            });
+          }
+          this.initChart(); // 初始化雷达图
         },
-        fail:(err)=>{
+        fail: (err) => { // 使用箭头函数
           console.log(err);
-          this.initChart()
+          this.initChart();
         }
-      })
+      });
     }
 
-
-    // setTimeout(() => {
-    //   const newRadarData = [...this.data.radarData];
-    //   let score = [12,100,87,66,32,99]
-    //   score.forEach((item, index) => {
-    //     newRadarData[index].chartValue=item;
-    //   });
-    //   this.setData({ radarData: newRadarData });
-    //   this.initChart()
-    // }, 1000)
+    // 请求折线图数据
+    wx.request({
+      url: 'http://127.0.0.1:5000/interview/recent_feedbacks',
+      method: 'GET',
+      success: (res) => { // 使用箭头函数
+        if (res.statusCode === 200 && Array.isArray(res.data) && res.data.length > 0) {
+          const formattedData = res.data.map(item => {
+            const content = JSON.parse(item.content);
+            const timestamp = parseInt(item.filename.split('-')[1].split('.')[0]);
+            const date = new Date(timestamp * 1000);
+            const month = (date.getMonth() + 1).toString().padStart(2, '0');
+            const day = date.getDate().toString().padStart(2, '0');
+            return {
+              date: `${month}-${day}`,
+              scores: content.scores,
+            };
+          });
+          const sortedData = formattedData.reverse();
+          console.log('即将用于渲染折线图的数据:', sortedData);
+          // 调用新增的 initLineChart 函数
+          this.initLineChart(sortedData);
+        } else {
+          console.error('获取历史面试记录失败、数据格式不正确或数据为空', res);
+        }
+      },
+      fail: (err) => {
+        console.error('请求历史面试记录接口失败', err);
+      }
+    });
   },
+
   handleBack() {
     wx.reLaunch({
-      url: '/pages/home2/index' // 替换为你的首页路径
+      url: '/pages/home2/index'
     });
   },
 });
