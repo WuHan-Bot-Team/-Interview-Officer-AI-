@@ -87,77 +87,89 @@ Page({
     })
   },
 
-  // --- 修改点 2：新增折线图的初始化函数 ---
-  initLineChart(chartData) {
-    this.lineChart = this.selectComponent("#line-chart");
-    this.lineChart.init((canvas, width, height, dpr) => {
-      const chart = echarts.init(canvas, null, {
-        width: width,
-        height: height,
-        devicePixelRatio: dpr
-      });
-      canvas.setChart(chart);
-
-      // 计算所有分数，用于确定Y轴范围
-      const allScores = chartData.flatMap(item => item.scores);
-      const yMin = Math.min(...allScores) - 5;
-      const yMax = 100; // Y轴最高固定为100分
-
-      const option = {
-        tooltip: {
-          trigger: 'axis'
-        },
-        grid: { // 调整图表边距
-          left: '12%',
-          right: '8%',
-          bottom: '15%',
-          containLabel: false
-        },
-        xAxis: {
-          type: 'category',
-          boundaryGap: false,
-          data: chartData.map(item => item.date) // X轴：日期
-        },
-        yAxis: {
-          type: 'value',
-          min: yMin < 0 ? 0 : yMin, // Y轴最小值
-          max: yMax,
-          axisLabel: {
-            formatter: '{value}分'
-          }
-        },
-        series: [{
-          name: '综合得分',
-          type: 'line',
-          smooth: true,
-          // 计算每次面试的平均分作为折线图的数据点
-          data: chartData.map(item => (item.scores.reduce((a, b) => a + b, 0) / item.scores.length).toFixed(2)),
-          areaStyle: { // 添加渐变色区域
-            color: new echarts.graphic.LinearGradient(0, 0, 0, 1, [{
-              offset: 0,
-              color: 'rgba(59, 130, 246, 0.5)'
-            }, {
-              offset: 1,
-              color: 'rgba(59, 130, 246, 0)'
-            }])
-          }
-        }]
-      };
-      chart.setOption(option);
-      return chart;
+// --- 替换你原来的 initLineChart 函数 ---
+initLineChart(chartData) {
+  this.lineChart = this.selectComponent("#line-chart");
+  this.lineChart.init((canvas, width, height, dpr) => {
+    const chart = echarts.init(canvas, null, {
+      width: width,
+      height: height,
+      devicePixelRatio: dpr
     });
-  },
+    canvas.setChart(chart);
+
+    const abilityNames = this.data.radarData.map(item => item.name);
+    const series = abilityNames.map((name, index) => {
+      return {
+        name: name,
+        type: 'line',
+        smooth: true,
+        data: chartData.map(interview => interview.scores[index])
+      };
+    });
+    const allScores = chartData.flatMap(item => item.scores);
+
+    const dataMin = Math.min(...allScores);
+    const dataMax = Math.max(...allScores);
+
+    const padding = 5; 
+    let yAxisMin = dataMin - padding;
+    let yAxisMax = dataMax + padding;
+
+    if (yAxisMin < 0) {
+      yAxisMin = 0;
+    }
+    if (yAxisMax > 100) {
+      yAxisMax = 100;
+    }
+
+
+    const option = {
+      tooltip: {
+        trigger: 'axis'
+      },
+      legend: {
+        data: abilityNames,
+        bottom: 0,
+        type: 'scroll'
+      },
+      grid: {
+        left: '12%',
+        right: '8%',
+        bottom: '20%',
+        containLabel: false
+      },
+      xAxis: {
+        type: 'category',
+        boundaryGap: false,
+        data: chartData.map(item => item.date)
+      },
+      // --- 将 yAxis 的 min 和 max 设置为我们计算出的动态值 ---
+      yAxis: {
+        type: 'value',
+        min: yAxisMin,  // 使用计算出的最小值
+        max: yAxisMax,  // 使用计算出的最大值
+        axisLabel: {
+          formatter: '{value}'
+        }
+      },
+      series: series
+    };
+    
+    chart.setOption(option);
+    return chart;
+  });
+},
 
   onLoad(options) {
     let id = options.id;
 
-    // --- 修改点 3：确保所有回调都使用箭头函数，避免 this 指向问题 ---
-    // 请求雷达图数据
+
     if (id == 0) {
       wx.request({
         url: 'http://127.0.0.1:5000/interview/feedback',
         method: 'GET',
-        success: (res) => { // 使用箭头函数
+        success: (res) => { 
           if (res.statusCode == 200) {
             const data = JSON.parse(res.data.content);
             let scores = data.scores;
@@ -175,7 +187,7 @@ Page({
           }
           this.initChart(); // 初始化雷达图
         },
-        fail: (err) => { // 使用箭头函数
+        fail: (err) => { 
           console.log(err);
           this.initChart();
         }
@@ -184,7 +196,7 @@ Page({
       wx.request({
         url: 'http://127.0.0.1:5000/interview/feedback2',
         method: 'GET',
-        success: (res) => { // 使用箭头函数
+        success: (res) => { 
           if (res.statusCode == 200) {
             const data = JSON.parse(res.data.content);
             let scores = data.scores;
@@ -202,7 +214,7 @@ Page({
           }
           this.initChart(); // 初始化雷达图
         },
-        fail: (err) => { // 使用箭头函数
+        fail: (err) => { 
           console.log(err);
           this.initChart();
         }
@@ -213,7 +225,7 @@ Page({
     wx.request({
       url: 'http://127.0.0.1:5000/interview/recent_feedbacks',
       method: 'GET',
-      success: (res) => { // 使用箭头函数
+      success: (res) => {
         if (res.statusCode === 200 && Array.isArray(res.data) && res.data.length > 0) {
           const formattedData = res.data.map(item => {
             const content = JSON.parse(item.content);
