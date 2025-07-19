@@ -189,7 +189,7 @@ Q: 如何导出面试报告？	> 小程序“我的”页面 → 历史记录 �
 	•	DeepSeek & 科大讯飞 提供大语言模型接口
 	•	Aipaas Avatar 数字人方案赞助
 	•	微信 TDesign 组件库
-	•	何老师的支持，Leiyuze和Hermit127的帮助 ❤️
+	•	感谢何老师的支持，Leiyuze和Hermit127的帮助以及YoungPy11的测试帮助 ❤️
 
 ⸻
 
