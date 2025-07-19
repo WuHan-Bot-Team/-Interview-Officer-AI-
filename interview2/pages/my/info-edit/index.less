@@ -1,15 +1,51 @@
 page {
-  background-color: #fff;
+  background-color: #f8fafc;
 }
 
 .info-edit {
   --td-input-vertical-padding: 0;
+  padding: 24rpx 0;
+}
+
+.info-edit__header {
+  padding: 32rpx 32rpx 48rpx;
+  margin-bottom: 24rpx;
+  
+  .header-title {
+    font-size: 36rpx;
+    font-weight: 600;
+    color: #1e293b;
+    margin-bottom: 12rpx;
+  }
+  
+  .header-subtitle {
+    font-size: 26rpx;
+    color: #64748b;
+    line-height: 1.5;
+  }
 }
 
 .info-edit__cell {
+  margin-bottom: 16rpx;
+  background-color: #fff;
+  border-radius: 12rpx;
+  box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+  overflow: hidden;
+  transition: all 0.3s ease;
+  
+  &:active {
+    transform: scale(0.99);
+  }
+  
   .t-cell__title {
     flex: none;
     width: 162rpx;
+    font-weight: 500;
+    color: #334155;
+  }
+  
+  .t-cell__note {
+    color: #64748b;
   }
 }
 
@@ -24,10 +60,19 @@ page {
   width: 100%;
   padding: 0 !important;
   height: 200rpx;
+  border-radius: 8rpx;
+  background-color: #f8fafc;
+  transition: all 0.3s ease;
+  
+  &:focus {
+    background-color: #fff;
+    box-shadow: 0 0 0 2rpx rgba(59, 130, 246, 0.2);
+  }
 }
 
 .info-edit__photos {
   width: 100%;
+  padding: 16rpx 0;
 }
 
 .info-edit__save {
@@ -35,4 +80,90 @@ page {
   left: 32rpx;
   right: 32rpx;
   bottom: calc(env(safe-area-inset-bottom) + 32rpx);
+  
+  .t-button {
+    border-radius: 12rpx;
+    background: linear-gradient(135deg, #3b82f6, #6366f1);
+    box-shadow: 0 4rpx 16rpx rgba(99, 102, 241, 0.3);
+    border: none;
+    font-weight: 500;
+    letter-spacing: 2rpx;
+    transition: all 0.3s ease;
+    
+    &:active {
+      transform: translateY(2rpx);
+      box-shadow: 0 2rpx 8rpx rgba(99, 102, 241, 0.2);
+    }
+  }
+}
+
+// 美化上传组件
+.info-edit__photos {
+  .t-upload__wrapper {
+    border-radius: 12rpx;
+    overflow: hidden;
+  }
+  
+  .t-upload__add-icon {
+    background: linear-gradient(135deg, #f1f5f9, #e2e8f0);
+    border-radius: 12rpx;
+    border: 2rpx dashed #cbd5e1;
+    
+    &:active {
+      background: linear-gradient(135deg, #e2e8f0, #cbd5e1);
+    }
+  }
+}
+
+// 美化单选框
+.t-radio__icon {
+  color: #3b82f6 !important;
+}
+
+// 美化日期选择器
+.t-date-time-picker {
+  .t-picker-item__value--active {
+    color: #3b82f6 !important;
+  }
+}
+
+// 添加动画效果
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(10rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.info-edit__cell {
+  animation: fadeIn 0.5s ease-out forwards;
+  opacity: 0;
+}
+
+.info-edit__cell:nth-child(2) {
+  animation-delay: 0.1s;
+}
+
+.info-edit__cell:nth-child(3) {
+  animation-delay: 0.2s;
+}
+
+.info-edit__cell:nth-child(4) {
+  animation-delay: 0.3s;
+}
+
+.info-edit__cell:nth-child(5) {
+  animation-delay: 0.4s;
+}
+
+.info-edit__cell:nth-child(6) {
+  animation-delay: 0.5s;
+}
+
+.info-edit__cell:nth-child(7) {
+  animation-delay: 0.6s;
 }

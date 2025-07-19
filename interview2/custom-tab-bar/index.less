@@ -1,10 +1,55 @@
 @import '/variable.less';
 
-.custom-tab-bar {
+:host {
+  --td-tab-bar-color: #666666;
+  --td-tab-bar-active-color: #0052D9;
+  --td-tab-bar-bg-color: #FFFFFF;
+  --td-tab-bar-hover-color: rgba(0, 82, 217, 0.05);
   --td-tab-bar-height: @tab-bar-height;
+  --td-tab-bar-border-color: transparent;
+  --td-tab-bar-active-icon-color: #0052D9;
+}
 
-  &-item {
+.t-tab-bar {
+  box-shadow: 0 -1px 6px rgba(0, 0, 0, 0.04);
+  border-top: 1px solid rgba(0, 0, 0, 0.03);
+  padding-bottom: env(safe-area-inset-bottom);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  background-color: rgba(255, 255, 255, 0.95) !important;
+}
+
+.t-tab-bar-item {
+  padding: 8rpx 0;
+  
+  &__icon {
+    margin-bottom: 4rpx;
+    font-size: 44rpx;
+  }
+  
+  &__text {
+    font-size: 22rpx;
+    transform: scale(0.9);
+  }
+  
+  &--active {
+    .t-tab-bar-item__text {
+      font-weight: 500;
+      transform: scale(1);
+    }
+  }
+}
+
+.ios-tab-bar {
+  .t-tab-bar-item {
     margin: 0;
     padding: 16rpx 24rpx;
   }
+}
+
+.t-tab-bar--fixed {
+  position: fixed;
+  left: 0;
+  bottom: -28px;
+  right: 0;
 }

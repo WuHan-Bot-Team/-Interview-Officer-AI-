@@ -1,9 +1,15 @@
 <t-navbar left-arrow title="个人信息" />
 <view class="info-edit">
-  <t-cell class="info-edit__cell" title="用户名">
+  <view class="info-edit__header">
+    <view class="header-title">编辑个人资料</view>
+    <view class="header-subtitle">完善您的个人信息，让更多人了解您</view>
+  </view>
+
+  <t-cell class="info-edit__cell" title="用户名" leftIcon="user">
     <t-input bind:change="onNameChange" borderless placeholder="请输入用户名" slot="note" value="{{personInfo.name}}" />
   </t-cell>
-  <t-cell class="info-edit__cell" title="性别">
+  
+  <t-cell class="info-edit__cell" title="性别" leftIcon="user-circle">
     <t-radio-group
       bind:change="onGenderChange"
       borderless
@@ -14,9 +20,12 @@
       value="{{personInfo.gender}}"
     />
   </t-cell>
-  <t-cell arrow bind:click="showPicker" data-mode="birth" note="{{personInfo.birth || ''}}" title="生日" />
-  <t-cell arrow bind:click="showPicker" data-mode="address" note="{{addressText || ''}}" title="地址" />
-  <t-cell class="info-edit__cell" title="个人简介">
+  
+  <t-cell arrow class="info-edit__cell" bind:click="showPicker" data-mode="birth" leftIcon="calendar" note="{{personInfo.birth || '请选择生日'}}" title="生日" />
+  
+  <t-cell arrow class="info-edit__cell" bind:click="showPicker" data-mode="address" leftIcon="location" note="{{addressText || '请选择地址'}}" title="地址" />
+  
+  <t-cell class="info-edit__cell" title="个人简介" leftIcon="edit">
     <t-textarea
       bind:blur="onIntroductionChange"
       disableDefaultPadding="{{true}}"
@@ -28,7 +37,8 @@
       value="{{personInfo.introduction}}"
     />
   </t-cell>
-  <t-cell bordered="{{false}}" class="info-edit__cell" title="相片墙">
+  
+  <t-cell bordered="{{false}}" class="info-edit__cell" title="相片墙" leftIcon="photo">
     <t-upload
       bind:drop="onPhotosDrop"
       bind:remove="onPhotosRemove"
@@ -44,7 +54,7 @@
 </view>
 
 <view class="info-edit__save">
-  <t-button bind:tap="onSaveInfo" block size="medium" theme="primary">保存</t-button>
+  <t-button bind:tap="onSaveInfo" block size="medium" theme="primary">保存个人信息</t-button>
 </view>
 
 <t-date-time-picker

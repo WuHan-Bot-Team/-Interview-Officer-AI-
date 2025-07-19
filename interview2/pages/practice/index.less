@@ -1,24 +1,58 @@
 @import '/variable.less';
 
+// 全局变量
+@primary-color: #0052D9;
+@primary-gradient: linear-gradient(135deg, #0052D9 0%, #2B88D8 100%);
+@secondary-gradient: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+@bg-color: #F5F7FA;
+@card-bg: #FFFFFF;
+@text-primary: #1A202C;
+@text-secondary: #4A5568;
+@text-tertiary: #718096;
+@border-radius-lg: 16px;
+@border-radius-md: 12px;
+@shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+@shadow-md: 0 4px 12px rgba(0, 0, 0, 0.08);
+@transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
 /* 主容器 */
 .practice-container {
-  padding-top: calc(@navbar-padding-top);
-  height: 100%;
-  height: calc(100vh - @tab-bar-height);
+  padding-top: 0;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  background: #fafafa;
+  background: @bg-color;
   box-sizing: border-box;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', sans-serif;
+}
+
+/* 页面标题 */
+.page-header {
+  padding: 16rpx 32rpx;
+  padding-top: calc(59rpx + @navbar-padding-top);
+  background-color: #FFFFFF;
+  position: relative;
+  z-index: 10;
+  box-shadow: @shadow-sm;
+}
+
+.page-title {
+  font-size: 36rpx;
+  font-weight: 600;
+  color: @text-primary;
+  text-align: center;
 }
 
 /* 标签栏 */
 .tab-header {
   display: flex;
-  background: #ffffff;
-  border-bottom: 2rpx solid #e5e7eb;
+  background: @card-bg;
+  border-bottom: 1rpx solid rgba(0, 0, 0, 0.05);
   padding: 0 32rpx;
   flex-shrink: 0;
+  box-shadow: @shadow-sm;
+  position: relative;
+  z-index: 10;
 }
 
 .tab-item {
@@ -26,16 +60,17 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  padding: 40rpx 0;
+  padding: 32rpx 0;
   font-size: 28rpx;
   font-weight: 500;
-  color: #6b7280;
+  color: @text-secondary;
   position: relative;
-  transition: all 0.3s ease;
+  transition: @transition-normal;
 }
 
 .tab-active {
-  color: #1f2937;
+  color: @primary-color;
+  font-weight: 600;
 }
 
 .tab-active::after {
@@ -44,30 +79,30 @@
   bottom: 0rpx;
   left: 25%;
   width: 50%;
-  height: 6rpx;
-  background: linear-gradient(90deg, #6366f1, #8b5cf6);
-  border-radius: 6rpx;
+  height: 4rpx;
+  background: @primary-color;
+  border-radius: 4rpx;
 }
 
 .tab-text {
-  margin-left: 16rpx;
+  margin-left: 12rpx;
 }
 
 /* 对话容器 */
 .chat-container {
   flex: 1;
-  background: #f9fafb;
-  padding: 32rpx;
-  overflow: hidden;
+  background: @bg-color;
+  padding: 24rpx;
+  overflow-y: auto;
   box-sizing: border-box;
 }
 
 .chat-messages {
   display: flex;
   flex-direction: column;
-  gap: 32rpx;
-  min-height: 100%;
+  gap: 24rpx;
   width: 100%;
+  padding-bottom: 24rpx;
 }
 
 .message-item {
@@ -75,6 +110,7 @@
   align-items: flex-start;
   width: 100%;
   box-sizing: border-box;
+  margin-bottom: 8rpx;
 }
 
 .ai-message {
@@ -85,30 +121,27 @@
   justify-content: flex-end;
 }
 
-.avatar {
+.avatar, .avatar-2 {
   width: 64rpx;
   height: 64rpx;
-  border-radius: 50%;
+  border-radius: 16rpx;
   display: flex;
   align-items: center;
   justify-content: center;
-  margin-right: 16rpx;
   flex-shrink: 0;
+  box-shadow: @shadow-sm;
 }
 
-.ai-avatar {
-  background: linear-gradient(135deg, rgba(99, 102, 241, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+.avatar {
+  margin-right: 12rpx;
 }
 
 .avatar-2 {
-  width: 64rpx;
-  height: 64rpx;
-  border-radius: 50%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  margin-left: 16rpx;
-  flex-shrink: 0;
+  margin-left: 12rpx;
+}
+
+.ai-avatar {
+  background: rgba(0, 82, 217, 0.1);
 }
 
 .ai-avatar-2 {
@@ -117,30 +150,35 @@
 
 .message-content {
   max-width: calc(100vw - 200rpx);
-  border-radius: 24rpx;
-  padding: 24rpx;
-  box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.05);
+  border-radius: @border-radius-md;
+  padding: 20rpx 24rpx;
+  box-shadow: @shadow-sm;
   word-wrap: break-word;
   overflow-wrap: break-word;
   box-sizing: border-box;
+  transition: @transition-normal;
 }
 
 .ai-content {
-  background: #ffffff;
-  margin-right: 80rpx;
+  background: @card-bg;
+  margin-right: 60rpx;
+  border-top-left-radius: 4rpx;
 }
 
 .user-content {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  margin-left: 80rpx;
+  background: @primary-gradient;
+  margin-left: 60rpx;
+  border-top-right-radius: 4rpx;
 }
 
 .message-text {
   font-size: 28rpx;
-  line-height: 1.5;
-  color: #1f2937;
+  line-height: 1.6;
+  color: @text-primary;
   white-space: pre-wrap;
   word-wrap: break-word;
+  overflow-wrap: break-word;
+  width: 100%;
 }
 
 .user-content .message-text {
@@ -152,25 +190,31 @@
   align-items: center;
   justify-content: flex-end;
   margin-top: 16rpx;
-  padding: 8rpx 16rpx;
-  background: #f3f4f6;
-  border-radius: 20rpx;
+  padding: 6rpx 12rpx;
+  background: rgba(245, 158, 11, 0.1);
+  border-radius: 100rpx;
   width: fit-content;
   margin-left: auto;
+  transition: @transition-normal;
+  
+  &:active {
+    transform: scale(0.95);
+  }
 }
 
 .hint-text {
   font-size: 24rpx;
-  color: #4b5563;
+  color: #f59e0b;
   margin-left: 8rpx;
 }
 
 /* 快捷指令栏 */
 .quick-actions {
-  background: #ffffff;
-  border-top: 2rpx solid #e5e7eb;
-  padding: 24rpx;
+  background: @card-bg;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.05);
+  padding: 16rpx;
   flex-shrink: 0;
+  box-shadow: @shadow-sm;
 }
 
 .actions-scroll {
@@ -181,42 +225,43 @@
 .actions-container {
   display: flex;
   gap: 16rpx;
-  padding: 0 16rpx;
+  padding: 0 8rpx;
   min-width: max-content;
 }
 
 .action-btn {
   display: flex;
   align-items: center;
-  padding: 16rpx 24rpx;
-  background: rgba(255, 255, 255, 0.9);
-  backdrop-filter: blur(20rpx);
-  -webkit-backdrop-filter: blur(20rpx);
-  border: 2rpx solid #e5e7eb;
-  border-radius: 40rpx;
+  padding: 12rpx 20rpx;
+  background: @bg-color;
+  border: 1rpx solid rgba(0, 0, 0, 0.05);
+  border-radius: 100rpx;
   white-space: nowrap;
-  transition: all 0.2s ease;
+  transition: @transition-normal;
   flex-shrink: 0;
+  box-shadow: @shadow-sm;
 }
 
 .action-btn:active {
-  background: rgba(99, 102, 241, 0.1);
-  border-color: rgba(99, 102, 241, 0.2);
-  transform: scale(0.95);
+  background: rgba(0, 82, 217, 0.05);
+  border-color: rgba(0, 82, 217, 0.2);
+  transform: scale(0.97);
 }
 
 .action-text {
   font-size: 26rpx;
-  color: #374151;
-  margin-left: 12rpx;
+  color: @text-primary;
+  margin-left: 8rpx;
 }
 
 /* 输入区域 */
 .input-area {
-  background: #ffffff;
-  border-top: 2rpx solid #e5e7eb;
-  padding: 24rpx;
+  background: @card-bg;
+  border-top: 1rpx solid rgba(0, 0, 0, 0.05);
+  padding: 16rpx 24rpx;
+  padding-bottom: calc(99rpx + env(safe-area-inset-bottom));
   flex-shrink: 0;
+  box-shadow: @shadow-sm;
 }
 
 .input-container {
@@ -228,45 +273,55 @@
 }
 
 .add-btn {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  background: #f3f4f6;
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 16rpx;
+  background: @bg-color;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  box-shadow: @shadow-sm;
+  transition: @transition-normal;
+  
+  &:active {
+    transform: scale(0.95);
+    background: rgba(0, 0, 0, 0.03);
+  }
 }
 
 .message-input {
   flex: 1;
-  background: #f3f4f6;
-  border-radius: 40rpx;
-  padding: 24rpx 30rpx;
-  font-size: 30rpx;
-  color: #1f2937;
+  background: @bg-color;
+  border-radius: @border-radius-md;
+  padding: 20rpx 24rpx;
+  font-size: 28rpx;
+  color: @text-primary;
   min-width: 0;
-  line-height: 42rpx;
-  // box-sizing: border-box;
-  // min-height: 0rpx;
+  line-height: 40rpx;
+  box-shadow: @shadow-sm;
+  box-sizing: border-box;
+  min-height: 72rpx;
+  max-height: 200rpx;
 }
 
 .message-input::placeholder {
-  color: #9ca3af;
+  color: @text-tertiary;
 }
 
 .send-btn {
-  width: 80rpx;
-  height: 80rpx;
-  border-radius: 50%;
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
+  width: 72rpx;
+  height: 72rpx;
+  border-radius: 16rpx;
+  background: @primary-gradient;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
-  transition: transform 0.2s ease;
-}
-
-.send-btn:active {
-  transform: scale(0.95);
+  transition: @transition-normal;
+  box-shadow: @shadow-sm;
+  
+  &:active {
+    transform: scale(0.95);
+  }
 }

@@ -1,8 +1,15 @@
 
 
+<view class="page-header">
+  <view class="page-title">首页</view>
+</view>
+
 <scroll-view
   scroll-y
   class="out-container"
+  enhanced
+  show-scrollbar="{{false}}"
+  bounces="{{true}}"
 >
 <view class="home-container">
   <!-- 用户信息栏 -->

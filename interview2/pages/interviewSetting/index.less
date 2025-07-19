@@ -2,9 +2,24 @@
 
 .setting-container {
   min-height: 100vh;
-  background: linear-gradient(135deg, #f8fafc 0%, #ffffff 100%);
-  padding: 0 24rpx 40rpx;
+  background: linear-gradient(135deg, #f8f9ff 0%, #f0f4ff 100%);
+  padding: 0 32rpx 60rpx;
   box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  overflow: hidden;
+}
+
+.setting-container::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 380rpx;
+  background: linear-gradient(90deg, #1519ea 0%, #f16096 100%);
+  z-index: 0;
 }
 
 
@@ -12,29 +27,43 @@
 .page-header {
   padding: 60rpx 0 40rpx;
   text-align: center;
+  position: relative;
+  z-index: 1;
 }
 
 .header-title {
   font-size: 48rpx;
   font-weight: 600;
-  color: #1f2937;
-  margin-bottom: 12rpx;
+  color: #ffffff;
+  margin-bottom: 16rpx;
+  text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.1);
 }
 
 .header-subtitle {
-  font-size: 28rpx;
-  color: #6b7280;
-  line-height: 1.5;
+  font-size: 35rpx;
+  color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+  max-width: 80%;
+  margin: 0 auto;
 }
 
 /* 表单区域 */
 .form-section {
-  background: #ffffff;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(20rpx);
   border-radius: 24rpx;
   padding: 40rpx 32rpx;
   margin-bottom: 32rpx;
-  box-shadow: 0 4rpx 20rpx rgba(0, 0, 0, 0.05);
-  border: 1rpx solid rgba(0, 0, 0, 0.05);
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  border: 1rpx solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  position: relative;
+  z-index: 1;
+}
+
+.form-section:hover {
+  transform: translateY(-4rpx);
+  box-shadow: 0 12rpx 40rpx rgba(0, 0, 0, 0.12);
 }
 
 .form-item {
@@ -239,37 +268,41 @@
 
 .confirm-btn {
   width: 100%;
-  height: 96rpx;
-  border-radius: 24rpx;
-  font-size: 32rpx;
+  height: 100rpx;
+  border-radius: 28rpx;
+  font-size: 34rpx;
   font-weight: 600;
+  letter-spacing: 1rpx;
   border: none;
   display: flex;
+  color:#fff;
   align-items: center;
   justify-content: center;
-  transition: all 0.3s ease;
-  box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+  transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+  box-shadow: 0 10rpx 28rpx rgba(0, 0, 0, 0.12);
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 50%, #6366f1 100%);
+  background-size: 200% 100%;
+  transform: perspective(500px) translateZ(0);
 }
 
-.confirm-btn.active {
-  background: linear-gradient(135deg, #6366f1 0%, #8b5cf6 100%);
-  color: #ffffff;
-  box-shadow: 0 8rpx 24rpx rgba(99, 102, 241, 0.4);
+.confirm-btn:hover {
+  background-position: 100% 0;
+  transform: perspective(500px) translateZ(20px);
+  box-shadow: 0 15rpx 35rpx rgba(0, 0, 0, 0.2);
 }
 
-.confirm-btn.disabled {
-  background: #f3f4f6;
-  color: #9ca3af;
-  box-shadow: none;
+.confirm-btn:active {
+  transform: perspective(500px) translateZ(10px) scale(0.98);
+  box-shadow: 0 8rpx 20rpx rgba(0, 0, 0, 0.15);
 }
 
-.confirm-btn.active:active {
-  transform: translateY(4rpx);
-  box-shadow: 0 4rpx 16rpx rgba(99, 102, 241, 0.5);
-}
 
-.confirm-btn[disabled] {
-  transform: none;
+
+.confirm-btn:hover::after {
+  opacity: 0.3;
 }
 
 /* 提示信息区域 */

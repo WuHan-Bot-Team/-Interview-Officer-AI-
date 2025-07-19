@@ -1,3 +1,159 @@
+@import '/variable.less';
+
+.setting-container {
+  min-height: 100vh;
+  background-color: @bg-color;
+  padding: 32rpx 0;
+  font-family: @font-family;
+}
+
 .cell-group-class {
   margin: 32rpx !important;
+  border-radius: @radius-xl !important;
+  overflow: hidden;
+  box-shadow: @shadow-lg !important;
+  background-color: @card-bg !important;
+  position: relative;
+  
+  .t-cell {
+    --td-cell-bg-color: @card-bg !important;
+    --td-cell-horizontal-padding: 32rpx !important;
+    --td-cell-vertical-padding: 32rpx !important;
+    --td-cell-title-font-size: @font-size-default !important;
+    --td-cell-title-color: @text-primary !important;
+    --td-cell-description-font-size: @font-size-mini !important;
+    --td-cell-description-color: @text-tertiary !important;
+    --td-cell-border-right-space: 0 !important;
+    --td-cell-required-color: @error !important;
+    --td-cell-hover-color: @bg-color-light !important;
+    
+    border-bottom: 1px solid @border-light !important;
+    
+    &:last-child {
+      border-bottom: none !important;
+    }
+    
+    &:active {
+      background-color: @bg-color-light !important;
+    }
+  }
+  
+  .t-cell__title {
+    font-weight: @font-weight-medium !important;
+  }
+  
+  .t-cell__note {
+    color: @text-secondary !important;
+    font-size: @font-size-small !important;
+  }
+  
+  .t-cell__right-icon {
+    color: @text-quaternary !important;
+  }
+  
+  .t-cell__left-icon {
+    margin-right: 16rpx !important;
+    color: @primary !important;
+  }
+  
+  .t-cell__hover {
+    background-color: @bg-color-light !important;
+  }
+}
+
+// 设置项图标
+.setting-icon {
+  width: 48rpx;
+  height: 48rpx;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: @radius-md;
+  margin-right: 16rpx;
+  
+  &--account {
+    background-color: @primary-bg;
+    color: @primary;
+  }
+  
+  &--notification {
+    background-color: @info-bg;
+    color: @info;
+  }
+  
+  &--privacy {
+    background-color: @success-bg;
+    color: @success;
+  }
+  
+  &--theme {
+    background-color: @secondary-bg;
+    color: @secondary;
+  }
+  
+  &--language {
+    background-color: @warning-bg;
+    color: @warning;
+  }
+  
+  &--about {
+    background-color: @bg-color-light;
+    color: @text-secondary;
+  }
+  
+  &--logout {
+    background-color: @error-bg;
+    color: @error;
+  }
+}
+
+// 设置分组标题
+.setting-group-title {
+  padding: 32rpx 40rpx 16rpx;
+  font-size: @font-size-small;
+  font-weight: @font-weight-medium;
+  color: @text-tertiary;
+}
+
+// 开关样式
+.t-switch {
+  --td-switch-width: 80rpx !important;
+  --td-switch-height: 40rpx !important;
+  --td-switch-dot-size: 32rpx !important;
+  --td-switch-dot-color: white !important;
+  --td-switch-color: @primary !important;
+  --td-switch-disabled-color: @border-light !important;
+}
+
+// 底部区域
+.setting-footer {
+  padding: 64rpx 32rpx;
+  text-align: center;
+  
+  .logout-button {
+    width: 100%;
+    height: 88rpx;
+    background: @card-bg;
+    border: 1px solid @border-default;
+    border-radius: @radius-lg;
+    color: @error;
+    font-size: @font-size-default;
+    font-weight: @font-weight-medium;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: @shadow-sm;
+    transition: @transition-normal;
+    
+    &:active {
+      transform: translateY(2rpx);
+      background: @bg-color-light;
+    }
+  }
+  
+  .version-info {
+    margin-top: 32rpx;
+    font-size: @font-size-mini;
+    color: @text-quaternary;
+  }
 }

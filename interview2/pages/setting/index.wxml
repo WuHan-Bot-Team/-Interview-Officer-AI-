@@ -1,21 +1,41 @@
 <t-navbar title="设置" left-arrow />
-<view class="setting">
-  <t-cell-group wx:for="{{menuData}}" wx:for-item="item" wx:key="index" t-class="cell-group-class" theme="card">
-    <t-cell
-      wx:for="{{item}}"
-      wx:for-item="carditem"
-      wx:key="cardkey"
-      title="{{carditem.title}}"
-      hover
-      arrow
-      left-icon="app"
-      url="{{carditem.url}}"
-      bordered="true"
-      leftIcon="{{carditem.icon}}"
-      data-data="{{carditem}}"
-      bindclick="onEleClick"
-    />
-  </t-cell-group>
+<view class="setting-container">
+  <!-- 背景装饰元素 -->
+  <view class="setting-content">
+    <t-cell-group 
+      wx:for="{{menuData}}" 
+      wx:for-item="item" 
+      wx:key="index" 
+      t-class="cell-group-class" 
+      theme="card"
+    >
+      <!-- 添加分组标题 -->
+      <view class="setting-group-title" wx:if="{{index === 0}}">账户与安全</view>
+      <view class="setting-group-title" wx:elif="{{index === 1}}">应用设置</view>
+      <view class="setting-group-title" wx:elif="{{index === 2}}">关于我们</view>
+      
+      <t-cell
+        wx:for="{{item}}"
+        wx:for-item="carditem"
+        wx:key="cardkey"
+        title="{{carditem.title}}"
+        hover
+        arrow
+        left-icon="app"
+        url="{{carditem.url}}"
+        bordered="true"
+        leftIcon="{{carditem.icon}}"
+        data-data="{{carditem}}"
+        bindclick="onEleClick"
+      />
+    </t-cell-group>
+    
+    <!-- 添加退出登录按钮 -->
+    <view class="setting-footer">
+      <view class="logout-button">退出登录</view>
+      <view class="version-info">TDesign v1.0.0</view>
+    </view>
+  </view>
 </view>
 
 <t-toast id="t-toast" />

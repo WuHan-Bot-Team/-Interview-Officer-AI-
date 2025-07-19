@@ -2,6 +2,11 @@
 
 <view class="practice-container">
 
+  <!-- 页面标题 -->
+  <view class="page-header">
+    <view class="page-title">练习</view>
+  </view>
+
   <!-- 模式切换标签 -->
   <view class="tab-header">
     <view 

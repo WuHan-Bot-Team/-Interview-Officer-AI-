@@ -1,0 +1,3 @@
+.t-tab-bar--fixed {
+  bottom: -33px !important;
+} 

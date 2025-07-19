@@ -1,5 +1,7 @@
 <t-navbar title="数据中心" left-arrow />
 <view class="data-center">
+  <t-skeleton wx:if="{{isLoading}}" row="[5]" column="[1]" theme="card" />
+
   <view class="card first">
     <view class="card-header">
       <view class="card-header__title"> 整体情况 </view>
@@ -47,7 +49,13 @@
       <view class="card-header__title"> 按区域统计 </view>
     </view>
     <view class="card-content">
-      <t-empty icon="info-circle-filled" description="Empty Data" />
+      <view class="empty-area">
+  <view class="empty-icon">
+    <t-icon name="map" size="80rpx" color="#e5e6eb" />
+  </view>
+  <view class="empty-text">暂无区域数据</view>
+  <view class="empty-desc">请稍后刷新或检查数据来源</view>
+</view>
     </view>
   </view>
 </view>

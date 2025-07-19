@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    isLoading: true,
     totalSituationDataList: null,
     totalSituationKeyList: null,
     completeRateDataList: null,
@@ -22,17 +23,21 @@ Page({
   },
 
   init() {
-    this.getMemberData();
-    this.getInteractionData();
-    this.getCompleteRateData();
-    this.getAreaData();
+    Promise.all([
+      this.getMemberData(),
+      this.getInteractionData(),
+      this.getCompleteRateData(),
+      this.getAreaData()
+    ]).then(() => {
+      this.setData({ isLoading: false });
+    });
   },
 
   /**
    * 获取 “整体情况” 数据
    */
   getMemberData() {
-    request('/dataCenter/member').then((res) => {
+    return request('/dataCenter/member').then((res) => {
       const totalSituationData = res.data.template.succ.data.list;
       this.setData({
         totalSituationDataList: totalSituationData,
@@ -52,7 +57,7 @@ Page({
    * 获取 “互动情况” 数据
    */
   getInteractionData() {
-    request('/dataCenter/interaction').then((res) => {
+    return request('/dataCenter/interaction').then((res) => {
       const interactionSituationData = res.data.template.succ.data.list;
       this.setData({
         interactionSituationDataList: interactionSituationData,
@@ -72,7 +77,7 @@ Page({
    * 完播率
    */
   getCompleteRateData() {
-    request('/dataCenter/complete-rate').then((res) => {
+    return request('/dataCenter/complete-rate').then((res) => {
       const completeRateData = res.data.template.succ.data.list;
       this.setData({
         completeRateDataList: completeRateData,
@@ -93,12 +98,11 @@ Page({
    * 按区域统计
    */
   getAreaData() {
-    request('/dataCenter/area').then((res) => {
+    return request('/dataCenter/area').then((res) => {
       const areaData = res.data.template.succ.data.list;
       this.setData({
         areaDataList: areaData,
-        areaDataKeysList: Object.keys(areaData[0]),
-      });
+        areaDataKeysList: Object.keys(areaData[0])      });
     });
   },
 });

@@ -1,9 +1,29 @@
 /**app.wxss**/
+@import './variable.less';
+
 page {
-  background-color: #f3f3f3;
+  background-color: #f8f9fc;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', Arial, sans-serif;
+  color: #222;
+}
+
+// 底部安全区域适配
+.safe-area-bottom {
+  padding-bottom: env(safe-area-inset-bottom);
 }
 
 .page {
-  height: 100vh;
+  min-height: 100vh;
   background-color: #fff;
+  border-radius: 14px;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  padding: 16px;
+}
+
+button,
+input,
+textarea,
+.t-button {
+  border-radius: 14px !important;
+  font-family: inherit;
 }

@@ -1,22 +1,208 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes float {
+  0% {
+    transform: translateY(0px);
+  }
+  50% {
+    transform: translateY(-10px);
+  }
+  100% {
+    transform: translateY(0px);
+  }
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(58, 122, 254, 0.4);
+  }
+  70% {
+    box-shadow: 0 0 0 20rpx rgba(58, 122, 254, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(58, 122, 254, 0);
+  }
+}
+
 .login {
+  position: relative;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+  overflow: hidden;
+  
+  // 高级背景装饰元素
+  &::before, &::after {
+    content: '';
+    position: absolute;
+    border-radius: 50%;
+    filter: blur(60px);
+    z-index: 0;
+  }
+  
+  &::before {
+    top: -10%;
+    right: -10%;
+    width: 60%;
+    height: 40%;
+    background: linear-gradient(135deg, rgba(58, 122, 254, 0.1) 0%, rgba(0, 82, 217, 0.05) 100%);
+    animation: float 15s ease-in-out infinite;
+  }
+  
+  &::after {
+    bottom: -15%;
+    left: -15%;
+    width: 70%;
+    height: 50%;
+    background: linear-gradient(135deg, rgba(124, 58, 237, 0.08) 0%, rgba(58, 122, 254, 0.05) 100%);
+    animation: float 18s ease-in-out infinite reverse;
+  }
+  
+  // 额外装饰元素
+  .decoration {
+    position: absolute;
+    z-index: 0;
+    
+    &-1 {
+      top: 10%;
+      right: 15%;
+      width: 16rpx;
+      height: 16rpx;
+      background: #3a7afe;
+      border-radius: 50%;
+      opacity: 0.6;
+      animation: pulse 3s infinite;
+    }
+    
+    &-2 {
+      bottom: 20%;
+      left: 10%;
+      width: 24rpx;
+      height: 24rpx;
+      background: #7c3aed;
+      border-radius: 50%;
+      opacity: 0.4;
+      animation: pulse 4s infinite 1s;
+    }
+    
+    &-3 {
+      top: 30%;
+      left: 5%;
+      width: 12rpx;
+      height: 12rpx;
+      background: #0052d9;
+      border-radius: 50%;
+      opacity: 0.5;
+      animation: pulse 5s infinite 2s;
+    }
+  }
+
   &__title {
-    color: rgba(0, 0, 0, 0.9);
-    font-size: 56rpx;
-    font-weight: 600;
-    line-height: 72rpx;
+    color: #0052d9;
+    font-size: 64rpx;
+    font-weight: 700;
+    line-height: 80rpx;
     padding: 16rpx 32rpx 40rpx;
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.8s ease-out;
+    background: linear-gradient(90deg, #0052d9, #3a7afe, #7c3aed);
+    background-size: 300% auto;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: gradient 8s ease infinite;
+    letter-spacing: 2rpx;
+    text-shadow: 0 10rpx 30rpx rgba(0, 82, 217, 0.1);
+    
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: 30rpx;
+      left: 32rpx;
+      width: 60rpx;
+      height: 6rpx;
+      background: linear-gradient(90deg, #3a7afe, #7c3aed);
+      border-radius: 3rpx;
+    }
+  }
+  
+  &__content {
+    position: relative;
+    z-index: 1;
+    animation: fadeIn 0.8s ease-out 0.2s both;
+    padding: 0 32rpx;
   }
 
   &__input {
+    margin-bottom: 16rpx;
+    
     .input-label {
       display: flex;
       padding-right: 32rpx;
       box-sizing: border-box;
-      border-right: 1rpx solid #e7e7e7;
+      border-right: 1rpx solid rgba(231, 231, 231, 0.6);
+      color: #0052d9;
     }
 
     .input-icon {
       margin-left: 8rpx;
+      color: #0052d9;
+    }
+    
+    // 美化TDesign输入框
+    .t-input {
+      margin-bottom: 32rpx;
+      background: rgba(255, 255, 255, 0.8);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16rpx;
+      box-shadow: 0 4rpx 24rpx rgba(0, 0, 0, 0.04), 
+                  0 1rpx 2rpx rgba(255, 255, 255, 0.5) inset;
+      overflow: hidden;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border: 1px solid rgba(255, 255, 255, 0.8);
+      
+      &:focus-within {
+        background: rgba(255, 255, 255, 0.95);
+        box-shadow: 0 8rpx 32rpx rgba(0, 82, 217, 0.12),
+                    0 1rpx 2rpx rgba(255, 255, 255, 0.5) inset;
+        transform: translateY(-2rpx);
+        border-color: rgba(58, 122, 254, 0.3);
+      }
+      
+      &__control {
+        color: #333;
+        font-weight: 500;
+      }
+      
+      &__placeholder {
+        color: rgba(0, 0, 0, 0.3);
+      }
+      
+      &__label {
+        color: #0052d9;
+        font-weight: 600;
+      }
     }
   }
 
@@ -26,43 +212,145 @@
     font-style: normal;
     font-weight: 400;
     line-height: 40rpx;
-    margin: 24rpx 32rpx 32rpx;
+    margin: 24rpx 0 32rpx;
+    text-align: center;
+    letter-spacing: 0.5rpx;
   }
 
   &__button {
-    margin: 0 32rpx;
+    margin: 16rpx 0 32rpx;
+    animation: fadeIn 0.8s ease-out 0.4s both;
+    
+    // 美化TDesign按钮
+    .t-button--theme-primary {
+      background: linear-gradient(135deg, #3a7afe 0%, #0052d9 100%);
+      border: none;
+      box-shadow: 0 8rpx 20rpx rgba(58, 122, 254, 0.3),
+                  0 1rpx 2rpx rgba(255, 255, 255, 0.5) inset;
+      height: 96rpx;
+      font-size: 32rpx;
+      font-weight: 600;
+      letter-spacing: 4rpx;
+      transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+      border-radius: 16rpx;
+      overflow: hidden;
+      position: relative;
+      
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(90deg, 
+                    rgba(255, 255, 255, 0) 0%, 
+                    rgba(255, 255, 255, 0.2) 50%, 
+                    rgba(255, 255, 255, 0) 100%);
+        transition: all 0.8s ease;
+      }
+      
+      &:active {
+        transform: translateY(2rpx);
+        box-shadow: 0 4rpx 10rpx rgba(58, 122, 254, 0.2);
+        
+        &::before {
+          left: 100%;
+        }
+      }
+    }
   }
 
   &__password--forget {
     display: flex;
-    font-size: 24rpx;
+    font-size: 26rpx;
     align-items: center;
-    margin: 32rpx;
+    justify-content: flex-end;
+    margin: 24rpx 0 32rpx;
     line-height: 40rpx;
+    animation: fadeIn 0.8s ease-out 0.5s both;
+    
+    text {
+      color: rgba(0, 0, 0, 0.5);
+      margin-right: 8rpx;
+    }
+    
+    .t-link--theme-primary {
+      color: #0052d9;
+      font-weight: 500;
+      position: relative;
+      
+      &::after {
+        content: '';
+        position: absolute;
+        bottom: -2rpx;
+        left: 0;
+        width: 0;
+        height: 1rpx;
+        background: #0052d9;
+        transition: width 0.3s ease;
+      }
+      
+      &:active::after {
+        width: 100%;
+      }
+    }
   }
 
   &__others {
-    margin: 64rpx 32rpx auto 32rpx;
+    margin: 80rpx 0 40rpx;
     display: flex;
     align-items: center;
     justify-content: space-between;
+    position: relative;
+    animation: fadeIn 0.8s ease-out 0.6s both;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: linear-gradient(90deg, 
+                  rgba(0, 0, 0, 0.02) 0%, 
+                  rgba(0, 0, 0, 0.1) 50%, 
+                  rgba(0, 0, 0, 0.02) 100%);
+    }
 
     &-label {
-      min-width: 96rpx;
-      color: rgba(0, 0, 0, 0.6);
-      font-size: 24rpx;
+      min-width: 120rpx;
+      color: rgba(0, 0, 0, 0.5);
+      font-size: 26rpx;
       line-height: 40rpx;
+      background: linear-gradient(135deg, #f8faff 0%, #eef2ff 100%);
+      padding: 0 24rpx;
+      position: relative;
+      font-weight: 500;
+      letter-spacing: 1rpx;
     }
 
     &-buttons {
       flex: 1;
-      margin-left: 32rpx;
+      margin-left: 0px;
       display: flex;
       align-items: center;
       justify-content: flex-end;
 
       .button {
         margin: 0 !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        background: rgba(255, 255, 255, 0.8) !important;
+        backdrop-filter: blur(10px);
+        -webkit-backdrop-filter: blur(10px);
+        border: 1px solid rgba(231, 231, 231, 0.6) !important;
+        box-shadow: 0 4rpx 12rpx rgba(0, 0, 0, 0.03);
+        
+        &:active {
+          transform: scale(0.95);
+          background: rgba(255, 255, 255, 0.95) !important;
+          box-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.05);
+        }
 
         &:not(:last-child) {
           margin-right: 32rpx !important;
@@ -75,17 +363,19 @@
   .radio-class {
     --td-radio-icon-size: 32rpx;
     --td-radio-label-line-height: 40rpx;
-
     align-items: center;
+    animation: fadeIn 0.8s ease-out 0.3s both;
   }
 
   .radio-class-icon {
     margin-top: 0 !important;
+    color: #0052d9 !important;
   }
 
   .radio-class-label {
     margin-left: 8rpx !important;
     font-size: 24rpx !important;
     line-height: 40rpx !important;
+    color: rgba(0, 0, 0, 0.6) !important;
   }
 }

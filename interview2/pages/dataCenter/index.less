@@ -7,6 +7,14 @@
   padding: 24rpx 32rpx 32rpx 32rpx;
   box-sizing: border-box;
   background-color: #fff;
+  border-radius: 16rpx;
+  box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.05);
+  transition: all 0.3s ease;
+
+  &:hover {
+    transform: translateY(-4rpx);
+    box-shadow: 0 8rpx 24rpx rgba(0, 0, 0, 0.1);
+  }
 
   .card-header {
     width: 100%;
@@ -73,7 +81,8 @@
   padding: 32rpx;
   margin: 32rpx 32rpx 0;
   width: calc(100% - 64rpx);
-  border-radius: 9px;
+  border-radius: 16rpx;
+  box-shadow: 0 6rpx 20rpx rgba(0, 0, 0, 0.07);
 
   .card-header__title {
     font-size: 28rpx;
@@ -121,13 +130,51 @@
   .progress__content {
     flex: 1 0 0;
   }
+
+  .t-progress {
+    height: 12rpx !important;
+    border-radius: 6rpx !important;
+  }
+
+  .t-progress__bg {
+    background-color: #f0f2f5 !important;
+  }
+
+  .t-progress__value {
+    background-color: @primary !important;
+  }
 }
 
 .forth {
   .card-content {
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 300rpx;
   }
 
   margin-bottom: 16rpx;
+}
+
+.empty-area {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 40rpx 0;
+}
+
+.empty-icon {
+  margin-bottom: 24rpx;
+}
+
+.empty-text {
+  font-size: 28rpx;
+  color: rgba(0, 0, 0, 0.85);
+  margin-bottom: 8rpx;
+}
+
+.empty-desc {
+  font-size: 24rpx;
+  color: rgba(0, 0, 0, 0.4);
 }

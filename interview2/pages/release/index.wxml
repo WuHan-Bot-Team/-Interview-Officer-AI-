@@ -1,26 +1,108 @@
 <t-navbar title="发布动态" left-arrow />
 <view class="page">
   <view class="release-container">
-    <view class="upload box">
-      <t-upload t-class="upload-class" media-type="{{['image']}}" files="{{originFiles}}" gridConfig="{{gridConfig}}" bind:success="handleSuccess" bind:remove="handleRemove" max="4" />
+    <!-- 上传区域 -->
+    <view class="upload section">
+      <view class="upload-header">
+        <view class="upload-title">
+          <text>添加图片</text>
+        </view>
+        <view class="upload-counter">{{originFiles.length}}/4</view>
+      </view>
+      <view class="upload-content">
+        <t-upload 
+          t-class="upload-class" 
+          media-type="{{['image']}}" 
+          files="{{originFiles}}" 
+          gridConfig="{{gridConfig}}" 
+          bind:success="handleSuccess" 
+          bind:remove="handleRemove" 
+          max="4" 
+        />
+      </view>
     </view>
-    <view class="desc box">
-      <view class="desc-label">添加描述</view>
-      <t-textarea t-class="desc-class" t-class-textarea="placeholder-class" placeholder="分享你此刻的想法" maxlength="500" disableDefaultPadding="{{true}}" indicator />
+
+    <!-- 描述区域 -->
+    <view class="desc section">
+      <view class="desc-header">
+        <view class="desc-title">
+          <text>添加描述</text>
+        </view>
+      </view>
+      <view class="desc-content">
+        <t-textarea 
+          t-class="desc-class" 
+          t-class-textarea="placeholder-class" 
+          placeholder="分享你此刻的想法..." 
+          maxlength="500" 
+          disableDefaultPadding="{{true}}" 
+          indicator 
+          value="{{description}}"
+          bind:change="onDescriptionChange"
+        />
+
+      </view>
     </view>
-    <view class="taggroup box">
-      <t-cell t-class-title="cell-title-class" t-class-note="cell-note-class" title="添加标签">
+
+    <!-- 标签区域 -->
+    <view class="taggroup section">
+      <view class="tag-header">
+        <view class="tag-title">
+          <text>添加标签</text>
+        </view>
+      </view>
+      <view class="tags-container">
         <block wx:for="{{tags}}" wx:key="index">
-          <t-check-tag t-class="tag-class" size="medium" default-checked="{{index===0}}" variant="dark" content="#{{item}}" slot="note" />
+          <t-check-tag 
+            t-class="tag-class" 
+            size="small" 
+            default-checked="{{index===0}}" 
+            variant="dark" 
+            content="#{{item}}" 
+            data-index="{{index}}"
+            bind:change="onTagChange"
+          />
         </block>
-      </t-cell>
+      </view>
     </view>
-    <view class="location box">
-      <t-cell title="所在位置" hover arrow leftIcon="location" bindtap="gotoMap" />
+
+    <!-- 位置区域 -->
+    <view class="location section">
+      <view class="location-header">
+        <view class="location-title">
+          <text>位置信息</text>
+        </view>
+      </view>
+      <view class="location-content">
+        <t-cell 
+          title="所在位置" 
+          hover 
+          arrow 
+          leftIcon="location" 
+          bindtap="gotoMap" 
+          t-class="location-cell"
+        />
+      </view>
     </view>
-    <view class="btngroup box">
-      <t-button t-class="btn-class" theme="light" icon="file-copy" content="存草稿" size="large" bindtap="saveDraft"></t-button>
-      <t-button t-class="btn-class" theme="primary" icon="upload" content="发布" size="large" bindtap="release"></t-button>
+
+    <!-- 底部按钮 -->
+    <view class="btngroup">
+      <t-button 
+        t-class="btn-class btn-class--cancel" 
+        theme="light" 
+        icon="file-copy" 
+        content="存草稿" 
+        size="large" 
+        bindtap="saveDraft"
+      />
+      <t-button 
+        t-class="btn-class btn-class--confirm" 
+        theme="primary" 
+        icon="upload" 
+        content="发布" 
+        size="large" 
+        bindtap="release"
+      />
     </view>
   </view>
 </view>

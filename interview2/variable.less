@@ -1,23 +1,172 @@
-// common
+// 全局设计系统 - 现代化升级版
+// ============================
+
+// 布局尺寸
 @navbar-padding-top: 20px;
 @nav-bar-height: 60px;
-@tab-bar-height: 112rpx;
+@tab-bar-height: 50px;
+@content-padding: 24px;
+@card-padding: 20px;
+@element-spacing: 16px;
 
-// font-size
-@font-size-default: 16px;
-@font-size-small: 14px;
+// 字体系统
+@font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+@font-size-xs: 10px;
 @font-size-mini: 12px;
+@font-size-small: 14px;
+@font-size-default: 16px;
+@font-size-medium: 18px;
+@font-size-large: 20px;
+@font-size-xl: 24px;
+@font-size-xxl: 28px;
+@font-size-title: 32px;
+@font-size-headline: 40px;
 
-// color
-@bg-color: #f3f3f3;
-@bg-color-white: #ffffff;
+@font-weight-regular: 400;
+@font-weight-medium: 500;
+@font-weight-semibold: 600;
+@font-weight-bold: 700;
+// 添加在圆角变量部分
+@border-radius-lg: @radius-lg;
+// 行高
+@line-height-tight: 1.2;
+@line-height-normal: 1.5;
+@line-height-relaxed: 1.75;
 
-@brand7-normal: #0052d9;
-@gy1: #000000e6;
-@gy2: #00000099;
-@gy3: #00000066;
-@gray3: #e7e7e7;
+// 主色调系统
+@primary: #0062F5;
+@primary-light: #4B96FF;
+@primary-dark: #0046B8;
+@primary-bg: #EBF5FF;
 
-@headline-medium: 28px;
-@body-large: 16px;
-@body-small: 12px;
+@secondary: #7C3AED;
+@secondary-light: #9F7AEA;
+@secondary-dark: #5B21B6;
+@secondary-bg: #F3EAFF;
+
+@success: #10B981;
+@success-light: #34D399;
+@success-dark: #059669;
+@success-bg: #ECFDF5;
+
+@warning: #F59E0B;
+@warning-light: #FBBF24;
+@warning-dark: #D97706;
+@warning-bg: #FFFBEB;
+
+@error: #EF4444;
+@error-light: #F87171;
+@error-dark: #B91C1C;
+@error-bg: #FEF2F2;
+
+@info: #3B82F6;
+@info-light: #60A5FA;
+@info-dark: #2563EB;
+@info-bg: #EFF6FF;
+
+// 中性色调
+@gray-50: #F9FAFB;
+@gray-100: #F3F4F6;
+@gray-200: #E5E7EB;
+@gray-300: #D1D5DB;
+@gray-400: #9CA3AF;
+@gray-500: #6B7280;
+@gray-600: #4B5563;
+@gray-700: #374151;
+@gray-800: #1F2937;
+@gray-900: #111827;
+
+// 背景色
+@bg-color: #F5F7FA;
+@bg-color-white: #FFFFFF;
+@bg-color-light: #FAFBFC;
+@bg-color-dark: #1A1C23;
+
+// 文本色
+@text-primary: @gray-900;
+@text-secondary: @gray-700;
+@text-tertiary: @gray-500;
+@text-quaternary: @gray-400;
+@text-disabled: @gray-300;
+@text-inverse: #FFFFFF;
+
+// 边框色
+@border-light: @gray-200;
+@border-default: @gray-300;
+@border-dark: @gray-400;
+
+// 渐变色
+@gradient-primary: linear-gradient(135deg, #0062F5 0%, #60A5FA 100%);
+@gradient-secondary: linear-gradient(135deg, #7C3AED 0%, #A78BFA 100%);
+@gradient-success: linear-gradient(135deg, #10B981 0%, #34D399 100%);
+@gradient-warning: linear-gradient(135deg, #F59E0B 0%, #FBBF24 100%);
+@gradient-error: linear-gradient(135deg, #EF4444 0%, #F87171 100%);
+@gradient-purple-pink: linear-gradient(135deg, #8B5CF6 0%, #EC4899 100%);
+@gradient-blue-teal: linear-gradient(135deg, #3B82F6 0%, #14B8A6 100%);
+@gradient-orange-pink: linear-gradient(135deg, #F97316 0%, #EC4899 100%);
+@gradient-dark: linear-gradient(135deg, #111827 0%, #374151 100%);
+@gradient-light: linear-gradient(135deg, #F9FAFB 0%, #F3F4F6 100%);
+
+// 阴影
+@shadow-xs: 0 1px 2px rgba(0, 0, 0, 0.05);
+@shadow-sm: 0 2px 4px rgba(0, 0, 0, 0.05);
+@shadow-md: 0 4px 8px rgba(0, 0, 0, 0.08);
+@shadow-lg: 0 8px 16px rgba(0, 0, 0, 0.1);
+@shadow-xl: 0 16px 32px rgba(0, 0, 0, 0.12);
+@shadow-inner: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+@shadow-focus: 0 0 0 3px rgba(0, 98, 245, 0.2);
+
+// 圆角
+@radius-xs: 4px;
+@radius-sm: 8px;
+@radius-md: 12px;
+@radius-lg: 16px;
+@radius-xl: 24px;
+@radius-xxl: 32px;
+@radius-full: 9999px;
+
+// 动画
+@transition-fast: all 0.15s cubic-bezier(0.4, 0, 0.2, 1);
+@transition-normal: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+@transition-slow: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+@transition-bounce: all 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55);
+
+// 卡片样式
+@card-bg: #FFFFFF;
+@card-radius: @radius-lg;
+@card-shadow: @shadow-md;
+@card-border: 1px solid @border-light;
+
+// 按钮样式
+@button-height-sm: 32px;
+@button-height-md: 40px;
+@button-height-lg: 48px;
+@button-radius: @radius-md;
+@button-shadow: @shadow-sm;
+
+// 输入框样式
+@input-height: 48px;
+@input-radius: @radius-md;
+@input-border: 1px solid @border-default;
+@input-shadow: @shadow-xs;
+@input-focus-shadow: @shadow-focus;
+
+// z-index层级
+@z-index-dropdown: 1000;
+@z-index-sticky: 1100;
+@z-index-fixed: 1200;
+@z-index-modal: 1300;
+@z-index-popover: 1400;
+@z-index-tooltip: 1500;
+
+// 高级设计风格 (保留并扩展)
+@premium-gradient-1: linear-gradient(135deg, #4F46E5 0%, #7C3AED 100%);
+@premium-gradient-2: linear-gradient(135deg, #3B82F6 0%, #2DD4BF 100%);
+@premium-gradient-3: linear-gradient(135deg, #EC4899 0%, #8B5CF6 100%);
+@premium-bg: linear-gradient(135deg, #F9FAFB 0%, #EFF6FF 100%);
+@premium-dark-blue: #1E40AF;
+@premium-blue: #3B82F6;
+@premium-light-blue: #93C5FD;
+@premium-purple: #8B5CF6;
+@premium-pink: #EC4899;
+@premium-teal: #14B8A6;

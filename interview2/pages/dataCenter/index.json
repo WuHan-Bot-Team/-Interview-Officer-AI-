@@ -3,6 +3,8 @@
   "usingComponents": {
     "t-navbar": "tdesign-miniprogram/navbar/navbar",
     "t-progress": "tdesign-miniprogram/progress/progress",
-    "t-empty": "tdesign-miniprogram/empty/empty"
+    "t-empty": "tdesign-miniprogram/empty/empty",
+    "t-skeleton": "tdesign-miniprogram/skeleton/skeleton",
+    "t-icon": "tdesign-miniprogram/icon/icon"
   }
 }
