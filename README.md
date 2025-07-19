@@ -1,1397 +1,207 @@
-└─ interview2
-   ├─ .DS_Store
-   ├─ LICENSE
-   ├─ README.md
-   ├─ __MACOSX
-   │  ├─ .DS_Store
-   │  ├─ components
-   │  ├─ miniprogram_npm
-   │  │  ├─ .DS_Store
-   │  │  └─ tdesign-miniprogram
-   │  ├─ mock
-   │  ├─ pages
-   │  └─ static
-   ├─ api
-   │  └─ request.js
-   ├─ app.js
-   ├─ app.json
-   ├─ app.less
-   ├─ behaviors
-   │  └─ useToast.js
-   ├─ components
-   │  ├─ .DS_Store
-   │  ├─ card
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  └─ nav
-   │     ├─ index.js
-   │     ├─ index.json
-   │     ├─ index.less
-   │     └─ index.wxml
-   ├─ config
-   │  └─ index.js
-   ├─ config.js
-   ├─ custom-tab-bar
-   │  ├─ index.js
-   │  ├─ index.json
-   │  ├─ index.less
-   │  └─ index.wxml
-   ├─ miniprogram_npm
-   │  ├─ .DS_Store
-   │  ├─ dayjs
-   │  │  ├─ index.js
-   │  │  └─ index.js.map
-   │  ├─ ec-canvas
-   │  │  ├─ ec-canvas.js
-   │  │  ├─ ec-canvas.json
-   │  │  ├─ ec-canvas.wxml
-   │  │  ├─ ec-canvas.wxss
-   │  │  ├─ echarts.js
-   │  │  └─ wx-canvas.js
-   │  ├─ tdesign-miniprogram
-   │  │  ├─ .DS_Store
-   │  │  ├─ .wechatide.ib.json
-   │  │  ├─ action-sheet
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ action-sheet.d.ts
-   │  │  │  ├─ action-sheet.js
-   │  │  │  ├─ action-sheet.json
-   │  │  │  ├─ action-sheet.wxml
-   │  │  │  ├─ action-sheet.wxs
-   │  │  │  ├─ action-sheet.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ show.d.ts
-   │  │  │  ├─ show.js
-   │  │  │  ├─ template
-   │  │  │  │  ├─ grid.wxml
-   │  │  │  │  └─ list.wxml
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ avatar
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ avatar.d.ts
-   │  │  │  ├─ avatar.js
-   │  │  │  ├─ avatar.json
-   │  │  │  ├─ avatar.wxml
-   │  │  │  ├─ avatar.wxs
-   │  │  │  ├─ avatar.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ avatar-group
-   │  │  │  ├─ avatar-group.d.ts
-   │  │  │  ├─ avatar-group.js
-   │  │  │  ├─ avatar-group.json
-   │  │  │  ├─ avatar-group.wxml
-   │  │  │  ├─ avatar-group.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ back-top
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ back-top.d.ts
-   │  │  │  ├─ back-top.js
-   │  │  │  ├─ back-top.json
-   │  │  │  ├─ back-top.wxml
-   │  │  │  ├─ back-top.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ badge
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ badge.d.ts
-   │  │  │  ├─ badge.js
-   │  │  │  ├─ badge.json
-   │  │  │  ├─ badge.wxml
-   │  │  │  ├─ badge.wxs
-   │  │  │  ├─ badge.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ button
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ button.d.ts
-   │  │  │  ├─ button.js
-   │  │  │  ├─ button.json
-   │  │  │  ├─ button.wxml
-   │  │  │  ├─ button.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ calendar
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ calendar-header.wxml
-   │  │  │  ├─ calendar.d.ts
-   │  │  │  ├─ calendar.js
-   │  │  │  ├─ calendar.json
-   │  │  │  ├─ calendar.wxml
-   │  │  │  ├─ calendar.wxs
-   │  │  │  ├─ calendar.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ template.wxml
-   │  │  │  ├─ type.d.ts
-   │  │  │  ├─ type.js
-   │  │  │  ├─ utils.d.ts
-   │  │  │  └─ utils.js
-   │  │  ├─ cascader
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ cascader.d.ts
-   │  │  │  ├─ cascader.js
-   │  │  │  ├─ cascader.json
-   │  │  │  ├─ cascader.wxml
-   │  │  │  ├─ cascader.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ cell
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ cell.d.ts
-   │  │  │  ├─ cell.js
-   │  │  │  ├─ cell.json
-   │  │  │  ├─ cell.wxml
-   │  │  │  ├─ cell.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ cell-group
-   │  │  │  ├─ cell-group.d.ts
-   │  │  │  ├─ cell-group.js
-   │  │  │  ├─ cell-group.json
-   │  │  │  ├─ cell-group.wxml
-   │  │  │  ├─ cell-group.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ check-tag
-   │  │  │  ├─ check-tag.d.ts
-   │  │  │  ├─ check-tag.js
-   │  │  │  ├─ check-tag.json
-   │  │  │  ├─ check-tag.wxml
-   │  │  │  ├─ check-tag.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ checkbox
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ checkbox.d.ts
-   │  │  │  ├─ checkbox.js
-   │  │  │  ├─ checkbox.json
-   │  │  │  ├─ checkbox.wxml
-   │  │  │  ├─ checkbox.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ checkbox-group
-   │  │  │  ├─ checkbox-group.d.ts
-   │  │  │  ├─ checkbox-group.js
-   │  │  │  ├─ checkbox-group.json
-   │  │  │  ├─ checkbox-group.wxml
-   │  │  │  ├─ checkbox-group.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ col
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ col.d.ts
-   │  │  │  ├─ col.js
-   │  │  │  ├─ col.json
-   │  │  │  ├─ col.wxml
-   │  │  │  ├─ col.wxs
-   │  │  │  ├─ col.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ collapse
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ collapse.d.ts
-   │  │  │  ├─ collapse.js
-   │  │  │  ├─ collapse.json
-   │  │  │  ├─ collapse.wxml
-   │  │  │  ├─ collapse.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ collapse-panel
-   │  │  │  ├─ collapse-panel.d.ts
-   │  │  │  ├─ collapse-panel.js
-   │  │  │  ├─ collapse-panel.json
-   │  │  │  ├─ collapse-panel.wxml
-   │  │  │  ├─ collapse-panel.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ color-picker
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ color-picker.d.ts
-   │  │  │  ├─ color-picker.js
-   │  │  │  ├─ color-picker.json
-   │  │  │  ├─ color-picker.wxml
-   │  │  │  ├─ color-picker.wxss
-   │  │  │  ├─ constants.d.ts
-   │  │  │  ├─ constants.js
-   │  │  │  ├─ interfaces.d.ts
-   │  │  │  ├─ interfaces.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ template.wxml
-   │  │  │  ├─ type.d.ts
-   │  │  │  ├─ type.js
-   │  │  │  ├─ utils.d.ts
-   │  │  │  └─ utils.js
-   │  │  ├─ common
-   │  │  │  ├─ bus.d.ts
-   │  │  │  ├─ bus.js
-   │  │  │  ├─ common.d.ts
-   │  │  │  ├─ common.js
-   │  │  │  ├─ component.d.ts
-   │  │  │  ├─ component.js
-   │  │  │  ├─ config.d.ts
-   │  │  │  ├─ config.js
-   │  │  │  ├─ index.wxss
-   │  │  │  ├─ shared
-   │  │  │  │  ├─ calendar
-   │  │  │  │  │  ├─ index.d.ts
-   │  │  │  │  │  ├─ index.js
-   │  │  │  │  │  ├─ type.d.ts
-   │  │  │  │  │  └─ type.js
-   │  │  │  │  ├─ color-picker
-   │  │  │  │  │  ├─ cmyk.d.ts
-   │  │  │  │  │  ├─ cmyk.js
-   │  │  │  │  │  ├─ color.d.ts
-   │  │  │  │  │  ├─ color.js
-   │  │  │  │  │  ├─ gradient.d.ts
-   │  │  │  │  │  ├─ gradient.js
-   │  │  │  │  │  ├─ index.d.ts
-   │  │  │  │  │  └─ index.js
-   │  │  │  │  ├─ date.d.ts
-   │  │  │  │  └─ date.js
-   │  │  │  ├─ src
-   │  │  │  │  ├─ control.d.ts
-   │  │  │  │  ├─ control.js
-   │  │  │  │  ├─ flatTool.d.ts
-   │  │  │  │  ├─ flatTool.js
-   │  │  │  │  ├─ index.d.ts
-   │  │  │  │  ├─ index.js
-   │  │  │  │  ├─ instantiationDecorator.d.ts
-   │  │  │  │  ├─ instantiationDecorator.js
-   │  │  │  │  ├─ superComponent.d.ts
-   │  │  │  │  └─ superComponent.js
-   │  │  │  ├─ style
-   │  │  │  │  ├─ _variables.wxss
-   │  │  │  │  ├─ base.wxss
-   │  │  │  │  ├─ icons.wxss
-   │  │  │  │  ├─ index.wxss
-   │  │  │  │  ├─ mixins
-   │  │  │  │  │  ├─ _clearfix.wxss
-   │  │  │  │  │  ├─ _cursor.wxss
-   │  │  │  │  │  ├─ _ellipsis.wxss
-   │  │  │  │  │  ├─ _hairline.wxss
-   │  │  │  │  │  └─ _index.wxss
-   │  │  │  │  ├─ theme
-   │  │  │  │  │  ├─ _components.wxss
-   │  │  │  │  │  ├─ _dark.wxss
-   │  │  │  │  │  ├─ _font.wxss
-   │  │  │  │  │  ├─ _index.wxss
-   │  │  │  │  │  ├─ _light.wxss
-   │  │  │  │  │  ├─ _radius.wxss
-   │  │  │  │  │  └─ _spacer.wxss
-   │  │  │  │  └─ utilities
-   │  │  │  │     ├─ _animation.wxss
-   │  │  │  │     ├─ _float.wxss
-   │  │  │  │     └─ _index.wxss
-   │  │  │  ├─ template
-   │  │  │  │  ├─ badge.wxml
-   │  │  │  │  ├─ button.wxml
-   │  │  │  │  ├─ icon.wxml
-   │  │  │  │  └─ image.wxml
-   │  │  │  ├─ utils.d.ts
-   │  │  │  ├─ utils.js
-   │  │  │  ├─ utils.wxs
-   │  │  │  ├─ version.d.ts
-   │  │  │  ├─ version.js
-   │  │  │  ├─ wechat.d.ts
-   │  │  │  └─ wechat.js
-   │  │  ├─ count-down
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ count-down.d.ts
-   │  │  │  ├─ count-down.js
-   │  │  │  ├─ count-down.json
-   │  │  │  ├─ count-down.wxml
-   │  │  │  ├─ count-down.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  ├─ type.js
-   │  │  │  ├─ utils.d.ts
-   │  │  │  └─ utils.js
-   │  │  ├─ date-time-picker
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ date-time-picker.d.ts
-   │  │  │  ├─ date-time-picker.js
-   │  │  │  ├─ date-time-picker.json
-   │  │  │  ├─ date-time-picker.wxml
-   │  │  │  ├─ date-time-picker.wxss
-   │  │  │  ├─ locale
-   │  │  │  │  ├─ dayjs.d.ts
-   │  │  │  │  ├─ dayjs.js
-   │  │  │  │  ├─ en.d.ts
-   │  │  │  │  ├─ en.js
-   │  │  │  │  ├─ ja.d.ts
-   │  │  │  │  ├─ ja.js
-   │  │  │  │  ├─ ko.d.ts
-   │  │  │  │  ├─ ko.js
-   │  │  │  │  ├─ ru.d.ts
-   │  │  │  │  ├─ ru.js
-   │  │  │  │  ├─ tc.d.ts
-   │  │  │  │  ├─ tc.js
-   │  │  │  │  ├─ zh.d.ts
-   │  │  │  │  └─ zh.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ dialog
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ dialog.d.ts
-   │  │  │  ├─ dialog.js
-   │  │  │  ├─ dialog.json
-   │  │  │  ├─ dialog.wxml
-   │  │  │  ├─ dialog.wxs
-   │  │  │  ├─ dialog.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ divider
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ divider.d.ts
-   │  │  │  ├─ divider.js
-   │  │  │  ├─ divider.json
-   │  │  │  ├─ divider.wxml
-   │  │  │  ├─ divider.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ drawer
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ drawer.d.ts
-   │  │  │  ├─ drawer.js
-   │  │  │  ├─ drawer.json
-   │  │  │  ├─ drawer.wxml
-   │  │  │  ├─ drawer.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ dropdown-item
-   │  │  │  ├─ dropdown-item.d.ts
-   │  │  │  ├─ dropdown-item.js
-   │  │  │  ├─ dropdown-item.json
-   │  │  │  ├─ dropdown-item.wxml
-   │  │  │  ├─ dropdown-item.wxss
-   │  │  │  ├─ index.wxs
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ dropdown-menu
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ dropdown-menu.d.ts
-   │  │  │  ├─ dropdown-menu.js
-   │  │  │  ├─ dropdown-menu.json
-   │  │  │  ├─ dropdown-menu.wxml
-   │  │  │  ├─ dropdown-menu.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ empty
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ empty.d.ts
-   │  │  │  ├─ empty.js
-   │  │  │  ├─ empty.json
-   │  │  │  ├─ empty.wxml
-   │  │  │  ├─ empty.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ fab
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ draggable
-   │  │  │  │  ├─ draggable.d.ts
-   │  │  │  │  ├─ draggable.js
-   │  │  │  │  ├─ draggable.json
-   │  │  │  │  ├─ draggable.wxml
-   │  │  │  │  ├─ draggable.wxss
-   │  │  │  │  ├─ index.d.ts
-   │  │  │  │  ├─ index.js
-   │  │  │  │  ├─ props.d.ts
-   │  │  │  │  ├─ props.js
-   │  │  │  │  ├─ type.d.ts
-   │  │  │  │  └─ type.js
-   │  │  │  ├─ fab.d.ts
-   │  │  │  ├─ fab.js
-   │  │  │  ├─ fab.json
-   │  │  │  ├─ fab.wxml
-   │  │  │  ├─ fab.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ template
-   │  │  │  │  ├─ draggable.wxml
-   │  │  │  │  └─ view.wxml
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ footer
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ footer.d.ts
-   │  │  │  ├─ footer.js
-   │  │  │  ├─ footer.json
-   │  │  │  ├─ footer.wxml
-   │  │  │  ├─ footer.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ grid
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ grid.d.ts
-   │  │  │  ├─ grid.js
-   │  │  │  ├─ grid.json
-   │  │  │  ├─ grid.wxml
-   │  │  │  ├─ grid.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ grid-item
-   │  │  │  ├─ grid-item.d.ts
-   │  │  │  ├─ grid-item.js
-   │  │  │  ├─ grid-item.json
-   │  │  │  ├─ grid-item.wxml
-   │  │  │  ├─ grid-item.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ guide
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ content.wxml
-   │  │  │  ├─ guide.d.ts
-   │  │  │  ├─ guide.js
-   │  │  │  ├─ guide.json
-   │  │  │  ├─ guide.wxml
-   │  │  │  ├─ guide.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ icon
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ icon.d.ts
-   │  │  │  ├─ icon.js
-   │  │  │  ├─ icon.json
-   │  │  │  ├─ icon.wxml
-   │  │  │  ├─ icon.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ image
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ image-info.json
-   │  │  │  ├─ image.d.ts
-   │  │  │  ├─ image.js
-   │  │  │  ├─ image.json
-   │  │  │  ├─ image.wxml
-   │  │  │  ├─ image.wxss
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ image-viewer
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ image-viewer.d.ts
-   │  │  │  ├─ image-viewer.js
-   │  │  │  ├─ image-viewer.json
-   │  │  │  ├─ image-viewer.wxml
-   │  │  │  ├─ image-viewer.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ index.d.ts
-   │  │  ├─ index.js
-   │  │  ├─ indexes
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ indexes.d.ts
-   │  │  │  ├─ indexes.js
-   │  │  │  ├─ indexes.json
-   │  │  │  ├─ indexes.wxml
-   │  │  │  ├─ indexes.wxs
-   │  │  │  ├─ indexes.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ indexes-anchor
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ indexes-anchor.d.ts
-   │  │  │  ├─ indexes-anchor.js
-   │  │  │  ├─ indexes-anchor.json
-   │  │  │  ├─ indexes-anchor.wxml
-   │  │  │  ├─ indexes-anchor.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ input
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ input.d.ts
-   │  │  │  ├─ input.js
-   │  │  │  ├─ input.json
-   │  │  │  ├─ input.wxml
-   │  │  │  ├─ input.wxs
-   │  │  │  ├─ input.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ link
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ link.d.ts
-   │  │  │  ├─ link.js
-   │  │  │  ├─ link.json
-   │  │  │  ├─ link.wxml
-   │  │  │  ├─ link.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ loading
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ loading.d.ts
-   │  │  │  ├─ loading.js
-   │  │  │  ├─ loading.json
-   │  │  │  ├─ loading.wxml
-   │  │  │  ├─ loading.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ message
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ message.d.ts
-   │  │  │  ├─ message.interface.d.ts
-   │  │  │  ├─ message.interface.js
-   │  │  │  ├─ message.js
-   │  │  │  ├─ message.json
-   │  │  │  ├─ message.wxml
-   │  │  │  ├─ message.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ message-item
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ message-item.d.ts
-   │  │  │  ├─ message-item.js
-   │  │  │  ├─ message-item.json
-   │  │  │  ├─ message-item.wxml
-   │  │  │  ├─ message-item.wxs
-   │  │  │  └─ message-item.wxss
-   │  │  ├─ miniprogram_npm
-   │  │  │  ├─ dayjs
-   │  │  │  │  ├─ index.js
-   │  │  │  │  ├─ locale
-   │  │  │  │  │  ├─ en.js
-   │  │  │  │  │  ├─ ja.js
-   │  │  │  │  │  ├─ ko.js
-   │  │  │  │  │  ├─ ru.js
-   │  │  │  │  │  ├─ zh-cn.js
-   │  │  │  │  │  └─ zh-tw.js
-   │  │  │  │  └─ plugin
-   │  │  │  │     └─ localeData.js
-   │  │  │  ├─ lodash
-   │  │  │  │  ├─ _Symbol.js
-   │  │  │  │  ├─ _baseGetTag.js
-   │  │  │  │  ├─ _freeGlobal.js
-   │  │  │  │  ├─ _getRawTag.js
-   │  │  │  │  ├─ _objectToString.js
-   │  │  │  │  ├─ _root.js
-   │  │  │  │  ├─ isArray.js
-   │  │  │  │  ├─ isFunction.js
-   │  │  │  │  ├─ isNull.js
-   │  │  │  │  ├─ isObject.js
-   │  │  │  │  ├─ isObjectLike.js
-   │  │  │  │  └─ isString.js
-   │  │  │  └─ tinycolor2
-   │  │  │     └─ index.js
-   │  │  ├─ mixins
-   │  │  │  ├─ page-scroll.d.ts
-   │  │  │  ├─ page-scroll.js
-   │  │  │  ├─ theme-change.d.ts
-   │  │  │  ├─ theme-change.js
-   │  │  │  ├─ touch.d.ts
-   │  │  │  ├─ touch.js
-   │  │  │  ├─ transition.d.ts
-   │  │  │  ├─ transition.js
-   │  │  │  ├─ using-custom-navbar.d.ts
-   │  │  │  └─ using-custom-navbar.js
-   │  │  ├─ navbar
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ navbar.d.ts
-   │  │  │  ├─ navbar.js
-   │  │  │  ├─ navbar.json
-   │  │  │  ├─ navbar.wxml
-   │  │  │  ├─ navbar.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ notice-bar
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ notice-bar.d.ts
-   │  │  │  ├─ notice-bar.js
-   │  │  │  ├─ notice-bar.json
-   │  │  │  ├─ notice-bar.wxml
-   │  │  │  ├─ notice-bar.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ overlay
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ overlay.d.ts
-   │  │  │  ├─ overlay.js
-   │  │  │  ├─ overlay.json
-   │  │  │  ├─ overlay.wxml
-   │  │  │  ├─ overlay.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ picker
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ picker.d.ts
-   │  │  │  ├─ picker.js
-   │  │  │  ├─ picker.json
-   │  │  │  ├─ picker.wxml
-   │  │  │  ├─ picker.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ template.wxml
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ picker-item
-   │  │  │  ├─ picker-item.d.ts
-   │  │  │  ├─ picker-item.js
-   │  │  │  ├─ picker-item.json
-   │  │  │  ├─ picker-item.wxml
-   │  │  │  ├─ picker-item.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ popup
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ popup.d.ts
-   │  │  │  ├─ popup.js
-   │  │  │  ├─ popup.json
-   │  │  │  ├─ popup.wxml
-   │  │  │  ├─ popup.wxs
-   │  │  │  ├─ popup.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ progress
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ progress.d.ts
-   │  │  │  ├─ progress.js
-   │  │  │  ├─ progress.json
-   │  │  │  ├─ progress.wxml
-   │  │  │  ├─ progress.wxs
-   │  │  │  ├─ progress.wxss
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  ├─ type.js
-   │  │  │  ├─ utils.d.ts
-   │  │  │  └─ utils.js
-   │  │  ├─ pull-down-refresh
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ pull-down-refresh.d.ts
-   │  │  │  ├─ pull-down-refresh.js
-   │  │  │  ├─ pull-down-refresh.json
-   │  │  │  ├─ pull-down-refresh.wxml
-   │  │  │  ├─ pull-down-refresh.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ radio
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ radio.d.ts
-   │  │  │  ├─ radio.js
-   │  │  │  ├─ radio.json
-   │  │  │  ├─ radio.wxml
-   │  │  │  ├─ radio.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ radio-group
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ radio-group.d.ts
-   │  │  │  ├─ radio-group.js
-   │  │  │  ├─ radio-group.json
-   │  │  │  ├─ radio-group.wxml
-   │  │  │  ├─ radio-group.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ rate
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ rate.d.ts
-   │  │  │  ├─ rate.js
-   │  │  │  ├─ rate.json
-   │  │  │  ├─ rate.wxml
-   │  │  │  ├─ rate.wxs
-   │  │  │  ├─ rate.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ result
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ result.d.ts
-   │  │  │  ├─ result.js
-   │  │  │  ├─ result.json
-   │  │  │  ├─ result.wxml
-   │  │  │  ├─ result.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ row
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ row.d.ts
-   │  │  │  ├─ row.js
-   │  │  │  ├─ row.json
-   │  │  │  ├─ row.wxml
-   │  │  │  ├─ row.wxs
-   │  │  │  ├─ row.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ scroll-view
-   │  │  │  ├─ scroll-view.d.ts
-   │  │  │  ├─ scroll-view.js
-   │  │  │  ├─ scroll-view.json
-   │  │  │  ├─ scroll-view.wxml
-   │  │  │  └─ scroll-view.wxss
-   │  │  ├─ search
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ search.d.ts
-   │  │  │  ├─ search.js
-   │  │  │  ├─ search.json
-   │  │  │  ├─ search.wxml
-   │  │  │  ├─ search.wxs
-   │  │  │  ├─ search.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ side-bar
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ side-bar.d.ts
-   │  │  │  ├─ side-bar.js
-   │  │  │  ├─ side-bar.json
-   │  │  │  ├─ side-bar.wxml
-   │  │  │  ├─ side-bar.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ side-bar-item
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ side-bar-item.d.ts
-   │  │  │  ├─ side-bar-item.js
-   │  │  │  ├─ side-bar-item.json
-   │  │  │  ├─ side-bar-item.wxml
-   │  │  │  ├─ side-bar-item.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ skeleton
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ skeleton.d.ts
-   │  │  │  ├─ skeleton.js
-   │  │  │  ├─ skeleton.json
-   │  │  │  ├─ skeleton.wxml
-   │  │  │  ├─ skeleton.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ slider
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ slider.d.ts
-   │  │  │  ├─ slider.js
-   │  │  │  ├─ slider.json
-   │  │  │  ├─ slider.wxml
-   │  │  │  ├─ slider.wxs
-   │  │  │  ├─ slider.wxss
-   │  │  │  ├─ tool.d.ts
-   │  │  │  ├─ tool.js
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ step-item
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ step-item.d.ts
-   │  │  │  ├─ step-item.js
-   │  │  │  ├─ step-item.json
-   │  │  │  ├─ step-item.wxml
-   │  │  │  ├─ step-item.wxs
-   │  │  │  ├─ step-item.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ stepper
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ stepper.d.ts
-   │  │  │  ├─ stepper.js
-   │  │  │  ├─ stepper.json
-   │  │  │  ├─ stepper.wxml
-   │  │  │  ├─ stepper.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ steps
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ steps.d.ts
-   │  │  │  ├─ steps.js
-   │  │  │  ├─ steps.json
-   │  │  │  ├─ steps.wxml
-   │  │  │  ├─ steps.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ sticky
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ sticky.d.ts
-   │  │  │  ├─ sticky.js
-   │  │  │  ├─ sticky.json
-   │  │  │  ├─ sticky.wxml
-   │  │  │  ├─ sticky.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ swipe-cell
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ swipe-cell.d.ts
-   │  │  │  ├─ swipe-cell.js
-   │  │  │  ├─ swipe-cell.json
-   │  │  │  ├─ swipe-cell.wxml
-   │  │  │  ├─ swipe-cell.wxs
-   │  │  │  ├─ swipe-cell.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ swiper
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.wxs
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ swiper.d.ts
-   │  │  │  ├─ swiper.js
-   │  │  │  ├─ swiper.json
-   │  │  │  ├─ swiper.wxml
-   │  │  │  ├─ swiper.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ swiper-nav
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ swiper-nav.d.ts
-   │  │  │  ├─ swiper-nav.js
-   │  │  │  ├─ swiper-nav.json
-   │  │  │  ├─ swiper-nav.wxml
-   │  │  │  ├─ swiper-nav.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ switch
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ switch.d.ts
-   │  │  │  ├─ switch.js
-   │  │  │  ├─ switch.json
-   │  │  │  ├─ switch.wxml
-   │  │  │  ├─ switch.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ tab-bar
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ tab-bar.d.ts
-   │  │  │  ├─ tab-bar.js
-   │  │  │  ├─ tab-bar.json
-   │  │  │  ├─ tab-bar.wxml
-   │  │  │  ├─ tab-bar.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ tab-bar-item
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ tab-bar-item.d.ts
-   │  │  │  ├─ tab-bar-item.js
-   │  │  │  ├─ tab-bar-item.json
-   │  │  │  ├─ tab-bar-item.wxml
-   │  │  │  ├─ tab-bar-item.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ tab-panel
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ tab-panel.d.ts
-   │  │  │  ├─ tab-panel.js
-   │  │  │  ├─ tab-panel.json
-   │  │  │  ├─ tab-panel.wxml
-   │  │  │  ├─ tab-panel.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ tabs
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ tabs.d.ts
-   │  │  │  ├─ tabs.js
-   │  │  │  ├─ tabs.json
-   │  │  │  ├─ tabs.wxml
-   │  │  │  ├─ tabs.wxs
-   │  │  │  ├─ tabs.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ tag
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ tag.d.ts
-   │  │  │  ├─ tag.js
-   │  │  │  ├─ tag.json
-   │  │  │  ├─ tag.wxml
-   │  │  │  ├─ tag.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ textarea
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ textarea.d.ts
-   │  │  │  ├─ textarea.js
-   │  │  │  ├─ textarea.json
-   │  │  │  ├─ textarea.wxml
-   │  │  │  ├─ textarea.wxs
-   │  │  │  ├─ textarea.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ toast
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ toast.d.ts
-   │  │  │  ├─ toast.js
-   │  │  │  ├─ toast.json
-   │  │  │  ├─ toast.wxml
-   │  │  │  ├─ toast.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ transition
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.d.ts
-   │  │  │  ├─ index.js
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ transition.d.ts
-   │  │  │  ├─ transition.js
-   │  │  │  ├─ transition.json
-   │  │  │  ├─ transition.wxml
-   │  │  │  ├─ transition.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  ├─ tree-select
-   │  │  │  ├─ README.en-US.md
-   │  │  │  ├─ README.md
-   │  │  │  ├─ index.wxs
-   │  │  │  ├─ props.d.ts
-   │  │  │  ├─ props.js
-   │  │  │  ├─ tree-select.d.ts
-   │  │  │  ├─ tree-select.js
-   │  │  │  ├─ tree-select.json
-   │  │  │  ├─ tree-select.wxml
-   │  │  │  ├─ tree-select.wxss
-   │  │  │  ├─ type.d.ts
-   │  │  │  └─ type.js
-   │  │  └─ upload
-   │  │     ├─ README.en-US.md
-   │  │     ├─ README.md
-   │  │     ├─ drag.wxs
-   │  │     ├─ props.d.ts
-   │  │     ├─ props.js
-   │  │     ├─ type.d.ts
-   │  │     ├─ type.js
-   │  │     ├─ upload-info.json
-   │  │     ├─ upload.d.ts
-   │  │     ├─ upload.js
-   │  │     ├─ upload.json
-   │  │     ├─ upload.wxml
-   │  │     ├─ upload.wxs
-   │  │     └─ upload.wxss
-   │  └─ tinycolor2
-   │     ├─ index.js
-   │     └─ index.js.map
-   ├─ mock
-   │  ├─ .DS_Store
-   │  ├─ WxMock.js
-   │  ├─ chat.js
-   │  ├─ dataCenter
-   │  │  ├─ getArea.js
-   │  │  ├─ getCompleteRate.js
-   │  │  ├─ getInteraction.js
-   │  │  ├─ getMember.js
-   │  │  └─ index.js
-   │  ├─ home
-   │  │  ├─ getHomeCards.js
-   │  │  ├─ getHomeSwipers.js
-   │  │  └─ index.js
-   │  ├─ index.js
-   │  ├─ login
-   │  │  ├─ getSendMessage.js
-   │  │  ├─ index.js
-   │  │  ├─ postCodeVerify.js
-   │  │  └─ postPasswordLogin.js
-   │  ├─ mock.js
-   │  ├─ my
-   │  │  ├─ getPersonalInfo.js
-   │  │  ├─ getServiceList.js
-   │  │  └─ index.js
-   │  ├─ request.js
-   │  └─ search
-   │     ├─ getSearchHistory.js
-   │     ├─ getSearchPopular.js
-   │     └─ index.js
-   ├─ package-lock.json
-   ├─ package.json
-   ├─ pages
-   │  ├─ .DS_Store
-   │  ├─ chat
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  ├─ index.wxml
-   │  │  └─ index.wxs
-   │  ├─ dataCenter
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ feedback
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ home
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ home2
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ interviewHome
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ interviewSetting
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ login
-   │  │  ├─ login.js
-   │  │  ├─ login.json
-   │  │  ├─ login.less
-   │  │  └─ login.wxml
-   │  ├─ loginCode
-   │  │  ├─ loginCode.js
-   │  │  ├─ loginCode.json
-   │  │  ├─ loginCode.less
-   │  │  └─ loginCode.wxml
-   │  ├─ message
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  ├─ index.wxml
-   │  │  ├─ index.wxs
-   │  │  └─ index.wxss
-   │  ├─ my
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  ├─ index.wxml
-   │  │  └─ info-edit
-   │  │     ├─ areaData.js
-   │  │     ├─ index.js
-   │  │     ├─ index.json
-   │  │     ├─ index.less
-   │  │     └─ index.wxml
-   │  ├─ practice
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ release
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.less
-   │  │  └─ index.wxml
-   │  ├─ search
-   │  │  ├─ index.js
-   │  │  ├─ index.json
-   │  │  ├─ index.wxml
-   │  │  └─ index.wxss
-   │  └─ setting
-   │     ├─ index.js
-   │     ├─ index.json
-   │     ├─ index.less
-   │     └─ index.wxml
-   ├─ project.config.json
-   ├─ project.private.config.json
-   ├─ sitemap.json
-   ├─ static
-   │  ├─ .DS_Store
-   │  ├─ avatar1.png
-   │  ├─ bg_navbar.png
-   │  ├─ bg_navbar2.png
-   │  ├─ chat
-   │  │  ├─ avatar-Andrew.png
-   │  │  ├─ avatar-Kingdom.png
-   │  │  ├─ avatar-Mollymolly.png
-   │  │  ├─ avatar-Paige.png
-   │  │  ├─ avatar-Sean.png
-   │  │  └─ avatar.png
-   │  ├─ home
-   │  │  ├─ card0.png
-   │  │  ├─ card1.png
-   │  │  ├─ card2.png
-   │  │  ├─ card3.png
-   │  │  ├─ card4.png
-   │  │  └─ swiper0.png
-   │  ├─ icon_doc.png
-   │  ├─ icon_map.png
-   │  ├─ icon_qq.png
-   │  ├─ icon_td.png
-   │  ├─ icon_wx.png
-   │  ├─ image1.png
-   │  ├─ image2.png
-   │  └─ img_td.png
-   ├─ utils
-   │  ├─ avatar-sdk-web_3.1.1.1011
-   │  │  ├─ index-_37811BO.js
-   │  │  ├─ index.d.ts
-   │  │  ├─ index.js
-   │  │  ├─ webrtc-player-6-MVvVqH.js
-   │  │  └─ xrtc-player-BDn4MFE-.js
-   │  ├─ base64.js
-   │  ├─ crypto-js-master
-   │  │  ├─ CONTRIBUTING.md
-   │  │  ├─ LICENSE
-   │  │  ├─ README.md
-   │  │  ├─ aes.js
-   │  │  ├─ blowfish.js
-   │  │  ├─ bower.json
-   │  │  ├─ cipher-core.js
-   │  │  ├─ core.js
-   │  │  ├─ crypto-js.js
-   │  │  ├─ docs
-   │  │  │  └─ QuickStartGuide.wiki
-   │  │  ├─ enc-base64.js
-   │  │  ├─ enc-base64url.js
-   │  │  ├─ enc-hex.js
-   │  │  ├─ enc-latin1.js
-   │  │  ├─ enc-utf16.js
-   │  │  ├─ enc-utf8.js
-   │  │  ├─ evpkdf.js
-   │  │  ├─ format-hex.js
-   │  │  ├─ format-openssl.js
-   │  │  ├─ hmac-md5.js
-   │  │  ├─ hmac-ripemd160.js
-   │  │  ├─ hmac-sha1.js
-   │  │  ├─ hmac-sha224.js
-   │  │  ├─ hmac-sha256.js
-   │  │  ├─ hmac-sha3.js
-   │  │  ├─ hmac-sha384.js
-   │  │  ├─ hmac-sha512.js
-   │  │  ├─ hmac.js
-   │  │  ├─ index.js
-   │  │  ├─ lib-typedarrays.js
-   │  │  ├─ md5.js
-   │  │  ├─ mode-cfb.js
-   │  │  ├─ mode-ctr-gladman.js
-   │  │  ├─ mode-ctr.js
-   │  │  ├─ mode-ecb.js
-   │  │  ├─ mode-ofb.js
-   │  │  ├─ package.json
-   │  │  ├─ pad-ansix923.js
-   │  │  ├─ pad-iso10126.js
-   │  │  ├─ pad-iso97971.js
-   │  │  ├─ pad-nopadding.js
-   │  │  ├─ pad-pkcs7.js
-   │  │  ├─ pad-zeropadding.js
-   │  │  ├─ pbkdf2.js
-   │  │  ├─ rabbit-legacy.js
-   │  │  ├─ rabbit.js
-   │  │  ├─ rc4.js
-   │  │  ├─ ripemd160.js
-   │  │  ├─ sha1.js
-   │  │  ├─ sha224.js
-   │  │  ├─ sha256.js
-   │  │  ├─ sha3.js
-   │  │  ├─ sha384.js
-   │  │  ├─ sha512.js
-   │  │  ├─ tripledes.js
-   │  │  └─ x64-core.js
-   │  ├─ eventBus.js
-   │  └─ util.js
-   ├─ variable.less
-   └─ 原型设计
-      ├─ ai刷题.html
-      ├─ ai面试室3.html
-      ├─ ai面试室4.html
-      ├─ 反馈建议.html
-      └─ 首页.html
+# ZhiMian · 智面 —— AI Interview Practice Suite  
+**“让每一次模拟面试都像真面试一样严谨、深入、可量化。”**
+
+> 🔥 _All-in-one_ 面试练习平台：**简历分析 ✚ 智能面试问答 ✚ 实时表情检测 ✚ 数字人交互**
+
+---
+
+## 📑 目录
+
+- [项目亮点](#项目亮点)
+- [功能详解](#功能详解)
+- [技术架构](#技术架构)
+- [快速开始](#快速开始)
+- [配置说明](#配置说明)
+- [开发与测试](#开发与测试)
+- [API 文档](#api-文档)
+- [部署方案](#部署方案)
+- [路线图](#路线图)
+- [贡献指南](#贡献指南)
+- [常见问题](#常见问题)
+- [致谢](#致谢)
+- [许可证](#许可证)
+- [联系作者](#联系作者)
+
+---
+
+## 🌟 项目亮点
+
+| ⭐ | 亮点 | 价值 |
+|----|------|------|
+| 1 | **多模型融合问答**（DeepSeek + 讯飞星火） | 中英皆精，多轮追问、实时评分 |
+| 2 | **7 类表情检测 & 紧张度量化** | 捕捉“微表情”，生成情绪曲线图 |
+| 3 | **数字 HR**：音视频 WebSocket 即时推流 | 告别枯燥对话框，沉浸式体验 |
+| 4 | **简历语义解析 + 智能改进建议** | 一键“体检”简历，弱项直观展示 |
+| 5 | **小程序端扫码即用** | 无需安装 App，分享即练习 |
+| 6 | **插件化服务封装** | 轻松替换 LLM / 表情 API / 存储后端 |
+
+---
+
+## 🛠️ 功能详解
+
+### 简历分析 Resume Inspector
+- **格式识别**：PDF / DOCX / TXT → JSON
+- **要素抽取**：教育、技能、项目、成果
+- **诊断评分**：STAR 范式 / 关键词匹配 / ATS 可读性
+- **改进建议**：用语精简、量化成果、逻辑顺序
+
+### 智能问答 Interview AI
+- **职位定制**：上传 JD，问题粒度自动匹配
+- **深度追问**：基于上一答案自调整难度
+- **即时打分**：内容完整度、逻辑性、表达清晰度
+- **语义回放**：答案关键信息高亮 & 纠错
+
+### 实时表情分析 Facial Metrics
+- **分类**：高兴 / 惊讶 / 紧张 / 悲伤 / 无表情…
+- **指标**：情绪波动曲线 + 紧张指数 (0-100)
+- **建议**：呼吸节奏、目光接触、手势控制
+
+### 数字人模拟 Virtual HR
+- **Aipaas Avatar**：Lip-Sync + Motion Sync
+- **客户端渲染**：前端低延迟播放 (≤200 ms)
+- **多角色**：校招面试官 / 技术 Leader / HR BP
+
+### 小程序端 WeChat Mini App
+- 一键扫码进入，兼容 **iOS & Android**
+- 富文本问题展示、倒计时、音视频回放
+- 个人面试报告自动生成，可导出 PDF
+
+---
+
+## 🚀 快速开始
+
+> 开发者机器：macOS / Linux，Python ≥ 3.10，Node ≥ 18
+
+```bash
+git clone https://github.com/YourUser/zhimian.git && cd zhimian
+
+后端（Flask API）
+
+cd interview-agent-flask
+python -m venv .venv && source .venv/bin/activate   # Win: .\.venv\Scripts\activate
+pip install -r requirements.txt
+cp .env.example .env         # 填写密钥
+flask db upgrade             # 若启用数据库
+python run.py
+
+前端（微信小程序）
+
+cd interview2
+npm install
+npm run dev                  # 热更新，端口 5173
+# 打开微信开发者工具，导入 interview2/，AppID 改为测试号
+
+一键启动（Docker Compose）
+
+docker compose up -d          # 包含 nginx + flask + redis
+# 如需 GPU 推理，可在 compose.yml 中切换 image
+
+⸻
+
+⚙️ 配置说明
+
+变量	示例值	说明
+DEEPSEEK_API_KEY	sk-xxx	DeepSeek LLM
+SPARK_APPID	xxx	讯飞星火 AppID
+REDIS_URL	redis://redis:6379/0	Redis 连接串
+LOG_LEVEL	INFO	运行日志级别
+
+	•	完整变量见 interview-agent-flask/.env.example
+	•	安全提示：生产环境请改为 export VAR=value 或 Secrets Manager
+
+⸻
+
+🧪 开发与测试
+
+# 代码检查 & 格式化
+ruff check . && ruff format .
+# 单元测试 & 覆盖率
+pytest -q && coverage html
+# 前端 Lint
+npm run lint && npm run format
+
+Git 提交遵循 Conventional Commits；提交前自动执行 pre-commit 钩子。
+
+⸻
+
+📚 API 文档
+
+启动后访问 http://127.0.0.1:5000/docs（FastAPI-like Swagger UI）。
+
+示例：获取下一道问题
+
+curl -N http://127.0.0.1:5000/interview/question \
+  -H "Accept: text/event-stream"
+
+响应（SSE）👇
+
+data: {"type":"question","content":"请介绍一下你最近的项目..."}
+
+完整 OpenAPI JSON 导出：/openapi.json
+
+⸻
+
+📦 部署方案
+
+场景	推荐方案	备注
+内网演示	Docker Compose + 内网穿透	简单快捷
+公有云生产	K8s（Ingress + HPA）	自动伸缩，支持 GPU
+Serverless	Vercel (front) + Cloud Functions	静态小程序部署
+CI/CD	GitHub Actions + Docker Hub	自动构建镜像、推送
+
+参考 deploy/ 目录提供的 Helm Chart 与 GitHub Actions Workflow。
+
+⸻
+
+🗺️ 路线图
+	•	MVP：简历解析 + 问答 + 表情检测
+	•	数字人 HR 角色切换
+	•	2025 Q3：多房间并行模拟、团队面试
+	•	2025 Q4：企业专属私有化部署、一键导入 ATS
+	•	2026 Q1：国际化（英 / 日 / 韩 UI）
+
+Roadmap 详细讨论请见 Projects。
+
+⸻
+
+🤝 贡献指南
+	1.	Fork & 新建分支（feat/xxx）
+	2.	提交代码前：npm run lint && ruff check . && pytest
+	3.	发起 Pull Request，并描述变更 / 截图 / 关联 Issue
+	4.	Maintainers 在通过 CI 后 Review & Merge
+
+参与方式：Bug 反馈、功能提案、文档改进、翻译本地化均欢迎！
+
+⸻
+
+❓ 常见问题
+
+问题	解答
+Q: 运行 python run.py 报 model not found？	> 请检查 DEEPSEEK_API_KEY & SPARK_API_KEY 是否正确，以及是否绑定白名单 IP。
+Q: 表情检测延迟高？	> 开启 GPU 推理或将视频分辨率降低至 640×480。
+Q: 如何导出面试报告？	> 小程序“我的”页面 → 历史记录 → 选择面试 → 点击“导出 PDF”。
+
+更多疑难可搜索 Discussions。
+
+⸻
+
+🙏 致谢
+	•	DeepSeek & 科大讯飞 提供大语言模型接口
+	•	Aipaas Avatar 数字人方案赞助
+	•	微信 TDesign 组件库
+	•	何老师的支持，Leiyuze和Hermit127的帮助 ❤️
+
+⸻
+
+📄 许可证
+
+本项目基于 MIT License 开源。
+
+⸻
+
+📬 联系作者
+	•	GitHub: @Lyceum-xs
+	•	邮箱: 2024302111357@whu.edu.cn
+
+「Made with ☕ & ❤️ in Wuhan University — 期待与你在开源社区相遇！」
+
