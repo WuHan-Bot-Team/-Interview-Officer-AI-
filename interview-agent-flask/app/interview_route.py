@@ -18,7 +18,9 @@ interview_bp = Blueprint('interview', __name__)
 
 UPLOAD_FOLDER_FACE_ROUTE = 'resource/face_image/'
 hls_FOLDER_FILE = 'resource/stream/playlist.m3u8'
-FEEDBACK_FOLDER_ROUTE = 'resource/feedback/'
+# 使用绝对路径确保能找到反馈文件
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+FEEDBACK_FOLDER_ROUTE = os.path.join(BASE_DIR, 'resource', 'feedback')
 user_info = {
     "major": "",
     "intention": "",
@@ -75,12 +77,14 @@ def initdeepseek():
     global user_info
     # 获取历史对话记录
     history = user_info.get('deepseek_history', [])
-    # 读取 prompt.txt 内容
-    prompt_path = os.path.join('services', 'prompt.txt')
+    # 读取 prompt.txt 内容 - 使用绝对路径
+    base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+    prompt_path = os.path.join(base_dir, 'services', 'prompt.txt')
     try:
         with open(prompt_path, 'r', encoding='utf-8') as f:
             prompt = f.read()
     except Exception as e:
+        print(f"Failed to read prompt.txt from {prompt_path}: {str(e)}")
         return jsonify({'error': f'Failed to read prompt.txt: {str(e)}'}), 500
     print(prompt)
     # 将 prompt 加入历史记录
@@ -88,7 +92,9 @@ def initdeepseek():
     user_info['deepseek_history'] = history
     # 调用 DeepseekAPI 的 chatwithhistory
     try:
+        print("正在调用 DeepseekAPI...")
         response = DeepseekAPI.getInstance().chat_with_history(history)
+        print(f"DeepseekAPI 响应: {response}")
         # 驱动数字人进行开场白
         send_text_in_thread("您好，欢迎来到面试室，我是本轮面试的面试官，请简要介绍一下自己吧!")
         if response:
@@ -100,10 +106,19 @@ def initdeepseek():
             job_description = user_info.get('job_description', '')
             second_prompt = f"专业：{major}\n求职意向：{intention}\n岗位职责：{job_description}\n请根据这些信息定制合理的面试内容。你这次只需要回复'您好，我是本轮面试的面试官，请简要介绍一下自己吧!'"
             user_info['deepseek_history'].append({"role": "user", "content": second_prompt})
+            print("正在调用第二轮 DeepseekAPI...")
             second_response = DeepseekAPI.getInstance().chat_with_history(user_info['deepseek_history'])
+            print(f"第二轮 DeepseekAPI 响应: {second_response}")
             if second_response:
                 user_info['deepseek_history'].append(second_response)
                 print("历史对话初始化2:", user_info['deepseek_history'])
+                return jsonify({'content': second_response.content})
+            else:
+                print("第二轮 DeepseekAPI 调用返回空响应")
+                return jsonify({'error': 'Second DeepseekAPI call returned empty response'}), 500
+        else:
+            print("首轮 DeepseekAPI 调用返回空响应")
+            return jsonify({'error': 'First DeepseekAPI call returned empty response'}), 500
 
     except Exception as e:
         return jsonify({'error': f'Failed to call DeepseekAPI: {str(e)}'}), 500
@@ -254,9 +269,24 @@ def feedback():
 def get_recent_feedbacks():
     """获取最近的反馈记录"""
     try:
+        # 使用绝对路径查找反馈文件
         feedback_files = glob.glob(os.path.join(FEEDBACK_FOLDER_ROUTE, "*.txt"))
+        
+        # 添加调试信息
+        print(f"查找路径: {FEEDBACK_FOLDER_ROUTE}")
+        print(f"找到文件数量: {len(feedback_files)}")
+        print(f"文件列表: {feedback_files}")
+        
         if not feedback_files:
-            return jsonify({'error': 'no feedback record'}), 500
+            return jsonify({
+                'error': 'no feedback record',
+                'debug_info': {
+                    'search_path': FEEDBACK_FOLDER_ROUTE,
+                    'path_exists': os.path.exists(FEEDBACK_FOLDER_ROUTE),
+                    'files_found': len(feedback_files)
+                }
+            }), 500
+            
         # 按修改时间降序排序
         sorted_files = sorted(feedback_files, key=os.path.getmtime, reverse=True)
         recent_files = sorted_files[:5]  # 获取最近的5个文件
