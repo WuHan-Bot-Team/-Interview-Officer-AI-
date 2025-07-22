@@ -8,6 +8,12 @@
   "usingComponents": {
     "t-toast": "tdesign-miniprogram/toast/toast"
   },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.6",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
   "subpackages": [
     {
       "root": "pages/interviewHome","name": "interviewHome","pages": ["index"]
