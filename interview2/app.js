@@ -41,7 +41,8 @@ App({
     userInfo: null,
     unreadNum: 0, // 未读消息数量
     socket: null, // SocketTask 对象
-    url : "http://127.0.0.1:5000/",
+   url : "http://127.0.0.1:5000/",
+   //url : "http://47.115.219.232:80/",
   },
   /**
    * 将 ArrayBuffer 转换为十六进制字符串

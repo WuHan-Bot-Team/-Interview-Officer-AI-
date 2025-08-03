@@ -182,7 +182,7 @@ Page({
     const prompt = '对这次刷题训练做一下评估！';
     this.addUserMessage(prompt);
     wx.request({
-      url: 'http://127.0.0.1:5000/practice/evaluate',
+      url: `${app.globalData.url}practice/evaluate`,
       method: 'GET',
       data: { // 查询参数
         historyData: this.data.messages.slice(2).join(">;<")
@@ -273,7 +273,7 @@ Page({
         console.log("aaa")
       }
       wx.request({
-        url: 'http://127.0.0.1:5000/practice/answer_v1',
+        url: `${app.globalData.url}practice/answer_v1`,
         method: 'GET',
         data: { // 查询参数
           prompt: msg
@@ -296,7 +296,7 @@ Page({
       }else{
         this.simulateAIResponse("正在解析中，请稍等！");
         wx.uploadFile({
-          url: 'http://127.0.0.1:5000/practice/resume',
+          url: `${app.globalData.url}practice/resume`,
           filePath: this.data.resumeFile.path,
           name: 'file',
           formData: { // 额外参数

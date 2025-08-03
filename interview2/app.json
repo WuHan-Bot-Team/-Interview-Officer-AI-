@@ -8,6 +8,12 @@
   "usingComponents": {
     "t-toast": "tdesign-miniprogram/toast/toast"
   },
+  "plugins": {
+    "WechatSI": {
+      "version": "0.3.6",
+      "provider": "wx069ba97219f66d99"
+    }
+  },
   "subpackages": [
     {
       "root": "pages/interviewHome","name": "interviewHome","pages": ["index"]
@@ -100,6 +106,33 @@
         "pagePath": "pages/my/index",
         "text": "我的"
       }
+    ]
+  },
+  "permission": {
+    "scope.userLocation": {
+      "desc": "你的位置信息将用于小程序位置接口的效果展示"
+    }
+  },
+  "requiredBackgroundModes": [
+    "backgroundFetch"
+  ],
+  "networkTimeout": {
+    "request": 10000,
+    "downloadFile": 10000
+  },
+  "networkConfig": {
+    "requestDomain": [
+      "192.168.95.114:5000",
+      "192.168.1.10:5000",
+      "localhost:5000"
+    ],
+    "downloadDomain": [
+      "192.168.95.114:5000",
+      "192.168.1.10:5000"
+    ],
+    "uploadDomain": [
+      "192.168.95.114:5000",
+      "192.168.1.10:5000"
     ]
   },
   "resolveAlias": {

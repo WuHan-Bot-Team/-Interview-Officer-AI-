@@ -2,6 +2,10 @@ import config from '~/config';
 
 const { baseUrl } = config;
 const delay = config.isMock ? 500 : 0;
+
+// 获取全局应用实例
+const app = getApp();
+
 function request(url, method = 'GET', data = {}) {
   const header = {
     'content-type': 'application/json',
@@ -12,9 +16,13 @@ function request(url, method = 'GET', data = {}) {
   if (tokenString) {
     header.Authorization = `Bearer ${tokenString}`;
   }
+  
+  // 使用 globalData.url 作为 baseUrl，如果没有设置则使用 config 中的 baseUrl
+  const requestBaseUrl = app.globalData.url || baseUrl;
+  
   return new Promise((resolve, reject) => {
     wx.request({
-      url: baseUrl + url,
+      url: requestBaseUrl + url,
       method,
       data,
       dataType: 'json', // 微信官方文档中介绍会对数据进行一次JSON.parse

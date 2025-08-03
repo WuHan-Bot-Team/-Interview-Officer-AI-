@@ -76,7 +76,7 @@ class DeepseekAPI():
             try:
                 response = self.global_deepseek_client.chat.completions.create(
                     model="deepseek-chat",
-                    messages=deepseek_history,
+                    messages=history,  # 修复：使用修改后的 history 而不是原始的 deepseek_history
                     stream=False
                 )
                 message = response.choices[0].message

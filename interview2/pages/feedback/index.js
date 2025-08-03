@@ -1,5 +1,8 @@
 import * as echarts from '../../miniprogram_npm/ec-canvas/echarts';
 
+// 获取全局应用实例
+const app = getApp();
+
 Page({
   data: {
     jobTitle: '产品经理模拟面试',
@@ -166,8 +169,9 @@ initLineChart(chartData) {
 
 
     if (id == 0) {
+      console.log("feedback页面正在使用的URL:", `${app.globalData.url}interview/feedback`);
       wx.request({
-        url: 'http://127.0.0.1:5000/interview/feedback',
+        url: `${app.globalData.url}interview/feedback`,
         method: 'GET',
         success: (res) => { 
           if (res.statusCode == 200) {
@@ -194,7 +198,7 @@ initLineChart(chartData) {
       });
     } else {
       wx.request({
-        url: 'http://127.0.0.1:5000/interview/feedback2',
+        url: `${app.globalData.url}interview/feedback2`,
         method: 'GET',
         success: (res) => { 
           if (res.statusCode == 200) {
@@ -223,7 +227,7 @@ initLineChart(chartData) {
 
     // 请求折线图数据
     wx.request({
-      url: 'http://127.0.0.1:5000/interview/recent_feedbacks',
+      url: `${app.globalData.url}interview/recent_feedbacks`,
       method: 'GET',
       success: (res) => {
         if (res.statusCode === 200 && Array.isArray(res.data) && res.data.length > 0) {

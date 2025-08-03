@@ -4,6 +4,9 @@ const plugin = requirePlugin('WechatSI');
 // 获取全局唯一语音识别管理器
 const manager = plugin.getRecordRecognitionManager();
 
+// 获取全局应用实例
+const app = getApp();
+
 Page({
 
   /**
@@ -32,18 +35,23 @@ Page({
   onVideoTap() {
     console.log("Video clicked, refreshing src...");
     this.setData({
-      avatarStreamUrl: "http://127.0.0.1:5000/interview/video/playlist.m3u8"
+      avatarStreamUrl: `${app.globalData.url}interview/video/playlist.m3u8`
     });
   },
-  videoErrorCallback(){
+  videoErrorCallback(e){
+    console.error("视频播放错误:", e);
+    
+    // 尝试重新加载
     this.setData({
       avatarStreamUrl: ""
-    })
+    });
+    
     setTimeout(() => {
+      console.log("重新尝试加载数字人视频...");
       this.setData({
-        avatarStreamUrl: "http://127.0.0.1:5000/interview/video/playlist.m3u8"
+        avatarStreamUrl: `${app.globalData.url}interview/video/playlist.m3u8`
       });
-    }, 500)
+    }, 2000); // 增加延迟到2秒
   },
   /**
    * 生命周期函数--监听页面加载
@@ -98,7 +106,7 @@ Page({
             const tempFilePath = res.tempImagePath;
             console.log(tempFilePath);
             wx.uploadFile({
-              url: 'http://127.0.0.1:5000/interview/image_detect',
+              url: `${app.globalData.url}interview/image_detect`,
               filePath: tempFilePath,
               name: 'file',
               formData: {
@@ -144,8 +152,9 @@ Page({
   },
 
   initDeepseek() {
+    console.log("正在使用的URL:", `${app.globalData.url}interview/init`);
     wx.request({
-      url: 'http://127.0.0.1:5000/interview/init', // 替换为你的Flask接口地址
+      url: `${app.globalData.url}interview/init`, // 替换为你的Flask接口地址
       method: 'POST',
       data: {
         major: this.data.major,
@@ -180,7 +189,7 @@ Page({
   onHide() {
     this.clearTimer();
     wx.request({
-      url: 'http://127.0.0.1:5000/interview/del_wss',
+      url: `${app.globalData.url}interview/del_wss`,
       method: 'GET',
     })
   },
@@ -191,7 +200,7 @@ Page({
   onUnload() {
     this.clearTimer();
     wx.request({
-      url: 'http://127.0.0.1:5000/interview/del_wss',
+      url: `${app.globalData.url}interview/del_wss`,
       method: 'GET',
     })
   },
@@ -370,7 +379,7 @@ Page({
       that.delFile(res.tempFilePath)
       //在这里向后端发送请求
       wx.request({
-        url: 'http://127.0.0.1:5000/interview/answer',
+        url: `${app.globalData.url}interview/answer`,
         method: 'GET',
         data: {
           message: message
@@ -387,16 +396,49 @@ Page({
 
   // ==================== 数字人SDK相关代码 ====================
   initAvatar(){
+    console.log("正在初始化数字人...");
+    console.log("正在使用的URL:", `${app.globalData.url}interview/init_shuziren`);
+    wx.showLoading({
+      title: '数字人加载中...',
+      mask: true
+    });
+    
     wx.request({
-      url: 'http://127.0.0.1:5000/interview/init_shuziren',
+      url: `${app.globalData.url}interview/init_shuziren`,
       method: 'GET',
+      timeout: 30000, // 30秒超时
       success: (res) => {
-          console.log(res)
-          this.setData({
-            avatarStreamUrl: "http://127.0.0.1:5000/interview/video/playlist.m3u8"
+          console.log("数字人初始化响应:", res);
+          wx.hideLoading();
+          
+          if (res.statusCode === 200) {
+            console.log("数字人初始化成功");
+            this.setData({
+              avatarStreamUrl: `${app.globalData.url}interview/video/playlist.m3u8`
+            });
+            
+            // 延迟一秒后初始化Deepseek，确保数字人已经准备好
+            setTimeout(() => {
+              this.initDeepseek();
+            }, 1000);
+          } else {
+            console.error("数字人初始化失败:", res);
+            wx.showToast({
+              title: '数字人加载失败',
+              icon: 'error',
+              duration: 2000
+            });
+          }
+      },
+      fail: (err) => {
+          console.error("数字人初始化请求失败:", err);
+          wx.hideLoading();
+          wx.showToast({
+            title: '网络连接失败',
+            icon: 'error',
+            duration: 2000
           });
-          this.initDeepseek()
       }
-    })
+    });
   },
 })
