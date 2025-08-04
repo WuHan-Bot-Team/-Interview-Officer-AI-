@@ -1,0 +1,36 @@
+/**app.wxss**/
+/* 全局样式 */
+page {
+  font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', Helvetica, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', SimSun, sans-serif;
+  background-color: #f5f5f5;
+}
+
+/* TDesign 图标字体 fallback */
+.t-icon {
+  font-family: 't-icon', 'iconfont', sans-serif !important;
+}
+
+/* 如果字体加载失败，使用备用方案 */
+.t-icon::before {
+  display: inline-block;
+  text-rendering: auto;
+}
+
+/* 底部导航栏安全区域适配 */
+.tab-bar {
+  padding-bottom: constant(safe-area-inset-bottom);
+  padding-bottom: env(safe-area-inset-bottom);
+}
+
+/* 通用容器样式 */
+.container {
+  min-height: 100vh;
+  padding-bottom: 140rpx; /* 为底部导航栏留出空间 */
+}
+
+/* 修复可能的字体加载问题 */
+@media screen and (-webkit-min-device-pixel-ratio: 0) and (min-resolution: 0.001dpcm) {
+  .t-icon {
+    font-family: 't-icon', Arial, sans-serif;
+  }
+}

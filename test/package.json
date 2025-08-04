@@ -1,0 +1,35 @@
+{
+  "name": "zhimian-frontend-tests",
+  "version": "1.0.0",
+  "description": "微信小程序AI面试助手前端测试套件",
+  "scripts": {
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "test:coverage": "jest --coverage",
+    "test:debug": "jest --debug"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.0.0",
+    "@babel/preset-env": "^7.0.0",
+    "@types/jest": "^29.0.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^29.0.0",
+    "jest-environment-jsdom": "^30.0.5",
+    "miniprogram-simulate": "^1.5.0"
+  },
+  "jest": {
+    "testEnvironment": "jsdom",
+    "collectCoverageFrom": [
+      "../interview2/**/*.js",
+      "!../interview2/miniprogram_npm/**",
+      "!../interview2/node_modules/**"
+    ],
+    "testMatch": [
+      "**/__tests__/**/*.js",
+      "**/?(*.)+(spec|test).js"
+    ],
+    "moduleNameMapper": {
+      "^~/(.*)$": "../interview2/$1"
+    }
+  }
+}

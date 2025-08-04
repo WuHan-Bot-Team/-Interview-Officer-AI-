@@ -2,23 +2,17 @@ const app = getApp();
 
 Component({
   data: {
-    value: '', // 初始值设置为空，避免第一次加载时闪烁
-    unreadNum: 0, // 未读消息数量
+    value: 'home2', // 设置默认值为首页
     list: [
       {
         icon: 'home',
-        value: 'index',
+        value: 'home2',
         label: '首页',
       },
       {
         icon: 'dashboard',
         value: 'practice',
         label: '练习',
-      },
-      {
-        icon: 'chat',
-        value: 'notice',
-        label: '消息',
       },
       {
         icon: 'user',
@@ -32,33 +26,42 @@ Component({
       const pages = getCurrentPages();
       const curPage = pages[pages.length - 1];
       if (curPage) {
-        const nameRe = /pages\/(\w+)\/index/.exec(curPage.route);
-        if (nameRe === null) return;
-        console.log(nameRe)
-        if (nameRe[1] && nameRe) {
-          this.setData({
-            value: nameRe[1],
-          });
+        // 根据当前页面路径设置选中状态
+        if (curPage.route.includes('home2')) {
+          this.setData({ value: 'home2' });
+        } else if (curPage.route.includes('practice')) {
+          this.setData({ value: 'practice' });
+        } else if (curPage.route.includes('my')) {
+          this.setData({ value: 'my' });
         }
       }
-
-      // 同步全局未读消息数量
-      this.setUnreadNum(app.globalData.unreadNum);
-      app.eventBus.on('unread-num-change', (unreadNum) => {
-        this.setUnreadNum(unreadNum);
-      });
     },
   },
   methods: {
     handleChange(e) {
       const { value } = e.detail;
-      console.log(value)
-      wx.switchTab({ url: `/pages/${value}/index` });
-    },
-
-    /** 设置未读消息数量 */
-    setUnreadNum(unreadNum) {
-      this.setData({ unreadNum });
+      console.log('切换到:', value);
+      
+      // 更新选中状态
+      this.setData({ value });
+      
+      // 根据不同的页面进行跳转
+      let url = '';
+      switch (value) {
+        case 'home2':
+          url = '/pages/home2/index';
+          break;
+        case 'practice':
+          url = '/pages/practice/index';
+          break;
+        case 'my':
+          url = '/pages/my/index';
+          break;
+      }
+      
+      if (url) {
+        wx.switchTab({ url: url });
+      }
     },
   },
 });

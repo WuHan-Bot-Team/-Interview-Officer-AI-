@@ -1,12 +1,12 @@
-import Mock from './WxMock';
+const Mock = require('./WxMock');
 // 导入包含path和data的对象
-import loginMock from './login/index';
-import homeMock from './home/index';
-import searchMock from './search/index';
-import dataCenter from './dataCenter/index';
-import my from './my/index';
+const loginMock = require('./login/index');
+const homeMock = require('./home/index');
+const searchMock = require('./search/index');
+const dataCenter = require('./dataCenter/index');
+const my = require('./my/index');
 
-export default () => {
+module.exports = () => {
   // 在这里添加新的mock数据
   const mockData = [...loginMock, ...homeMock, ...searchMock, ...dataCenter, ...my];
   mockData.forEach((item) => {

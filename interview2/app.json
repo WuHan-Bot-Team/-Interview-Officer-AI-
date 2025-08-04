@@ -1,9 +1,8 @@
 {
   "pages": [
     "pages/home2/index",
-    "pages/message/index",
-    "pages/my/index",
-    "pages/practice/index"
+    "pages/practice/index",
+    "pages/my/index"
   ],
   "usingComponents": {
     "t-toast": "tdesign-miniprogram/toast/toast"
@@ -99,10 +98,6 @@
         "text": "训练"
       },
       {
-        "pagePath": "pages/message/index",
-        "text": "消息"
-      },
-      {
         "pagePath": "pages/my/index",
         "text": "我的"
       }
@@ -119,21 +114,6 @@
   "networkTimeout": {
     "request": 10000,
     "downloadFile": 10000
-  },
-  "networkConfig": {
-    "requestDomain": [
-      "192.168.95.114:5000",
-      "192.168.1.10:5000",
-      "localhost:5000"
-    ],
-    "downloadDomain": [
-      "192.168.95.114:5000",
-      "192.168.1.10:5000"
-    ],
-    "uploadDomain": [
-      "192.168.95.114:5000",
-      "192.168.1.10:5000"
-    ]
   },
   "resolveAlias": {
     "~/*": "/*"

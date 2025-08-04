@@ -1,4 +1,4 @@
-import getHomeCards from './getHomeCards';
-import getHomeSwipers from './getHomeSwipers';
+const getHomeCards = require('./getHomeCards');
+const getHomeSwipers = require('./getHomeSwipers');
 
-export default [getHomeCards, getHomeSwipers];
+module.exports = [getHomeCards, getHomeSwipers];

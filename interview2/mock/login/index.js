@@ -1,5 +1,5 @@
-import getSendMessage from './getSendMessage';
-import postCodeVerify from './postCodeVerify';
-import postPasswordLogin from './postPasswordLogin';
+const getSendMessage = require('./getSendMessage');
+const postCodeVerify = require('./postCodeVerify');
+const postPasswordLogin = require('./postPasswordLogin');
 
-export default [getSendMessage, postCodeVerify, postPasswordLogin];
+module.exports = [getSendMessage, postCodeVerify, postPasswordLogin];

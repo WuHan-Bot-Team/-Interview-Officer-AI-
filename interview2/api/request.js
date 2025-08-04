@@ -1,4 +1,4 @@
-import config from '~/config';
+const config = require('../config');
 
 const { baseUrl } = config;
 const delay = config.isMock ? 500 : 0;

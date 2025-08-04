@@ -1,4 +1,4 @@
-export default function createBus() {
+function createBus() {
   return {
     events: {},
     on(event, callback) {
@@ -18,3 +18,5 @@ export default function createBus() {
     },
   };
 }
+
+module.exports = createBus;

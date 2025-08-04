@@ -1,0 +1,42 @@
+# 测试相关的 Git 忽略配置
+
+# 依赖目录
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# 测试覆盖率报告
+coverage/
+*.lcov
+.nyc_output/
+
+# Jest 缓存
+.jest/
+
+# 测试结果文件
+test-results.xml
+junit.xml
+
+# 临时文件
+*.tmp
+*.temp
+.cache/
+
+# IDE 配置
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# 系统文件
+.DS_Store
+Thumbs.db
+
+# 日志文件
+*.log
+
+# 环境变量文件
+.env
+.env.local
+.env.test

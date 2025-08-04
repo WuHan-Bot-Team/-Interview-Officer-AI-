@@ -1,4 +1,4 @@
-import getSearchHistory from './getSearchHistory';
-import getSearchPopular from './getSearchPopular';
+const getSearchHistory = require('./getSearchHistory');
+const getSearchPopular = require('./getSearchPopular');
 
-export default [getSearchHistory, getSearchPopular];
+module.exports = [getSearchHistory, getSearchPopular];

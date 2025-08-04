@@ -1,0 +1,43 @@
+/* 自定义底部导航栏样式 */
+.ios-tab-bar {
+  --td-tab-bar-color: #666666;
+  --td-tab-bar-active-color: #3b82f6;
+  --td-tab-bar-bg-color: #FFFFFF;
+  --td-tab-bar-height: 140rpx;
+  --td-tab-bar-border-color: #E5E5E5;
+}
+
+/* 优化三个选项卡的布局 */
+.ios-tab-bar .t-tab-bar {
+  box-shadow: 0 -2rpx 10rpx rgba(0, 0, 0, 0.1);
+  border-top: 1rpx solid #E5E5E5;
+  padding-bottom: env(safe-area-inset-bottom);
+  background-color: #FFFFFF;
+}
+
+/* 调整选项卡间距，让三个选项更加均匀分布 */
+.ios-tab-bar .t-tab-bar-item {
+  flex: 1;
+  max-width: none;
+  padding: 12rpx 0;
+}
+
+/* 增大图标和文字的尺寸 */
+.ios-tab-bar .t-icon {
+  font-size: 48rpx !important;
+}
+
+.ios-tab-bar .t-class-text {
+  font-size: 24rpx !important;
+  margin-top: 4rpx;
+}
+
+/* 激活状态的样式 */
+.ios-tab-bar .t-tab-bar-item--active .t-icon {
+  color: #3b82f6 !important;
+}
+
+.ios-tab-bar .t-tab-bar-item--active .t-class-text {
+  color: #3b82f6 !important;
+  font-weight: 500;
+}

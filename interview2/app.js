@@ -1,10 +1,10 @@
-import config from './config';
-import Mock from './mock/index';
-import createBus from './utils/eventBus';
-import {
+const config = require('./config');
+const Mock = require('./mock/index');
+const createBus = require('./utils/eventBus');
+const {
   connectSocket,
   fetchUnreadNum
-} from './mock/chat';
+} = require('./mock/chat');
 
 if (config.isMock) {
   Mock();
@@ -41,8 +41,8 @@ App({
     userInfo: null,
     unreadNum: 0, // 未读消息数量
     socket: null, // SocketTask 对象
-   url : "http://127.0.0.1:5000/",
-   //url : "http://47.115.219.232:80/",
+   //url : "http://127.0.0.1:5000/",
+   url: "", // 使用空字符串，让mock系统接管请求
   },
   /**
    * 将 ArrayBuffer 转换为十六进制字符串

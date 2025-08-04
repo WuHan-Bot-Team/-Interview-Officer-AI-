@@ -1,0 +1,12 @@
+/* TDesign 字体文件本地化 */
+@font-face {
+  font-family: 't-icon';
+  src: url('/static/fonts/t.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+/* 覆盖TDesign的默认字体路径 */
+.t-icon {
+  font-family: 't-icon' !important;
+}

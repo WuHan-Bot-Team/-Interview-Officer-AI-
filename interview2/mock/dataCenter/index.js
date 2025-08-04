@@ -1,6 +1,6 @@
-import getDataCenterArea from './getArea';
-import getDataCenterMember from './getMember';
-import getDataCompleteRate from './getCompleteRate';
-import getDataInteraction from './getInteraction';
+const getDataCenterArea = require('./getArea');
+const getDataCenterMember = require('./getMember');
+const getDataCompleteRate = require('./getCompleteRate');
+const getDataInteraction = require('./getInteraction');
 
-export default [getDataCenterArea, getDataCenterMember, getDataCompleteRate, getDataInteraction];
+module.exports = [getDataCenterArea, getDataCenterMember, getDataCompleteRate, getDataInteraction];

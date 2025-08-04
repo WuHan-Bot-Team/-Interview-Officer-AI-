@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   isMock: true,
-  baseUrl: 'http://127.0.0.1:5000/',
+  baseUrl: '',
 };

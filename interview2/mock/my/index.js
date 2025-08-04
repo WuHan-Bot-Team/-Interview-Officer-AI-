@@ -1,4 +1,4 @@
-import getServiceList from './getServiceList';
-import getPersonalInfo from './getPersonalInfo';
+const getServiceList = require('./getServiceList');
+const getPersonalInfo = require('./getPersonalInfo');
 
-export default [getServiceList, getPersonalInfo];
+module.exports = [getServiceList, getPersonalInfo];

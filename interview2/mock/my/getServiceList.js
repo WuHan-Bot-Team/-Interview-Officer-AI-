@@ -1,4 +1,4 @@
-export default {
+module.exports = {
   path: '/api/getServiceList',
   data: {
     code: 200,
