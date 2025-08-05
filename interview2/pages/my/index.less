@@ -1,11 +1,11 @@
 @keyframes fadeIn {
   from {
     opacity: 0;
-    transform: translateY(20rpx);
+    transform: translateY(40rpx) scale(0.95);
   }
   to {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateY(0) scale(1);
   }
 }
 
@@ -28,15 +28,29 @@
 
   --td-navbar-bg-color: transparent;
   
-  // 顶部背景区域
+  // 顶部背景区域 - 优化设计
   .header-bg {
     position: absolute;
     top: 0;
     left: 0;
     right: 0;
-    height: 420rpx;
-    background: linear-gradient(135deg, #0062F5 0%, #0052d9 100%);
+    height: 500rpx;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #667eea 100%);
+    background-size: 400% 400%;
+    animation: gradientShift 8s ease infinite;
     z-index: 0;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: radial-gradient(circle at 30% 20%, rgba(255,255,255,0.1) 0%, transparent 50%),
+                  radial-gradient(circle at 80% 80%, rgba(255,255,255,0.1) 0%, transparent 50%);
+      z-index: 1;
+    }
     
     &::after {
       content: '';
@@ -44,10 +58,17 @@
       bottom: 0;
       left: 0;
       right: 0;
-      height: 120rpx;
+      height: 150rpx;
       background: linear-gradient(to bottom, rgba(247, 249, 252, 0) 0%, #f7f9fc 100%);
+      z-index: 2;
     }
   }
+
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
   
   .nav-bg {
     width: 750rpx;
@@ -58,12 +79,12 @@
     opacity: 0;
   }
   
-  // 页面内容区
+  // 页面内容区 - 优化间距
   &-content {
     position: relative;
     z-index: 2;
-    padding: 24rpx 32rpx;
-    margin-top: 120rpx;
+    padding: 32rpx 32rpx 60rpx;
+    margin-top: 20rpx; // 进一步优化上边距
   }
 
   &-info,
@@ -274,6 +295,657 @@
         height: 32rpx;
         background: #0052d9;
         border-radius: 3rpx;
+      }
+    }
+  }
+  
+  // 拓展功能标题
+  .section-title {
+    font-size: 36rpx;
+    font-weight: bold;
+    color: #1a1a1a;
+    margin: 20rpx 0 32rpx; // 减少上边距，因为现在是第一个元素
+    text-align: center;
+    position: relative;
+    
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      width: 80rpx;
+      height: 2rpx;
+      background: linear-gradient(90deg, #0052d9, #0062F5);
+      transform: translateY(-50%);
+    }
+    
+    &::before {
+      left: calc(50% - 120rpx);
+    }
+    
+    &::after {
+      right: calc(50% - 120rpx);
+    }
+  }
+  
+  // 刷题推荐区域 - 优化设计
+  .question-recommend {
+    border-radius: 32rpx;
+    margin: 0 0 40rpx;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    box-shadow: 0 20rpx 60rpx rgba(102, 126, 234, 0.4);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out 0.1s forwards;
+    opacity: 0;
+    position: relative;
+    transform: translateY(20rpx);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    &:active {
+      transform: translateY(-8rpx) scale(0.98);
+      box-shadow: 0 30rpx 80rpx rgba(102, 126, 234, 0.5);
+    }
+    
+    // 顶部装饰效果
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    // 右上角装饰元素
+    &::after {
+      content: '';
+      position: absolute;
+      top: -50rpx;
+      right: -50rpx;
+      width: 120rpx;
+      height: 120rpx;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .recommend-title {
+      height: 100rpx;
+      line-height: 100rpx;  
+      padding: 0 40rpx;
+      color: #fff;
+      font-size: 36rpx;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '🎯';
+        font-size: 40rpx;
+        margin-right: 16rpx;
+        filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.2));
+      }
+    }
+    
+    .recommend-content {
+      padding: 24rpx 40rpx 48rpx;
+      position: relative;
+      z-index: 2;
+      
+      .recommend-desc {
+        display: block;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 28rpx;
+        line-height: 1.6;
+        margin-bottom: 40rpx;
+        font-weight: 500;
+      }
+      
+      .recommend-btn {
+        width: 100%;
+        height: 88rpx;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20rpx);
+        border: 2rpx solid rgba(255, 255, 255, 0.3);
+        border-radius: 44rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 30rpx;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        &:active::before {
+          left: 100%;
+        }
+        
+        .btn-text {
+          margin-right: 12rpx;
+          position: relative;
+          z-index: 1;
+        }
+        
+        &:active {
+          background: rgba(255, 255, 255, 0.3);
+          transform: scale(0.98);
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        &::after {
+          border: none;
+        }
+      }
+    }
+  }
+  
+  // 学习推荐区域 - 优化设计
+  .learning-recommend {
+    border-radius: 32rpx;
+    margin: 0 0 40rpx;
+    background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+    box-shadow: 0 20rpx 60rpx rgba(168, 237, 234, 0.4);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out 0.2s forwards;
+    opacity: 0;
+    position: relative;
+    transform: translateY(20rpx);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    &:active {
+      transform: translateY(-8rpx) scale(0.98);
+      box-shadow: 0 30rpx 80rpx rgba(168, 237, 234, 0.5);
+    }
+    
+    // 背景装饰
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    // 左下角装饰
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -30rpx;
+      left: -30rpx;
+      width: 80rpx;
+      height: 80rpx;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .recommend-title {
+      height: 100rpx;
+      line-height: 100rpx;  
+      padding: 0 40rpx;
+      color: #333;
+      font-size: 36rpx;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '📚';
+        font-size: 40rpx;
+        margin-right: 16rpx;
+        filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.2));
+      }
+    }
+    
+    .recommend-content {
+      padding: 24rpx 40rpx 48rpx;
+      position: relative;
+      z-index: 2;
+      
+      .recommend-desc {
+        display: block;
+        color: rgba(51, 51, 51, 0.8);
+        font-size: 28rpx;
+        line-height: 1.6;
+        margin-bottom: 40rpx;
+        font-weight: 500;
+      }
+      
+      .recommend-btn {
+        width: 100%;
+        height: 88rpx;
+        background: rgba(51, 51, 51, 0.1);
+        backdrop-filter: blur(20rpx);
+        border: 2rpx solid rgba(51, 51, 51, 0.2);
+        border-radius: 44rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #333;
+        font-size: 30rpx;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(51,51,51,0.1), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        &:active::before {
+          left: 100%;
+        }
+        
+        .btn-text {
+          margin-right: 12rpx;
+          position: relative;
+          z-index: 1;
+        }
+        
+        &:active {
+          background: rgba(51, 51, 51, 0.2);
+          transform: scale(0.98);
+          border-color: rgba(51, 51, 51, 0.3);
+        }
+        
+        &::after {
+          border: none;
+        }
+      }
+    }
+  }
+  
+  // 项目包装区域 - 优化设计
+  .project-packaging {
+    border-radius: 32rpx;
+    margin: 0 0 40rpx;
+    background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+    box-shadow: 0 20rpx 60rpx rgba(255, 236, 210, 0.4);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out 0.3s forwards;
+    opacity: 0;
+    position: relative;
+    transform: translateY(20rpx);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    &:active {
+      transform: translateY(-8rpx) scale(0.98);
+      box-shadow: 0 30rpx 80rpx rgba(255, 236, 210, 0.5);
+    }
+    
+    // 背景装饰
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.2) 0%, rgba(255,255,255,0.1) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    // 右下角装饰
+    &::after {
+      content: '';
+      position: absolute;
+      bottom: -40rpx;
+      right: -40rpx;
+      width: 100rpx;
+      height: 100rpx;
+      background: rgba(255, 255, 255, 0.2);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .recommend-title {
+      height: 100rpx;
+      line-height: 100rpx;  
+      padding: 0 40rpx;
+      color: #8b4513;
+      font-size: 36rpx;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '💼';
+        font-size: 40rpx;
+        margin-right: 16rpx;
+        filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.1));
+      }
+    }
+    
+    .recommend-content {
+      padding: 24rpx 40rpx 48rpx;
+      position: relative;
+      z-index: 2;
+      
+      .recommend-desc {
+        display: block;
+        color: rgba(139, 69, 19, 0.8);
+        font-size: 28rpx;
+        line-height: 1.6;
+        margin-bottom: 40rpx;
+        font-weight: 500;
+      }
+      
+      .recommend-btn {
+        width: 100%;
+        height: 88rpx;
+        background: rgba(139, 69, 19, 0.1);
+        backdrop-filter: blur(20rpx);
+        border: 2rpx solid rgba(139, 69, 19, 0.2);
+        border-radius: 44rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #8b4513;
+        font-size: 30rpx;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(139,69,19,0.1), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        &:active::before {
+          left: 100%;
+        }
+        
+        .btn-text {
+          margin-right: 12rpx;
+          position: relative;
+          z-index: 1;
+        }
+        
+        &:active {
+          background: rgba(139, 69, 19, 0.2);
+          transform: scale(0.98);
+          border-color: rgba(139, 69, 19, 0.3);
+        }
+        
+        &::after {
+          border: none;
+        }
+      }
+    }
+  }
+  
+  // Offer对比区域 - 优化设计  
+  .offer-compare {
+    border-radius: 32rpx;
+    margin: 0 0 40rpx;
+    background: linear-gradient(135deg, #89f7fe 0%, #66a6ff 100%);
+    box-shadow: 0 20rpx 60rpx rgba(137, 247, 254, 0.4);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out 0.4s forwards;
+    opacity: 0;
+    position: relative;
+    transform: translateY(20rpx);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    &:active {
+      transform: translateY(-8rpx) scale(0.98);
+      box-shadow: 0 30rpx 80rpx rgba(137, 247, 254, 0.5);
+    }
+    
+    // 背景装饰
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0.05) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    // 中心装饰
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 60rpx;
+      height: 60rpx;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 50%;
+      z-index: 1;
+    }
+    
+    .recommend-title {
+      height: 100rpx;
+      line-height: 100rpx;  
+      padding: 0 40rpx;
+      color: #fff;
+      font-size: 36rpx;
+      font-weight: 700;
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: center;
+      
+      &::before {
+        content: '⚖️';
+        font-size: 40rpx;
+        margin-right: 16rpx;
+        filter: drop-shadow(0 2rpx 4rpx rgba(0,0,0,0.2));
+      }
+    }
+    
+    .recommend-content {
+      padding: 24rpx 40rpx 48rpx;
+      position: relative;
+      z-index: 2;
+      
+      .recommend-desc {
+        display: block;
+        color: rgba(255, 255, 255, 0.9);
+        font-size: 28rpx;
+        line-height: 1.6;
+        margin-bottom: 40rpx;
+        font-weight: 500;
+      }
+      
+      .recommend-btn {
+        width: 100%;
+        height: 88rpx;
+        background: rgba(255, 255, 255, 0.2);
+        backdrop-filter: blur(20rpx);
+        border: 2rpx solid rgba(255, 255, 255, 0.3);
+        border-radius: 44rpx;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: #fff;
+        font-size: 30rpx;
+        font-weight: 600;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        position: relative;
+        overflow: hidden;
+        
+        &::before {
+          content: '';
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+          transition: left 0.5s ease;
+        }
+        
+        &:active::before {
+          left: 100%;
+        }
+        
+        .btn-text {
+          margin-right: 12rpx;
+          position: relative;
+          z-index: 1;
+        }
+        
+        &:active {
+          background: rgba(255, 255, 255, 0.3);
+          transform: scale(0.98);
+          border-color: rgba(255, 255, 255, 0.5);
+        }
+        
+        &::after {
+          border: none;
+        }
+      }
+    }
+  }
+  
+  // 工作适配度区域 - 新增功能（橙色主题）
+  .job-compatibility {
+    border-radius: 32rpx;
+    margin: 0 0 40rpx;
+    background: linear-gradient(135deg, #FF6B35 0%, #F7931E 50%, #FFB347 100%);
+    box-shadow: 0 20rpx 60rpx rgba(255, 107, 53, 0.4);
+    overflow: hidden;
+    animation: fadeIn 0.8s ease-out 0.5s forwards;
+    opacity: 0;
+    position: relative;
+    transform: translateY(20rpx);
+    transition: all 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    &:active {
+      transform: translateY(-8rpx) scale(0.98);
+      box-shadow: 0 30rpx 80rpx rgba(255, 107, 53, 0.5);
+    }
+    
+    // 背景装饰
+    &::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 100%;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(255,255,255,0.08) 100%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    // 中心装饰
+    &::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      right: 40rpx;
+      width: 120rpx;
+      height: 120rpx;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, transparent 70%);
+      border-radius: 50%;
+      transform: translateY(-50%);
+      z-index: 1;
+      pointer-events: none;
+    }
+    
+    .recommend-title {
+      display: flex;
+      align-items: center;
+      gap: 16rpx;
+      font-size: 36rpx;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 20rpx;
+      position: relative;
+      z-index: 2;
+      padding: 20rpx 40rpx 0;
+      
+      text {
+        text-shadow: 0 2rpx 8rpx rgba(0, 0, 0, 0.2);
+      }
+    }
+    
+    .recommend-content {
+      position: relative;
+      z-index: 2;
+      padding: 0 40rpx 40rpx;
+      
+      .recommend-desc {
+        display: block;
+        font-size: 28rpx;
+        color: rgba(255, 255, 255, 0.9);
+        line-height: 1.6;
+        margin-bottom: 32rpx;
+        text-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.15);
+      }
+      
+      .recommend-btn {
+        background: rgba(255, 255, 255, 0.2);
+        border: 2rpx solid rgba(255, 255, 255, 0.3);
+        border-radius: 50rpx;
+        padding: 20rpx 32rpx;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        backdrop-filter: blur(10rpx);
+        transition: all 0.3s ease;
+        
+        &:active {
+          background: rgba(255, 255, 255, 0.3);
+          border-color: rgba(255, 255, 255, 0.5);
+          transform: scale(0.98);
+        }
+        
+        .btn-text {
+          font-size: 30rpx;
+          font-weight: 500;
+          color: #fff;
+          text-shadow: 0 1rpx 4rpx rgba(0, 0, 0, 0.2);
+        }
       }
     }
   }

@@ -17,7 +17,7 @@ Component({
       {
         icon: 'user',
         value: 'my',
-        label: '我的',
+        label: '拓展',
       },
     ],
   },

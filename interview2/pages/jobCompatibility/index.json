@@ -1,0 +1,12 @@
+{
+  "navigationBarTitleText": "工作适配度测评",
+  "backgroundColor": "#f8faff",
+  "navigationBarBackgroundColor": "#667eea",
+  "navigationBarTextStyle": "white",
+  "enablePullDownRefresh": false,
+  "backgroundTextStyle": "light",
+  "usingComponents": {
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "t-icon": "tdesign-miniprogram/icon/icon"
+  }
+}

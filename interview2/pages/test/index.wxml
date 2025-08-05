@@ -1,0 +1,36 @@
+<!--pages/test/index.wxml-->
+<view class="container">
+  <view class="title">API连接测试</view>
+  
+  <button 
+    class="test-btn" 
+    bind:tap="testConnection" 
+    loading="{{loading}}"
+    disabled="{{loading}}"
+  >
+    测试基本连接
+  </button>
+  
+  <button 
+    class="test-btn" 
+    bind:tap="testAPI" 
+    loading="{{loading}}"
+    disabled="{{loading}}"
+  >
+    测试API接口
+  </button>
+  
+  <button 
+    class="test-btn" 
+    bind:tap="testAPIWithRequest" 
+    loading="{{loading}}"
+    disabled="{{loading}}"
+  >
+    测试request函数
+  </button>
+  
+  <view class="result-container">
+    <text class="result-title">测试结果:</text>
+    <view class="result-text">{{result}}</view>
+  </view>
+</view>

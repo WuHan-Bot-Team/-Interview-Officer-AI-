@@ -1,0 +1,40 @@
+<t-toast id="t-toast" />
+
+<view class="learning-recommend-page">
+  <nav title-text="学习推荐" />
+  
+  <view class="content">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="header-title">📚 精选学习资源</view>
+      <view class="header-desc">为你推荐优质的学习资源，助力职业发展</view>
+    </view>
+
+    <!-- 学习资源列表 -->
+    <view class="resource-list">
+      <view 
+        wx:for="{{resourceList}}" 
+        wx:key="id" 
+        class="resource-item"
+        bindtap="onResourceClick"
+        data-url="{{item.url}}"
+        data-title="{{item.title}}"
+      >
+        <view class="resource-icon">
+          <text class="icon">{{item.icon}}</text>
+        </view>
+        <view class="resource-info">
+          <view class="resource-title">{{item.title}}</view>
+          <view class="resource-desc">{{item.description}}</view>
+          <view class="resource-tag">{{item.tag}}</view>
+        </view>
+        <t-icon name="chevron-right" size="32rpx" color="#ccc" />
+      </view>
+    </view>
+
+    <!-- 底部提示 -->
+    <view class="footer-tip">
+      <text class="tip-text">💡 点击资源卡片即可跳转到对应学习页面</text>
+    </view>
+  </view>
+</view>

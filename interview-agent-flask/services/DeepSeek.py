@@ -30,31 +30,47 @@ class DeepseekAPI():
     def __init__(self):
         self.global_deepseek_client = OpenAI(
             api_key=API_KEY_DEEPSEEK,
-            base_url="https://api.deepseek.com",)
+            base_url="https://api.deepseek.com",
+            timeout=60.0  # 设置60秒超时
+        )
         print("[Deepseek] 初始化成功")
-    def safe_generate_content_deepseek2(self, prompt, max_retries=1):
+    def safe_generate_content_deepseek2(self, prompt, max_retries=3):
         class DeepseekResponse:
             def __init__(self, text):
                 self.text = text
 
         for attempt in range(1, max_retries + 1):
             try:
+                print(f"[Deepseek] 第 {attempt} 次尝试调用API...")
                 response = self.global_deepseek_client.chat.completions.create(
                     model="deepseek-chat",
                     messages=[{"role": "user", "content": prompt}],
-                    stream=False
+                    stream=False,
+                    max_tokens=2000,  # 限制输出长度，减少响应时间
+                    temperature=0.7   # 稍微降低创造性，提高稳定性
                 )
-                # print(json.loads(response.choices[0].message.content))
+                print(f"[Deepseek] API调用成功！")
                 print(response.choices[0].message.content)
                 return DeepseekResponse(response.choices[0].message.content)
 
             except Exception as e:
-                print(f"[Deepseek] 第 {attempt} 次调用出错: {e}")
+                error_msg = str(e)
+                print(f"[Deepseek] 第 {attempt} 次调用出错: {error_msg}")
+                
+                # 特殊处理连接错误
+                if "Connection" in error_msg or "10054" in error_msg:
+                    print(f"[Deepseek] 网络连接错误，等待 {attempt * 3} 秒后重试...")
+                    time.sleep(attempt * 3)  # 递增等待时间
+                elif "timeout" in error_msg.lower():
+                    print(f"[Deepseek] 请求超时，等待 {attempt * 2} 秒后重试...")
+                    time.sleep(attempt * 2)
+                else:
+                    print(f"[Deepseek] 其他错误，等待 5 秒后重试...")
+                    time.sleep(5)
+                
                 if attempt == max_retries:
                     print("[Deepseek] 已达最大重试次数，抛出异常。")
                     raise
-                print("[Deepseek] 等待 5 秒后重试...")
-                time.sleep(5)
 
         return ""
 

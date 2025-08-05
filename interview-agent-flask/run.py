@@ -3,6 +3,7 @@ from flask import Flask
 from flask_cors import CORS
 from app.practice_route import practice_bp
 from app.interview_route import interview_bp
+from app.job_compatibility_route import job_compatibility_bp
 import os
 import glob
 import socket
@@ -30,8 +31,23 @@ def create_app():
     app = Flask(__name__)
     CORS(app)
     
+    # 添加根路径处理器
+    @app.route('/')
+    def index():
+        return {
+            'status': 'success',
+            'message': '面试官AI系统运行正常',
+            'version': '1.0.0',
+            'endpoints': {
+                'practice': '/practice/*',
+                'interview': '/interview/*',
+                'job_compatibility': '/job_compatibility/*'
+            }
+        }
+    
     app.register_blueprint(practice_bp, url_prefix='/practice')
     app.register_blueprint(interview_bp, url_prefix='/interview')
+    app.register_blueprint(job_compatibility_bp, url_prefix='/job_compatibility')
     
     # 只清理人脸图片，不要清理stream文件（避免中断正在播放的视频）
     # delete_files_in_folder('resource/stream')  # ❌ 注释掉避免删除视频文件
@@ -46,7 +62,7 @@ app = create_app()
 
 if __name__ == '__main__':
     local_ip = get_local_ip()
-    port = 5000
+    port = 5001  # 改用5001端口避免冲突
     
     print("\n" + "="*70)
     print("🚀 面试官AI系统启动成功！")
@@ -59,13 +75,14 @@ if __name__ == '__main__':
     print("   或者直接使用局域网地址进行访问")
     print("="*70)
     print("⚠️  重要提醒:")
-    print("   1. 确保防火墙允许端口5000的访问")
+    print("   1. 确保防火墙允许端口5001的访问")
     print("   2. 同一局域网下的设备都可通过局域网地址访问")
     print("   3. 如果小程序无法连接，请检查网络配置")
     print("="*70)
     print("🎯 当前使用的IP地址配置:")
     print(f"   数字人视频流: http://{local_ip}:{port}/interview/video/playlist.m3u8")
     print(f"   接口地址示例: http://{local_ip}:{port}/interview/init")
+    print(f"   工作适配度API: http://{local_ip}:{port}/job_compatibility/questions")
     print("="*70 + "\n")
     
     app.run(host='0.0.0.0', port=port, debug=True)

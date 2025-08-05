@@ -42,7 +42,7 @@ App({
     unreadNum: 0, // 未读消息数量
     socket: null, // SocketTask 对象
    //url : "http://127.0.0.1:5000/",
-   url: "", // 使用空字符串，让mock系统接管请求
+   url : "http://127.0.0.1:5000/", // 使用本地地址
   },
   /**
    * 将 ArrayBuffer 转换为十六进制字符串

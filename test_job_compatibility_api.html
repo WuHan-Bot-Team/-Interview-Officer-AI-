@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>工作适配度API测试</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .container {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        .api-test {
+            margin: 20px 0;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+        .response {
+            background: #f8f9fa;
+            padding: 10px;
+            border-radius: 4px;
+            margin-top: 10px;
+            white-space: pre-wrap;
+            font-family: monospace;
+            font-size: 12px;
+        }
+        button {
+            background: #007bff;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background: #0056b3;
+        }
+        .success {
+            border-left: 4px solid #28a745;
+        }
+        .error {
+            border-left: 4px solid #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🎯 工作适配度功能测试</h1>
+        
+        <div class="api-test">
+            <h3>1. 获取问卷题目</h3>
+            <button onclick="testGetQuestions()">测试 GET /job_compatibility/questions</button>
+            <div id="questions-response" class="response"></div>
+        </div>
+        
+        <div class="api-test">
+            <h3>2. 提交问卷分析</h3>
+            <button onclick="testAnalyze()">测试 POST /job_compatibility/analyze</button>
+            <div id="analyze-response" class="response"></div>
+        </div>
+        
+        <div class="api-test">
+            <h3>3. 获取历史记录</h3>
+            <button onclick="testHistory()">测试 GET /job_compatibility/history</button>
+            <div id="history-response" class="response"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_BASE = 'http://127.0.0.1:5001';
+        
+        async function testGetQuestions() {
+            const responseDiv = document.getElementById('questions-response');
+            responseDiv.textContent = '加载中...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/job_compatibility/questions`);
+                const data = await response.json();
+                
+                responseDiv.textContent = JSON.stringify(data, null, 2);
+                responseDiv.parentElement.className = 'api-test success';
+            } catch (error) {
+                responseDiv.textContent = `错误: ${error.message}`;
+                responseDiv.parentElement.className = 'api-test error';
+            }
+        }
+        
+        async function testAnalyze() {
+            const responseDiv = document.getElementById('analyze-response');
+            responseDiv.textContent = '分析中...';
+            
+            const testData = {
+                answers: {
+                    salary: "8k-12k",
+                    workMode: "混合工作",
+                    interests: ["技术研发", "数据分析"],
+                    companySize: "中小企业(50-500人)",
+                    overtime: "偶尔可以",
+                    careerPriority: "技能提升",
+                    location: "二线城市",
+                    education: "本科"
+                },
+                jobInfo: {
+                    description: "前端开发工程师"
+                }
+            };
+            
+            try {
+                const response = await fetch(`${API_BASE}/job_compatibility/analyze`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(testData)
+                });
+                
+                const data = await response.json();
+                responseDiv.textContent = JSON.stringify(data, null, 2);
+                responseDiv.parentElement.className = 'api-test success';
+            } catch (error) {
+                responseDiv.textContent = `错误: ${error.message}`;
+                responseDiv.parentElement.className = 'api-test error';
+            }
+        }
+        
+        async function testHistory() {
+            const responseDiv = document.getElementById('history-response');
+            responseDiv.textContent = '加载中...';
+            
+            try {
+                const response = await fetch(`${API_BASE}/job_compatibility/history`);
+                const data = await response.json();
+                
+                responseDiv.textContent = JSON.stringify(data, null, 2);
+                responseDiv.parentElement.className = 'api-test success';
+            } catch (error) {
+                responseDiv.textContent = `错误: ${error.message}`;
+                responseDiv.parentElement.className = 'api-test error';
+            }
+        }
+    </script>
+</body>
+</html>

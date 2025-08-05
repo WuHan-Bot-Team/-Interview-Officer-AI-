@@ -1,0 +1,387 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.project-packaging-page {
+  min-height: 100vh;
+  background-color: #f7f9fc;
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+
+  .content {
+    padding: 32rpx;
+  }
+
+  // 页面头部
+  .page-header {
+    text-align: center;
+    margin-bottom: 48rpx;
+    animation: fadeIn 0.6s ease-out forwards;
+
+    .header-title {
+      font-size: 48rpx;
+      font-weight: 700;
+      color: #0052d9;
+      margin-bottom: 16rpx;
+    }
+
+    .header-desc {
+      font-size: 28rpx;
+      color: #666;
+      line-height: 1.5;
+    }
+  }
+
+  // 上传区域
+  .upload-section {
+    margin-bottom: 32rpx;
+
+    .upload-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 24rpx;
+      padding: 48rpx 32rpx;
+      text-align: center;
+      box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+      border: 2rpx dashed #0052d9;
+      position: relative;
+      animation: fadeIn 0.6s ease-out 0.1s forwards;
+      opacity: 0;
+
+      .upload-icon {
+        font-size: 80rpx;
+        margin-bottom: 16rpx;
+      }
+
+      .upload-title {
+        font-size: 32rpx;
+        font-weight: 600;
+        color: #333;
+        margin-bottom: 8rpx;
+      }
+
+      .upload-desc {
+        font-size: 26rpx;
+        color: #666;
+        margin-bottom: 32rpx;
+        line-height: 1.4;
+      }
+
+      .upload-btn {
+        background: #0052d9;
+        color: #fff;
+        border: none;
+        border-radius: 40rpx;
+        padding: 24rpx 48rpx;
+        font-size: 28rpx;
+        font-weight: 500;
+        transition: all 0.3s ease;
+
+        &:active {
+          background: #0041c4;
+          transform: translateY(2rpx);
+        }
+
+        &::after {
+          border: none;
+        }
+      }
+    }
+
+    .selected-file {
+      margin-top: 24rpx;
+      animation: fadeIn 0.3s ease-out forwards;
+
+      .file-info {
+        background-color: rgba(255, 255, 255, 0.9);
+        border-radius: 16rpx;
+        padding: 24rpx;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+
+        .file-icon {
+          font-size: 40rpx;
+          margin-right: 16rpx;
+        }
+
+        .file-details {
+          flex: 1;
+
+          .file-name {
+            font-size: 28rpx;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4rpx;
+          }
+
+          .file-size {
+            font-size: 24rpx;
+            color: #666;
+          }
+        }
+
+        .remove-btn {
+          width: 48rpx;
+          height: 48rpx;
+          background: #f5f5f5;
+          border: none;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 24rpx;
+          color: #666;
+
+          &:active {
+            background: #e5e5e5;
+          }
+
+          &::after {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  // 项目信息区域
+  .project-info-section {
+    margin-bottom: 32rpx;
+    animation: fadeIn 0.6s ease-out 0.2s forwards;
+    opacity: 0;
+
+    .section-title {
+      font-size: 32rpx;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 24rpx;
+      padding-left: 24rpx;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6rpx;
+        height: 32rpx;
+        background: #0052d9;
+        border-radius: 3rpx;
+      }
+    }
+
+    .form-group {
+      margin-bottom: 24rpx;
+      position: relative;
+
+      .form-input, .form-textarea {
+        width: 100%;
+        background: rgba(255, 255, 255, 0.9);
+        border: 2rpx solid #e5e5e5;
+        border-radius: 16rpx;
+        padding: 24rpx;
+        font-size: 28rpx;
+        color: #333;
+        box-sizing: border-box;
+        transition: all 0.3s ease;
+
+        &:focus {
+          border-color: #0052d9;
+          background: #fff;
+        }
+      }
+
+      .form-textarea {
+        min-height: 120rpx;
+        resize: none;
+      }
+
+      .char-count {
+        position: absolute;
+        right: 16rpx;
+        bottom: 8rpx;
+        font-size: 22rpx;
+        color: #999;
+      }
+    }
+  }
+
+  // 生成按钮区域
+  .generate-section {
+    margin-bottom: 32rpx;
+    animation: fadeIn 0.6s ease-out 0.3s forwards;
+    opacity: 0;
+
+    .generate-btn {
+      width: 100%;
+      height: 96rpx;
+      background: #0052d9;
+      color: #fff;
+      border: none;
+      border-radius: 48rpx;
+      font-size: 32rpx;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 8rpx 24rpx rgba(0, 82, 217, 0.3);
+
+      &:not(:disabled):active {
+        background: #0041c4;
+        transform: translateY(2rpx);
+      }
+
+      &:disabled {
+        background: #ccc;
+        box-shadow: none;
+      }
+
+      &.loading {
+        background: #0052d9;
+      }
+
+      &::after {
+        border: none;
+      }
+    }
+  }
+
+  // 结果展示区域
+  .result-section {
+    margin-bottom: 32rpx;
+    animation: fadeIn 0.6s ease-out forwards;
+
+    .section-title {
+      font-size: 32rpx;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 24rpx;
+      padding-left: 24rpx;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6rpx;
+        height: 32rpx;
+        background: #10B981;
+        border-radius: 3rpx;
+      }
+    }
+
+    .result-card {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 24rpx;
+      padding: 32rpx;
+      box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+      border-left: 6rpx solid #10B981;
+
+      .result-content {
+        font-size: 28rpx;
+        line-height: 1.6;
+        color: #333;
+        margin-bottom: 32rpx;
+        white-space: pre-wrap;
+      }
+
+      .result-actions {
+        display: flex;
+        gap: 16rpx;
+
+        .action-btn {
+          flex: 1;
+          height: 72rpx;
+          border: none;
+          border-radius: 36rpx;
+          font-size: 26rpx;
+          font-weight: 500;
+          transition: all 0.3s ease;
+
+          &:not(.secondary) {
+            background: #0052d9;
+            color: #fff;
+
+            &:active {
+              background: #0041c4;
+            }
+          }
+
+          &.secondary {
+            background: #f5f5f5;
+            color: #666;
+
+            &:active {
+              background: #e5e5e5;
+            }
+          }
+
+          &::after {
+            border: none;
+          }
+        }
+      }
+    }
+  }
+
+  // 使用说明区域
+  .tips-section {
+    animation: fadeIn 0.6s ease-out 0.4s forwards;
+    opacity: 0;
+
+    .section-title {
+      font-size: 32rpx;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 24rpx;
+      padding-left: 24rpx;
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        left: 0;
+        top: 50%;
+        transform: translateY(-50%);
+        width: 6rpx;
+        height: 32rpx;
+        background: #F59E0B;
+        border-radius: 3rpx;
+      }
+    }
+
+    .tips-list {
+      background-color: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border-radius: 16rpx;
+      padding: 24rpx;
+      box-shadow: 0 4rpx 16rpx rgba(0, 0, 0, 0.06);
+
+      .tip-item {
+        font-size: 26rpx;
+        color: #666;
+        line-height: 1.6;
+        margin-bottom: 12rpx;
+
+        &:last-child {
+          margin-bottom: 0;
+        }
+      }
+    }
+  }
+}

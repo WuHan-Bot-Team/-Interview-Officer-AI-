@@ -1,0 +1,96 @@
+<t-toast id="t-toast" />
+
+<view class="offer-compare-page">
+  <nav title-text="Offer智能对比" />
+  
+  <view class="page-content">
+    <!-- 功能介绍 -->
+    <view class="intro-section">
+      <view class="intro-title">⚖️ AI帮你选择最佳Offer</view>
+      <view class="intro-desc">输入两个工作机会的详细信息，AI将从薪资、发展前景、工作环境等多个维度进行深度分析对比</view>
+    </view>
+
+    <!-- Offer A 输入区域 -->
+    <view class="offer-section">
+      <view class="section-header">
+        <view class="section-title">Offer A</view>
+        <view class="section-subtitle">请详细描述第一个工作机会</view>
+      </view>
+      <view class="input-group">
+        <t-textarea
+          placeholder="请输入Offer A的详细信息：公司名称、职位、薪资待遇、工作地点、发展机会、团队规模、工作内容、福利待遇等..."
+          maxlength="1000"
+          indicator
+          value="{{offerA}}"
+          bindchange="onOfferAInput"
+          t-class="offer-textarea"
+        />
+      </view>
+    </view>
+
+    <!-- Offer B 输入区域 -->
+    <view class="offer-section">
+      <view class="section-header">
+        <view class="section-title">Offer B</view>
+        <view class="section-subtitle">请详细描述第二个工作机会</view>
+      </view>
+      <view class="input-group">
+        <t-textarea
+          placeholder="请输入Offer B的详细信息：公司名称、职位、薪资待遇、工作地点、发展机会、团队规模、工作内容、福利待遇等..."
+          maxlength="1000"
+          indicator
+          value="{{offerB}}"
+          bindchange="onOfferBInput"
+          t-class="offer-textarea"
+        />
+      </view>
+    </view>
+
+    <!-- 个人优先级 -->
+    <view class="priority-section">
+      <view class="section-header">
+        <view class="section-title">个人关注点</view>
+        <view class="section-subtitle">告诉AI你最关心什么（可选）</view>
+      </view>
+      <view class="input-group">
+        <t-textarea
+          placeholder="例如：我更看重薪资待遇、工作生活平衡、发展前景、团队氛围、学习机会等..."
+          maxlength="200"
+          value="{{priority}}"
+          bindchange="onPriorityInput"
+          t-class="priority-textarea"
+        />
+      </view>
+    </view>
+
+    <!-- 对比按钮 -->
+    <view class="action-section">
+      <t-button
+        size="large"
+        theme="primary"
+        loading="{{loading}}"
+        disabled="{{!offerA || !offerB}}"
+        bindtap="onStartCompare"
+        t-class="compare-btn"
+      >
+        <text wx:if="{{!loading}}">🔍 开始AI对比分析</text>
+        <text wx:else>AI正在分析中...</text>
+      </t-button>
+    </view>
+
+    <!-- 对比结果 -->
+    <view class="result-section" wx:if="{{compareResult}}">
+      <view class="result-header">
+        <view class="result-title">📊 AI分析结果</view>
+        <view class="result-actions">
+          <t-button size="small" variant="outline" bindtap="onCopyResult">复制结果</t-button>
+          <t-button size="small" variant="outline" bindtap="onRegenerateResult">重新分析</t-button>
+        </view>
+      </view>
+      
+      <view class="result-content">
+        <text class="result-text">{{compareResult}}</text>
+      </view>
+    </view>
+  </view>
+</view>

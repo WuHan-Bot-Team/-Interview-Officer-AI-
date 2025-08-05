@@ -1,0 +1,187 @@
+<t-toast id="t-toast" />
+
+<view class="job-compatibility-container">
+  <!-- 页面头部 -->
+  <view class="header">
+    <view class="header-content">
+      <view class="title">
+        <t-icon name="chart" size="56rpx" color="#fff" />
+        <text>工作适配度测评</text>
+      </view>
+      <view class="subtitle">通过问卷了解您的期望，AI为您分析职业适配度</view>
+    </view>
+    <view class="header-icon">📊</view>
+  </view>
+
+  <!-- 测评说明 -->
+  <view class="intro-card">
+    <view class="intro-title">测评说明</view>
+    <view class="intro-desc">
+      我们将从工资期望、兴趣爱好、工作环境偏好、职业发展目标等维度，
+      结合AI智能分析，为您匹配最适合的职业方向和岗位。
+    </view>
+    <view class="features">
+      <view class="feature-item">
+        <view class="feature-icon">💰</view>
+        <view class="feature-text">薪资期望分析</view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">❤️</view>
+        <view class="feature-text">兴趣匹配度</view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">🌟</view>
+        <view class="feature-text">发展前景评估</view>
+      </view>
+      <view class="feature-item">
+        <view class="feature-icon">🏢</view>
+        <view class="feature-text">工作环境适配</view>
+      </view>
+    </view>
+  </view>
+
+  <!-- 问卷区域 -->
+  <view class="questionnaire" wx:if="{{showQuestionnaire}}">
+    <view class="progress-bar">
+      <view class="progress-fill" style="width: {{(currentQuestion + 1) / questions.length * 100}}%"></view>
+    </view>
+    
+    <view class="question-card">
+      <view class="question-number">问题 {{currentQuestion + 1}}/{{questions.length}}</view>
+      <view class="question-title">{{questions[currentQuestion].title}}</view>
+      
+      <!-- 单选题 -->
+      <view wx:if="{{questions[currentQuestion].type === 'radio'}}" class="options">
+        <view 
+          wx:for="{{questions[currentQuestion].options}}" 
+          wx:key="value"
+          class="option-item {{answers[currentQuestion] === item.value ? 'selected' : ''}}"
+          bindtap="selectOption"
+          data-value="{{item.value}}"
+        >
+          <view class="option-radio">
+            <view wx:if="{{answers[currentQuestion] === item.value}}" class="radio-checked"></view>
+          </view>
+          <view class="option-text">{{item.label}}</view>
+        </view>
+      </view>
+      
+      <!-- 滑块题 -->
+      <view wx:if="{{questions[currentQuestion].type === 'slider'}}" class="slider-container">
+        <view class="slider-labels">
+          <view class="slider-label">{{questions[currentQuestion].min_label}}</view>
+          <view class="slider-label">{{questions[currentQuestion].max_label}}</view>
+        </view>
+        <slider 
+          class="salary-slider"
+          min="{{questions[currentQuestion].min}}"
+          max="{{questions[currentQuestion].max}}"
+          value="{{answers[currentQuestion] || questions[currentQuestion].default}}"
+          step="{{questions[currentQuestion].step || 1}}"
+          bindchange="onSliderChange"
+          activeColor="#667eea"
+          backgroundColor="#e8f0fe"
+        />
+        <view class="slider-value">{{answers[currentQuestion] || questions[currentQuestion].default}}{{questions[currentQuestion].unit}}</view>
+      </view>
+      
+      <!-- 多选题 -->
+      <view wx:if="{{questions[currentQuestion].type === 'checkbox'}}" class="checkbox-options">
+        <view 
+          wx:for="{{questions[currentQuestion].options}}" 
+          wx:key="value"
+          class="checkbox-item {{answers[currentQuestion] && answers[currentQuestion].includes(item.value) ? 'selected' : ''}}"
+          bindtap="toggleCheckbox"
+          data-value="{{item.value}}"
+        >
+          <view class="checkbox">
+            <view wx:if="{{answers[currentQuestion] && answers[currentQuestion].includes(item.value)}}" class="checkbox-checked">✓</view>
+          </view>
+          <view class="checkbox-text">{{item.label}}</view>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 导航按钮 -->
+    <view class="nav-buttons">
+      <button 
+        wx:if="{{currentQuestion > 0}}"
+        class="nav-btn prev-btn" 
+        bindtap="prevQuestion"
+      >
+        上一题
+      </button>
+      <button 
+        wx:if="{{currentQuestion < questions.length - 1}}"
+        class="nav-btn next-btn {{canProceed ? '' : 'disabled'}}" 
+        bindtap="nextQuestion"
+        disabled="{{!canProceed}}"
+      >
+        下一题
+      </button>
+      <button 
+        wx:if="{{currentQuestion === questions.length - 1}}"
+        class="nav-btn submit-btn {{canProceed ? '' : 'disabled'}}" 
+        bindtap="submitQuestionnaire"
+        disabled="{{!canProceed}}"
+        loading="{{submitting}}"
+      >
+        生成适配度报告
+      </button>
+    </view>
+  </view>
+
+  <!-- 开始测评按钮 -->
+  <view wx:if="{{!showQuestionnaire && !showResults}}" class="start-section">
+    <button class="start-btn" bindtap="startQuestionnaire">
+      <view class="btn-content">
+        <view class="btn-icon">🚀</view>
+        <view class="btn-text">开始测评</view>
+      </view>
+    </button>
+    <view class="time-tip">预计用时：3-5分钟</view>
+  </view>
+
+  <!-- 结果展示 -->
+  <view wx:if="{{showResults}}" class="results-section">
+    <view class="results-header">
+      <view class="results-title">您的适配度报告</view>
+      <view class="overall-score">
+        <view class="score-number">{{results.overall_score}}</view>
+        <view class="score-text">总体适配度</view>
+      </view>
+    </view>
+    
+    <view class="score-breakdown">
+      <view 
+        wx:for="{{results.dimensions}}" 
+        wx:key="name"
+        class="dimension-item"
+      >
+        <view class="dimension-info">
+          <view class="dimension-name">{{item.name}}</view>
+          <view class="dimension-score">{{item.score}}%</view>
+        </view>
+        <view class="dimension-bar">
+          <view class="dimension-fill" style="width: {{item.score}}%"></view>
+        </view>
+      </view>
+    </view>
+    
+    <view class="recommendations">
+      <view class="recommendations-title">AI推荐建议</view>
+      <view 
+        wx:for="{{results.recommendations}}" 
+        wx:key="*this"
+        class="recommendation-item"
+      >
+        {{item}}
+      </view>
+    </view>
+    
+    <view class="action-buttons">
+      <button class="action-btn secondary" bindtap="restartTest">重新测评</button>
+      <button class="action-btn primary" bindtap="shareResults">分享结果</button>
+    </view>
+  </view>
+</view>

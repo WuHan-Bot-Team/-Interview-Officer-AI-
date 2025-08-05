@@ -4,64 +4,70 @@
   <!-- 顶部背景区域 -->
   <view class="header-bg"></view>
   <image class="nav-bg" src="/static/bg_navbar.png" />
-  <nav title-text="我的" />
+  <nav title-text="拓展功能" />
   
   <view class="my-content">
-    <!-- 个人信息卡片 -->
-    <view class="my-info">
-      <t-cell-group>
-        <t-cell wx:if="{{isLoad}}" bordered="{{false}}">
-          <t-avatar image="{{personalInfo.image}}" slot="left-icon" size="large" />
-          <view class="my-info__person" slot="description">
-            <view class="name">{{personalInfo.name}}</view>
-            <view class="tags">
-              <t-tag class="tag" variant="light" icon="discount">{{personalInfo.star}}</t-tag>
-              <t-tag class="tag" variant="light" icon="location">{{personalInfo.city}}</t-tag>
-            </view>
-          </view>
-          <t-icon slot="right-icon" name="edit" size="40rpx" color="#0052d9" bindtap="onNavigateTo" />
-        </t-cell>
-        <t-cell
-          wx:if="{{!isLoad}}"
-          title="请先登录/注册"
-          bordered="{{false}}"
-          t-class-title="cell-class-title"
-          t-class-center="cell-class-center"
-          bindtap="onLogin"
-        >
-          <t-avatar slot="left-icon" icon="user" size="128rpx" />
-        </t-cell>
-      </t-cell-group>
-      <t-divider t-class="divider-class" />
-      <t-grid t-class="grid-class">
-        <t-grid-item
-          wx:for="{{gridList}}"
-          wx:for-item="gridItem"
-          wx:key="type"
-          text="{{gridItem.name}}"
-          icon="{{gridItem.icon}}"
-          class="grid-item {{gridItem.type === 'all' ? 'split-line' : ''}}"
-          data-data="{{gridItem}}"
-          bindclick="onEleClick"
-        />
-      </t-grid>
+    <!-- 刷题推荐区域 -->
+    <view class="question-recommend">
+      <view class="recommend-title">AI刷题推荐</view>
+      <view class="recommend-content">
+        <text class="recommend-desc">根据你的专业和目标岗位，智能推荐面试题目</text>
+        <button class="recommend-btn" bindtap="onQuestionRecommend">
+          <text class="btn-text">获取推荐题目</text>
+          <t-icon name="chevron-right" size="32rpx" color="#fff" />
+        </button>
+      </view>
     </view>
 
-    <!-- 推荐服务区域 -->
-    <view class="my-service">
-      <view class="my-service--tips">推荐服务</view>
-      <t-grid column="{{4}}" class="my-service__list">
-        <t-grid-item
-          class="my-service__list-item"
-          wx:for="{{service}}"
-          wx:key="item"
-          text="{{item.name}}"
-          image="{{item.image}}"
-          url="{{item.url}}"
-          data-data="{{item}}"
-          bindclick="onEleClick"
-        />
-      </t-grid>
+    <!-- 学习推荐区域 -->
+    <view class="learning-recommend">
+      <view class="recommend-title">学习推荐</view>
+      <view class="recommend-content">
+        <text class="recommend-desc">精选优质学习资源，助你快速提升技能</text>
+        <button class="recommend-btn" bindtap="onLearningRecommend">
+          <text class="btn-text">查看学习资源</text>
+          <t-icon name="chevron-right" size="32rpx" color="#333" />
+        </button>
+      </view>
+    </view>
+
+    <!-- 项目包装区域 -->
+    <view class="project-packaging">
+      <view class="recommend-title">项目商业化包装</view>
+      <view class="recommend-content">
+        <text class="recommend-desc">将学校项目包装成职场竞争力，提升简历含金量</text>
+        <button class="recommend-btn" bindtap="onProjectPackaging">
+          <text class="btn-text">项目包装指导</text>
+          <t-icon name="chevron-right" size="32rpx" color="#fff" />
+        </button>
+      </view>
+    </view>
+
+    <!-- Offer对比区域 -->
+    <view class="offer-compare">
+      <view class="recommend-title">Offer智能对比</view>
+      <view class="recommend-content">
+        <text class="recommend-desc">AI分析两个offer的优劣势，帮你做出最佳选择</text>
+        <button class="recommend-btn" bindtap="onOfferCompare">
+          <text class="btn-text">开始对比分析</text>
+          <t-icon name="chevron-right" size="32rpx" color="#fff" />
+        </button>
+      </view>
+    </view>
+
+    <!-- 工作适配度区域 -->
+    <view class="job-compatibility">
+      <view class="recommend-title">
+        <t-icon name="chart" size="48rpx" color="#FF6B35" />
+        <text>工作适配度测评</text>
+      </view>
+      <view class="recommend-content">
+        <text class="recommend-desc">通过问卷了解你的工资期望、兴趣爱好等，AI智能分析职业适配度</text>
+        <button class="recommend-btn" bindtap="onJobCompatibility">
+          <text class="btn-text">开始适配度测评</text>
+          <t-icon name="chevron-right" size="32rpx" color="#fff" />
+        </button>
+      </view>
     </view>
 
     <!-- 设置列表 -->
@@ -82,7 +88,7 @@
     
     <!-- 底部版权区域 -->
     <view class="footer">
-      TDesign © 2023 All Rights Reserved
+      AI面试助手 © 2024 All Rights Reserved
     </view>
   </view>
 </view>

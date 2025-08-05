@@ -1,0 +1,9 @@
+{
+  "navigationBarTitleText": "Offer智能对比",
+  "usingComponents": {
+    "t-toast": "tdesign-miniprogram/toast/toast",
+    "t-textarea": "tdesign-miniprogram/textarea/textarea",
+    "t-button": "tdesign-miniprogram/button/button",
+    "nav": "/components/nav/index"
+  }
+}

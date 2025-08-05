@@ -1,5 +1,5 @@
 <t-tab-bar value="{{ value }}" theme="tag" split="{{ false }}" bind:change="handleChange" class="ios-tab-bar">
   <t-tab-bar-item icon="home" value="home2" ariaLabel="首页">首页</t-tab-bar-item>
   <t-tab-bar-item icon="dashboard" value="practice" ariaLabel="练习">练习</t-tab-bar-item>
-  <t-tab-bar-item icon="user" value="my" ariaLabel="我的">我的</t-tab-bar-item>
+  <t-tab-bar-item icon="user" value="my" ariaLabel="拓展">拓展</t-tab-bar-item>
 </t-tab-bar>

@@ -1,0 +1,155 @@
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20rpx);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.offer-compare-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #f7f9fc 0%, #e3f2fd 100%);
+  font-family: -apple-system, BlinkMacSystemFont, 'SF Pro Display', 'Helvetica Neue', sans-serif;
+}
+
+.page-content {
+  padding: 32rpx;
+  padding-bottom: 80rpx;
+}
+
+/* 功能介绍区域 */
+.intro-section {
+  background: linear-gradient(135deg, #0052d9 0%, #0062F5 100%);
+  border-radius: 24rpx;
+  padding: 40rpx 32rpx;
+  margin-bottom: 32rpx;
+  color: #fff;
+  animation: fadeIn 0.6s ease-out;
+}
+
+.intro-title {
+  font-size: 36rpx;
+  font-weight: bold;
+  margin-bottom: 16rpx;
+  text-align: center;
+}
+
+.intro-desc {
+  font-size: 26rpx;
+  line-height: 1.6;
+  opacity: 0.9;
+  text-align: center;
+}
+
+/* Offer输入区域 */
+.offer-section {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24rpx;
+  margin-bottom: 32rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-out 0.1s forwards;
+  opacity: 0;
+}
+
+.section-header {
+  padding: 32rpx 32rpx 16rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.section-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #0052d9;
+  margin-bottom: 8rpx;
+}
+
+.section-subtitle {
+  font-size: 26rpx;
+  color: #666;
+}
+
+.input-group {
+  padding: 24rpx 32rpx 32rpx;
+}
+
+/* 个人优先级区域 */
+.priority-section {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24rpx;
+  margin-bottom: 32rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-out 0.2s forwards;
+  opacity: 0;
+}
+
+/* 操作按钮区域 */
+.action-section {
+  margin-bottom: 32rpx;
+  animation: fadeIn 0.6s ease-out 0.3s forwards;
+  opacity: 0;
+}
+
+/* 结果展示区域 */
+.result-section {
+  background-color: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(10px);
+  border-radius: 24rpx;
+  overflow: hidden;
+  box-shadow: 0 8rpx 32rpx rgba(0, 0, 0, 0.08);
+  animation: fadeIn 0.6s ease-out;
+}
+
+.result-header {
+  padding: 32rpx;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.result-title {
+  font-size: 32rpx;
+  font-weight: 600;
+  color: #0052d9;
+}
+
+.result-actions {
+  display: flex;
+  gap: 16rpx;
+}
+
+.result-content {
+  padding: 32rpx;
+}
+
+.result-text {
+  font-size: 28rpx;
+  line-height: 1.8;
+  color: #333;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+/* 自定义组件样式 */
+.offer-textarea {
+  min-height: 300rpx !important;
+}
+
+.priority-textarea {
+  min-height: 160rpx !important;
+}
+
+.compare-btn {
+  width: 100% !important;
+  height: 88rpx !important;
+  border-radius: 44rpx !important;
+  font-size: 32rpx !important;
+  font-weight: 600 !important;
+}

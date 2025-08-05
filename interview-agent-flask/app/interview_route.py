@@ -12,6 +12,7 @@ from services.DeepSeek import DeepseekAPI
 from services.SparkPractice import AIPracticeAPI
 from avatar.AvatarWebSocket import avatarWebsocket
 from services.FaceDetect import facial_detect, add_arrays
+from config.avatar_config import get_avatar_config, switch_to_backup
 import threading
 
 interview_bp = Blueprint('interview', __name__)
@@ -300,12 +301,18 @@ def init_shuziren():
                 print("❌ 流转换重启失败")
         
         print("🚀 正在初始化数字人...")
-        url = 'wss://avatar.cn-huadong-1.xf-yun.com/v1/interact'
-        appId = 'a9730a45'
-        appKey = 'fe16118b2de28ee8fff8046b015e3358'
-        appSecret = 'NmJkYjU3OTI1NDRlNDViOWY1NjYyYzMx'
-        anchorId = 'cnr5dg8n2000000003'
-        vcn = 'x4_xiaozhong'
+        
+        # 从配置文件获取数字人API配置
+        config = get_avatar_config()
+        url = config["url"]
+        appId = config["appId"]
+        appKey = config["appKey"]
+        appSecret = config["appSecret"]
+        anchorId = config["anchorId"]
+        vcn = config["vcn"]
+        
+        print(f"📡 使用数字人API: {url}")
+        print(f"🎭 数字人ID: {anchorId}, 音色: {vcn}")
         
         print("📡 正在获取认证URL...")
         authUrl = AipaasAuth.assemble_auth_url(url, 'GET', appKey, appSecret)
@@ -323,7 +330,7 @@ def init_shuziren():
         
         # 等待流URL，增加超时机制和进度提示
         timeout_count = 0
-        max_timeout = 30
+        max_timeout = config.get("timeout", 30)  # 使用配置的超时时间
         
         while not wsclient.streamUrl and timeout_count < max_timeout:
             time.sleep(1)
@@ -350,7 +357,8 @@ def init_shuziren():
         if process:
             # 等待HLS文件生成
             print("⏳ 等待HLS文件生成...")
-            if wait_for_hls_file(max_wait=20):  # 增加等待时间到20秒
+            hls_wait_time = config.get("hls_wait_time", 20)  # 使用配置的等待时间
+            if wait_for_hls_file(max_wait=hls_wait_time):
                 return jsonify({
                     'content': "true", 
                     'status': 'success',
@@ -766,6 +774,68 @@ def delete_files_in_folder(folder_path):
     for f in files:
         if os.path.isfile(f):
             os.remove(f)
+
+@interview_bp.route('/switch_avatar_api', methods=['POST'])
+def switch_avatar_api():
+    """切换数字人API配置"""
+    global wsclient
+    
+    try:
+        # 先关闭现有连接
+        if wsclient is not None:
+            print("🔄 关闭当前数字人连接...")
+            wsclient.close()
+            wsclient = None
+        
+        # 停止FFmpeg进程
+        stop_ffmpeg_process()
+        
+        # 切换到备用配置
+        new_config = switch_to_backup()
+        
+        print(f"✅ 已切换到新的数字人API: {new_config['url']}")
+        print(f"🎭 新数字人ID: {new_config['anchorId']}, 音色: {new_config['vcn']}")
+        
+        return jsonify({
+            'content': 'true',
+            'status': 'api_switched',
+            'message': '数字人API已切换，请重新初始化数字人',
+            'new_config': {
+                'url': new_config['url'],
+                'anchorId': new_config['anchorId'],
+                'vcn': new_config['vcn']
+            }
+        })
+        
+    except Exception as e:
+        return jsonify({
+            'error': f'切换API时出错: {str(e)}',
+            'status': 'switch_failed'
+        }), 500
+
+@interview_bp.route('/avatar_config_info', methods=['GET'])  
+def get_avatar_config_info():
+    """获取当前数字人API配置信息"""
+    try:
+        config = get_avatar_config()
+        return jsonify({
+            'status': 'success',
+            'config': {
+                'url': config['url'],
+                'appId': config['appId'],
+                'anchorId': config['anchorId'],
+                'vcn': config['vcn'],
+                'timeout': config.get('timeout', 30),
+                'hls_wait_time': config.get('hls_wait_time', 20)
+            },
+            'wsclient_connected': wsclient is not None,
+            'ffmpeg_running': is_ffmpeg_running()
+        })
+    except Exception as e:
+        return jsonify({
+            'error': f'获取配置信息时出错: {str(e)}',
+            'status': 'get_config_failed'
+        }), 500
 
    
    

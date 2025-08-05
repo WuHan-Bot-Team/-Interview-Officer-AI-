@@ -83,26 +83,6 @@ Page({
         iconColor: '#8b5cf6',
         bgColor: 'purple-bg'
       },
-      {
-        id: 9,
-        title: '临床监查员',
-        desc: '11个GCP问题 · 平均难度4.1',
-        tags: ['医学', '法规'],
-        hotness: '79%',
-        icon: 'file-lock',
-        iconColor: '#ef4444',
-        bgColor: 'red-bg'
-      },
-      {
-        id: 10,
-        title: '医疗器械注册',
-        desc: '13个法规问题 · 平均难度4.0',
-        tags: ['合规', '申报资料'],
-        hotness: '77%',
-        icon: 'file-attach',
-        iconColor: '#f59e0b',
-        bgColor: 'yellow-bg'
-      },
     ]
   },
 

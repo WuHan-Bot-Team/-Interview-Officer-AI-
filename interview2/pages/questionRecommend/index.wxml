@@ -1,0 +1,99 @@
+<view class="recommend-container">
+  <nav title-text="AI刷题推荐" />
+  
+  <!-- 参数选择区域 -->
+  <view class="param-section">
+    <view class="section-title">📋 个人信息</view>
+    <view class="param-card">
+      <view class="param-item">
+        <text class="param-label">专业方向</text>
+        <input class="param-input" 
+               placeholder="请输入您的专业方向，如：计算机科学" 
+               value="{{majorInput}}" 
+               bindinput="onMajorInput" />
+      </view>
+      
+      <view class="param-item">
+        <text class="param-label">目标岗位</text>
+        <input class="param-input" 
+               placeholder="请输入目标岗位，如：前端工程师" 
+               value="{{positionInput}}" 
+               bindinput="onPositionInput" />
+      </view>
+      
+      <view class="param-item">
+        <text class="param-label">题目难度</text>
+        <picker bindchange="onDifficultyChange" value="{{difficultyIndex}}" range="{{difficulties}}">
+          <view class="param-value">
+            {{difficulties[difficultyIndex]}} <t-icon name="chevron-down" size="24rpx" />
+          </view>
+        </picker>
+      </view>
+      
+      <view class="param-item">
+        <text class="param-label">题目类型</text>
+        <picker bindchange="onTypeChange" value="{{typeIndex}}" range="{{types}}">
+          <view class="param-value">
+            {{types[typeIndex]}} <t-icon name="chevron-down" size="24rpx" />
+          </view>
+        </picker>
+      </view>
+    </view>
+    
+    <button class="generate-btn" bindtap="generateQuestions" disabled="{{loading}}">
+      <t-icon wx:if="{{loading}}" name="loading" size="32rpx" />
+      <text>{{loading ? '正在生成...' : '🎯 生成推荐题目'}}</text>
+    </button>
+  </view>
+  
+  <!-- 推荐结果区域 -->
+  <view class="result-section" wx:if="{{questions.length > 0}}">
+    <view class="section-title">💡 推荐题目</view>
+    
+    <view class="question-list">
+      <view class="question-card" wx:for="{{questions}}" wx:key="id">
+        <view class="question-header">
+          <view class="question-num">题目 {{index + 1}}</view>
+          <view class="question-difficulty {{item.difficulty === '简单' ? 'easy' : item.difficulty === '中等' ? 'medium' : 'hard'}}">{{item.difficulty}}</view>
+        </view>
+        
+        <view class="question-content">{{item.question}}</view>
+        
+        <view class="question-tips">
+          <text class="tips-label">💡 答题提示：</text>
+          <text class="tips-content">{{item.tips}}</text>
+        </view>
+        
+        <view class="question-keywords" wx:if="{{item.keywords && item.keywords.length > 0}}">
+          <text class="keywords-label">🏷️ 关键词：</text>
+          <view class="keywords-list">
+            <text class="keyword-tag" wx:for="{{item.keywords}}" wx:key="*this">{{item}}</text>
+          </view>
+        </view>
+        
+        <view class="question-actions">
+          <button class="action-btn practice-btn" data-question="{{item}}" bindtap="startPractice">
+            开始练习
+          </button>
+          <button class="action-btn save-btn" data-question="{{item}}" bindtap="saveQuestion">
+            收藏题目
+          </button>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 学习建议 -->
+    <view class="suggestions-card" wx:if="{{studySuggestions}}">
+      <view class="suggestions-title">📚 学习建议</view>
+      <view class="suggestions-content">{{studySuggestions}}</view>
+    </view>
+  </view>
+  
+  <!-- 空状态 -->
+  <view class="empty-state" wx:if="{{!loading && questions.length === 0}}">
+    <t-icon name="lightbulb" size="120rpx" color="#ccc" />
+    <text class="empty-text">点击上方按钮生成专属推荐题目</text>
+  </view>
+</view>
+
+<t-toast id="t-toast" />

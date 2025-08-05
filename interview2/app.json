@@ -2,7 +2,13 @@
   "pages": [
     "pages/home2/index",
     "pages/practice/index",
-    "pages/my/index"
+    "pages/my/index",
+    "pages/questionRecommend/index",
+    "pages/learningRecommend/index",
+    "pages/projectPackaging/index",
+    "pages/offerCompare/index",
+    "pages/jobCompatibility/index",
+    "pages/test/index"
   ],
   "usingComponents": {
     "t-toast": "tdesign-miniprogram/toast/toast"

@@ -1,0 +1,95 @@
+<t-toast id="t-toast" />
+
+<view class="project-packaging-page">
+  <nav title-text="项目商业化包装" />
+  
+  <view class="content">
+    <!-- 页面标题 -->
+    <view class="page-header">
+      <view class="header-title">💼 AI项目包装助手</view>
+      <view class="header-desc">上传您的项目文件，AI将为您生成专业的项目包装文案</view>
+    </view>
+
+    <!-- 上传区域 -->
+    <view class="upload-section">
+      <view class="upload-card">
+        <view class="upload-icon">📁</view>
+        <view class="upload-title">上传项目文档</view>
+        <view class="upload-desc">支持 PDF、Word、PPT、代码文件等格式</view>
+        <button class="upload-btn" bindtap="onChooseFile">
+          <text class="btn-text">选择文件</text>
+        </button>
+      </view>
+
+      <!-- 已选择的文件 -->
+      <view wx:if="{{selectedFile}}" class="selected-file">
+        <view class="file-info">
+          <view class="file-icon">📄</view>
+          <view class="file-details">
+            <view class="file-name">{{selectedFile.name}}</view>
+            <view class="file-size">{{selectedFile.size}}</view>
+          </view>
+          <button class="remove-btn" bindtap="onRemoveFile">✕</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 项目信息输入 -->
+    <view class="project-info-section">
+      <view class="section-title">项目基本信息（可选）</view>
+      <view class="form-group">
+        <input 
+          class="form-input" 
+          placeholder="项目名称" 
+          value="{{projectName}}"
+          bindinput="onProjectNameInput"
+        />
+      </view>
+      <view class="form-group">
+        <textarea 
+          class="form-textarea" 
+          placeholder="项目简介（可选，帮助AI更好理解项目）" 
+          value="{{projectDesc}}"
+          bindinput="onProjectDescInput"
+          maxlength="200"
+        />
+        <view class="char-count">{{projectDesc.length}}/200</view>
+      </view>
+    </view>
+
+    <!-- 生成按钮 -->
+    <view class="generate-section">
+      <button 
+        class="generate-btn {{loading ? 'loading' : ''}}" 
+        bindtap="onGeneratePackaging"
+        disabled="{{!selectedFile || loading}}"
+      >
+        <text wx:if="{{!loading}}" class="btn-text">🤖 AI生成项目包装</text>
+        <text wx:if="{{loading}}" class="btn-text">AI正在分析中...</text>
+      </button>
+    </view>
+
+    <!-- AI生成结果 -->
+    <view wx:if="{{packagingResult}}" class="result-section">
+      <view class="section-title">🎯 AI包装建议</view>
+      <view class="result-card">
+        <view class="result-content">{{packagingResult}}</view>
+        <view class="result-actions">
+          <button class="action-btn" bindtap="onCopyResult">复制文案</button>
+          <button class="action-btn secondary" bindtap="onRegenerateResult">重新生成</button>
+        </view>
+      </view>
+    </view>
+
+    <!-- 使用说明 -->
+    <view class="tips-section">
+      <view class="section-title">💡 使用说明</view>
+      <view class="tips-list">
+        <view class="tip-item">• 支持上传项目源代码、设计文档、演示PPT等</view>
+        <view class="tip-item">• AI会分析您的项目技术栈、功能特点和创新点</view>
+        <view class="tip-item">• 生成的包装文案可直接用于简历或项目介绍</view>
+        <view class="tip-item">• 建议提供项目简介以获得更精准的包装建议</view>
+      </view>
+    </view>
+  </view>
+</view>

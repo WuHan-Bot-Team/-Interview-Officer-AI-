@@ -1,0 +1,7 @@
+{
+  "navigationBarTitleText": "AI刷题推荐",
+  "usingComponents": {
+    "t-icon": "tdesign-miniprogram/icon/icon",
+    "t-toast": "tdesign-miniprogram/toast/toast"
+  }
+}
